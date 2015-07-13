@@ -1,28 +1,31 @@
 package action;
 
-public class LoginAction {
+import model.UserBean;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ModelDriven;
+
+public class LoginAction implements Action,ModelDriven<UserBean>{
+	private UserBean model = new UserBean();
 	private String username;
-	private String password;
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+	
+	public String regist() throws Exception{
+		ActionContext.getContext().getSession().put("user", getModel().getUsername());
+		return SUCCESS;
 	}
 	
 	public String execute() throws Exception
 	{
-		if(getUsername().equals("chen") 
-				&& getPassword().equals("chen")){
-			return "success";
+		if(getModel().getUsername().equals("chen") 
+				&& getModel().getPassword().equals("chen")){
+			getModel().setTip("haha,³É¹¦£¡");
+			return SUCCESS;
 		}else{
-			return "error";
+			return ERROR;
 		}
+	}
+	public UserBean getModel(){
+		return model;
 	}
 }
