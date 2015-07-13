@@ -13,7 +13,7 @@
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">update</property>
 
-		<mapping resource="Bean/News.hbm.xml" />
-
+		<mapping class="Bean/Person" />
+		<mapping class="Bean/Son" />
 	</session-factory>
 </hibernate-configuration>
