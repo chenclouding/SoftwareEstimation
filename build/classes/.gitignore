@@ -1,4 +1,4 @@
-/service/
-/Bean/
-/DAO/
-/impl/
+/action/
+/bean/
+/business/
+/dao/

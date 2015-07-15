@@ -16,12 +16,7 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>loginForm.jsp</welcome-file>
+        <welcome-file>/common/user/login.jsp</welcome-file>
     </welcome-file-list>
-
-    <security-role>
-        <description>Don't assign users to this role</description>
-        <role-name>no-users</role-name>
-    </security-role>
 
 </web-app>
