@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>软件成本估算工具</title>
+
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="screen" href="<%=request.getContextPath()%>/styles/index.css" />
+<script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
+<script>
+$(document).ready(function(){
+	var height = $(document).height(); //浏览器当前窗口可视区域高度
+	 $("#wrap").css("min-height",height);
+})
+</script>
+</head>
+
+<body>
+<!-- Wrap -->
+<div id="wrap">
+		
+		<!-- Header -->
+		<div id="header">
+					
+			<h1 id="logo">软件成本估算工具</h1>
+			<h2 id="slogan">提供更快捷的软件估算支持平台...</h2>			
+		
+			<div id="searchform">	
+				<form method="post" class="search" action="#" >
+					<p><input name="search_query" class="textbox" type="text" />
+  					<input name="search" class="button" type="submit" value="搜索" /></p>
+				</form>
+			</div>			
+		</div>
+		
+		<!-- menu -->
+		<div id="menu">
+			<ul>
+				<li><a href="organizationList.jsp" target="main"><span>组织管理</span></a></li>
+				<li><a href="index.html"><span>项目管理</span></a></li>
+				<li><a href="index.html"><span>用户管理</span></a></li>
+				<li><a href="index.html"><span>修改密码</span></a></li>			
+			</ul>
+			<div id="login-info"> 当前用户：${sessionScope.userName}&nbsp;&nbsp;<a href="#">退出</a></div>		
+		</div>			
+		
+		<!--Content Wrap -->
+		<div id="content-wrap">			
+			<div id="main">				
+				<iframe name='main' src='common/organizationList.jsp' ></iframe>									
+			</div>
+
+            <div id="sidebar">
+					<h1>系统管理员</h1>
+					<ul class="sidemenu">
+						<li><a href="#">组织管理</a></li>
+						<li><a href="#">项目管理</a></li>
+						<li><a href="#">用户管理</a></li>
+						<li><a href="#">修改密码</a></li>
+					</ul>
+			</div>	
+		<!--End content-wrap-->
+		</div>
+		
+		<!-- Footer -->
+		<div id="footer">		
+			<p>   			
+			&copy; 2015 北航软件所 &nbsp;&nbsp;		
+			公司地址：北京市海淀区学院路37号 &nbsp;&nbsp;
+			电话：010－82318974 &nbsp;&nbsp;
+			</p>
+			
+		</div>	
+			
+<!-- END Wrap -->
+</div>
+
+</body>
+</html>

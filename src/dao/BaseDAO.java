@@ -1,5 +1,8 @@
 package dao;
 
+import java.io.Serializable;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -21,7 +24,6 @@ public class BaseDAO<T> {
 	 * @param object
 	 */
 	public void create(T object) {
-
 		SessionFactory sf = getSessionFactory();
 		Session session = sf.openSession();
 		try {
@@ -36,12 +38,12 @@ public class BaseDAO<T> {
 		}
 	}
 
-	/**
+/*	*//**
 	 * 更新数据库
 	 * 
 	 * @param object
-	 */
-	/*
+	 *//*
+	
 	 * public void update(T object) {
 	 * 
 	 * SessionFactory sf = getSessionFactory(); Session session =
@@ -54,8 +56,8 @@ public class BaseDAO<T> {
 	 * 从数据库中删除
 	 * 
 	 * @param object
-	 */
-	/*
+	 *//*
+	
 	 * public void delete(T object) {
 	 * 
 	 * SessionFactory sf = getSessionFactory(); Session session =
@@ -63,34 +65,45 @@ public class BaseDAO<T> {
 	 * 
 	 * try { session.beginTransaction(); session.delete(object);
 	 * session.getTransaction().commit(); } catch (Exception e) {
-	 * session.getTransaction().rollback(); } finally { session.close(); } }
-	 *//**
+	 * session.getTransaction().rollback(); } finally { session.close(); } }*/
+	 /**
 	 * 查找单个Entity Bean
 	 * 
 	 * @param clazz
 	 * @param id
 	 * @return
 	 */
-	/*
-	 * @SuppressWarnings("unchecked") public T find(Class<? extends T> clazz,
-	 * Serializable id) {
-	 * 
-	 * Session session = HibernateSessionFactory.getSessionFactory()
-	 * .openSession(); try { session.beginTransaction(); return (T)
-	 * session.get(clazz, id); } finally { session.getTransaction().commit();
-	 * session.close(); } }
-	 *//**
+	public T find(Class<? extends T> clazz, Serializable id) {
+		SessionFactory sf = getSessionFactory();
+		Session session = sf.openSession();
+		try {
+			session.beginTransaction();
+			return (T)session.get(clazz, id);
+		} finally {
+			session.getTransaction().commit();
+			session.close();
+			sf.close();
+		}
+	}
+
+	 /**
 	 * 查找多个Entity Bean
 	 * 
 	 * @param hql
 	 * @return
 	 */
-	/*
-	 * @SuppressWarnings("unchecked") public List<T> list(String hql) {
-	 * 
-	 * Session session = HibernateSessionFactory.getSessionFactory()
-	 * .openSession(); try { session.beginTransaction(); return
-	 * session.createQuery(hql).list(); } finally {
-	 * session.getTransaction().commit(); session.close(); } }
-	 */
+	
+	public List<T> list(String hql) {
+		SessionFactory sf = getSessionFactory();
+		Session session = sf.openSession();
+		try {
+			session.beginTransaction();
+			return session.createQuery(hql).list();
+		} finally {
+			session.getTransaction().commit();
+			session.close();
+			sf.close();
+		}
+	}
+	 
 }

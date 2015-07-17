@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="user")
@@ -16,6 +21,11 @@ public class User{
 	private String password;// 密码
 	private String name;// 用户名
 	private Integer role;// 角色 ：一般用户为2、组织级管理员为1、超级管理员为0
+	
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "organization_id")
+	private Organization organization;
 	
 	public Integer getId() {
 		return id;
@@ -46,5 +56,11 @@ public class User{
 	}
 	public void setRole(Integer role) {
 		this.role = role;
+	}
+	public Organization getOrganization() {
+		return organization;
+	}
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 }

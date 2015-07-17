@@ -6,21 +6,24 @@
 <title>软件成本估算工具</title>
 <!-- Custom Theme files -->
 <link href="<%=request.getContextPath()%>/styles/login.css" rel="stylesheet" type="text/css" media="all"/>
+<script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/styles/popup.css" media="all" />
 </head>
 <body>
 <div class="title">
 <h2>软件成本估算工具登录页面</h2>
 </div>
-<form method="post" >  
+<form method="post" action="user!login">  
 <div class="signup">
 		<span class="ribben"></span>
 		<p>邮箱：<span class="dot"> </span></p>
-		<input type="text" placeholder="example@email.com">
+		<input type="text" name="user.name" placeholder="example@email.com">
 		<p>密码：<span class="dot"> </span></p>
-	 	<input type="password" placeholder="">
+	 	<input type="password" name="user.password" placeholder="">
 	 	<input type="submit" value="登录">
 	 	<input class="theme-register" href="javascript:;" type="button" value="用户注册">
-	 	<input class="theme-register" href="javascript:;" type="button" value="组织注册">
+	 	<input class="theme-organization" href="javascript:;" type="button" value="组织注册">
 </div>
 </form>
 <div class="copyright">

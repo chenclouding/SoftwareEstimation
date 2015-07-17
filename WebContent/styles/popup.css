@@ -44,8 +44,8 @@ button, input {
 *overflow:visible
 }
 button::-moz-focus-inner, input::-moz-focus-inner {
-border:0;
-padding:0
+	border:0;
+	padding:0
 }
 button, input[type="button"], input[type="reset"], input[type="submit"] {
 	cursor:pointer;
@@ -100,8 +100,6 @@ body, button, input, select, textarea, code {
 	font-family:microsoft yahei;
 	color: #444;
 }
-/*window*/
-
 
 /* input */
 .ipt {
@@ -126,6 +124,10 @@ body, button, input, select, textarea, code {
 .ipt:focus {
 	border-color: #95C8F1;
 	box-shadow: 0 0 4px #95C8F1;
+}
+select.ipt{
+	width:194px;
+	height:31px;
 }
 /* btn */
 .btn {
@@ -170,7 +172,7 @@ input.btn {
 	border-color:#01C2C2;
 	outline:none
 }
-.theme-gobuy, .theme-signin {
+.theme-gobuy, .theme-form {
 	font-size: 15px;
 }
 .theme-price {
@@ -207,7 +209,7 @@ input.btn {
 	filter:alpha(opacity=40);
 	display:none
 }
-.theme-popover {
+.theme-popover-user,.theme-popover-organization {
 	z-index:9999;
 	position:fixed;
 	top:50%;
@@ -304,35 +306,46 @@ display:;
 	height: 470px;
 	margin-top: -180px;
 }
-.theme-signin {
-	margin: -50px -20px -50px 42px;
+.theme-form {
+	margin: -50px -20px -50px 10px;
 	text-align:left;
 	font-size: 14px;
 }
-.theme-signin h4 {
+.theme-form h4 {
 	color:#999;
 	font-weight:100;
 	margin-bottom: 20px;
 	font-size: 12px;
 }
-.theme-signin li {
+.theme-form li {
 	padding-left: 0px;
 	margin-bottom: 15px;
 }
-.theme-signin li strong {
+
+.theme-form li:last-child{
+	margin-left:32px;
+}
+
+.theme-form li strong {
 	float: left;
 	margin-left: -80px;
 	width: 80px;
 	text-align: right;
 	line-height: 32px;
 }
-.theme-signin .btn {
+.theme-form .btn {
 	margin-bottom: 10px;
 }
-.theme-signin p {
+.theme-form p {
 	margin-bottom:3px;
 	font-size: 14px;
 	color: #444;
+}
+.theme-form ol li label{
+	text-align:right; 
+	float:left; 
+	width:70px;
+	line-height:31px;
 }
 .theme-desc, .theme-version {
 	padding-top: 0
