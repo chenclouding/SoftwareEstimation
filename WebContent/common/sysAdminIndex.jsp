@@ -13,10 +13,16 @@
 $(document).ready(function(){
 	var height = $(document).height(); //浏览器当前窗口可视区域高度
 	 $("#wrap").css("min-height",height);
+	
 })
 </script>
+<style>
+iframe{
+	width:700px;
+	height:500px;
+}
+</style>
 </head>
-
 <body>
 <!-- Wrap -->
 <div id="wrap">
@@ -38,10 +44,10 @@ $(document).ready(function(){
 		<!-- menu -->
 		<div id="menu">
 			<ul>
-				<li><a href="organizationList.jsp" target="main"><span>组织管理</span></a></li>
-				<li><a href="index.html"><span>项目管理</span></a></li>
-				<li><a href="index.html"><span>用户管理</span></a></li>
-				<li><a href="index.html"><span>修改密码</span></a></li>			
+				<li><a href="common/organizationList.jsp" target="main"><span>组织管理</span></a></li>
+				<li><a href="index.html" target="main"><span>项目管理</span></a></li>
+				<li><a href="index.html" target="main"><span>用户管理</span></a></li>
+				<li><a href="index.html" target="main"><span>修改密码</span></a></li>			
 			</ul>
 			<div id="login-info"> 当前用户：${sessionScope.userName}&nbsp;&nbsp;<a href="#">退出</a></div>		
 		</div>			
@@ -49,16 +55,16 @@ $(document).ready(function(){
 		<!--Content Wrap -->
 		<div id="content-wrap">			
 			<div id="main">				
-				<iframe name='main' src='common/organizationList.jsp' ></iframe>									
+				<iframe frameborder="0" scrolling="no" name="main" src="common/organizationList.jsp"></iframe>									
 			</div>
 
             <div id="sidebar">
 					<h1>系统管理员</h1>
 					<ul class="sidemenu">
-						<li><a href="#">组织管理</a></li>
-						<li><a href="#">项目管理</a></li>
-						<li><a href="#">用户管理</a></li>
-						<li><a href="#">修改密码</a></li>
+						<li><a href="common/organizationList.jsp" target="main">组织管理</a></li>
+						<li><a href="#" target="main">项目管理</a></li>
+						<li><a href="common/userList.jsp" target="main">用户管理</a></li>
+						<li><a href="common/resetPassword.jsp" target="main">修改密码</a></li>
 					</ul>
 			</div>	
 		<!--End content-wrap-->

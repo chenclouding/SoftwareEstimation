@@ -38,34 +38,41 @@ public class BaseDAO<T> {
 		}
 	}
 
-/*	*//**
+	/**
 	 * 更新数据库
 	 * 
 	 * @param object
-	 *//*
+	 */
 	
-	 * public void update(T object) {
-	 * 
-	 * SessionFactory sf = getSessionFactory(); Session session =
-	 * sf.openSession();
-	 * 
-	 * try { session.beginTransaction(); session.update(object);
-	 * session.getTransaction().commit(); } catch (Exception e) {
-	 * session.getTransaction().rollback(); } finally { session.close(); } }
-	 *//**
+	  public void update(T object) {
+	  
+	  SessionFactory sf = getSessionFactory(); Session session =
+	  sf.openSession();
+	  
+	  try { session.beginTransaction(); session.update(object);
+	  session.getTransaction().commit(); } catch (Exception e) {
+	  session.getTransaction().rollback(); } finally { session.close(); } }
+	 /**
 	 * 从数据库中删除
 	 * 
 	 * @param object
-	 *//*
+	 */	
+	public void delete(T object) {
+
+		SessionFactory sf = getSessionFactory();
+		Session session = sf.openSession();
+
+		try {
+			session.beginTransaction();
+			session.delete(object);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+	}
 	
-	 * public void delete(T object) {
-	 * 
-	 * SessionFactory sf = getSessionFactory(); Session session =
-	 * sf.openSession();
-	 * 
-	 * try { session.beginTransaction(); session.delete(object);
-	 * session.getTransaction().commit(); } catch (Exception e) {
-	 * session.getTransaction().rollback(); } finally { session.close(); } }*/
 	 /**
 	 * 查找单个Entity Bean
 	 * 

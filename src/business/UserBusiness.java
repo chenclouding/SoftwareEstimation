@@ -17,7 +17,20 @@ public class UserBusiness {
 		if(users==null||users.isEmpty())
 			return null;
 		else
-			return users.get(0);
-		
+			return users.get(0);		
+	}
+	
+	public User find(User p) {
+		return dao.find(User.class, p.getId());
+	}
+	
+	public void update(User p) {
+		User user = dao.find(User.class, p.getId());
+		user.setEmail(p.getEmail());
+		user.setName(p.getName());
+		user.setOrganization(p.getOrganization());
+		user.setPassword(p.getPassword());
+		user.setRole(p.getRole());
+		dao.update(user);
 	}
 }

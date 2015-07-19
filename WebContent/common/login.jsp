@@ -7,8 +7,7 @@
 <!-- Custom Theme files -->
 <link href="<%=request.getContextPath()%>/styles/login.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/styles/popup.css" media="all" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/popup.css" media="all" />
 </head>
 <body>
 <div class="title">

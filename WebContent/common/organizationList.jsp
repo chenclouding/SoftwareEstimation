@@ -3,30 +3,29 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Organization" %>
 <%@ page import="business.OrganizationBusiness" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap-table.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/common.css">
 <script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/bootstrap-table.min.js"></script>
-<script>
-$(document).ready(function(){
-	if(organizations == null){
-		$("#orgList").css("display","none");
-		$("#errorMessage").show();
-	}
-})
-</script>
+
 </head>
 <body>
-<h1 id="errorMessage" style="display:none;color:red">目前无组织信息，请添加组织</h1>
 <div id="orgList">
-	<h1>组织列表</h1>	
+	<h3>组织列表</h3>	
    	<table class="table table-bordered">
    	<thead>
        <tr>
@@ -52,16 +51,15 @@ $(document).ready(function(){
                <td><%=org.getContact() %></td>
                <td><%=org.getPhone() %></td>
                <td><%=org.getEmail() %></td>
-		        <td class = editimg>
-		          	  <a href="Organization!edit?organization.id=<%org.getId();%>/>">
-		          	  	<IMG src="/nesma/images/btnedit.gif" alt="点击修改" border="0" />
-		          	  </a>
+		        <td>
+		        	<a href="organization!edit?organization.id=<%=org.getId()%>">
+				  		<span class="glyphicon glyphicon-edit"></span>
+					</a>  
 		        </td>
-		        <td class = delimg>
-		              <a href="Organization!del?organization.id=<%org.getId();%>/>" 
-		              onclick="return confirmdel(<s:property value="users.size"/>)">
-		              	<img src="/nesma/images/btndel.gif" alt="点击删除" width="15" height="12" border="0" />
-		              </a>
+		        <td>
+		        <a href="organization!delete?organization.id=<%=org.getId()%>">
+				  <span class="glyphicon glyphicon-trash"></span>
+				</a>
 		        </td>
           </tr>
           </tbody>

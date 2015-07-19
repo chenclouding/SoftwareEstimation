@@ -151,13 +151,6 @@ form.search input.button {
 	padding: 0;
     margin: 10px 0 0 0;
 }
-#main h1 {
-	color: #667F99; 
-	border-bottom: 1px solid #CCCCCC;
-	background: #F6F6F6 url(../images/arrow.gif) no-repeat 5px 10px;
-	padding: 5px 0 5px 20px;
-	margin: 10px 10px 0 10px;
-}
 
 /* sidebar */
 #sidebar {

@@ -18,4 +18,13 @@ public class OrganizationBusiness {
 	public Organization getOrgById(int orgId){
 		return dao.find(Organization.class, orgId);
 	}
+	
+	//p only need to have an id
+	public Organization find(Organization p) {
+		return dao.find(Organization.class, p.getId());
+	}
+	
+	public void delete(Organization p) {
+		dao.delete(dao.find(Organization.class, p.getId()));
+	}
 }
