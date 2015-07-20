@@ -46,8 +46,8 @@ iframe{
 			<ul>
 				<li><a href="common/organizationList.jsp" target="main"><span>组织管理</span></a></li>
 				<li><a href="index.html" target="main"><span>项目管理</span></a></li>
-				<li><a href="index.html" target="main"><span>用户管理</span></a></li>
-				<li><a href="index.html" target="main"><span>修改密码</span></a></li>			
+				<li><a href="common/userList.jsp" target="main"><span>用户管理</span></a></li>
+				<li><a href="common/resetPassword.jsp" target="main"><span>修改密码</span></a></li>			
 			</ul>
 			<div id="login-info"> 当前用户：${sessionScope.userName}&nbsp;&nbsp;<a href="#">退出</a></div>		
 		</div>			

@@ -2,6 +2,7 @@ package business;
 
 import java.util.List;
 
+import bean.Organization;
 import bean.User;
 import dao.BaseDAO;
 
@@ -32,5 +33,12 @@ public class UserBusiness {
 		user.setPassword(p.getPassword());
 		user.setRole(p.getRole());
 		dao.update(user);
+	}
+	
+	/*
+	 * 返回组织所有用户
+	 */
+	public List<User> getUsersByOrganization(Organization o) {
+		return dao.list("select c from User c where c.organization.id="+o.getId());
 	}
 }

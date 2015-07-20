@@ -12,40 +12,38 @@ import com.opensymphony.xwork2.ActionSupport;
 public class OrganizationAction extends ActionSupport {
 	private Organization organization;
 	private List<Organization> organizations;
-
+	private OrganizationBusiness ob = new OrganizationBusiness();
+	
 	/* 新增组织 */
 	public String add() {
-		new OrganizationBusiness().create(organization);
+		ob.create(organization);
 		return SUCCESS;
 	}
 	
 	/*获取要修改的组织信息 */
 	public String edit() {
 		if (organization == null)
-			organization = new OrganizationBusiness().find(organization);
+			organization = ob.find(organization);
 		return INPUT;
 	}
 	
 	/*删除组织信息*/
 	public String delete() {
-		new OrganizationBusiness().delete(organization);
+		ob.delete(organization);
 		return INPUT;
 	}
 	
 	/*获取组织列表 */
-/*	public String list() {
-		organizations = new OrganizationBusiness().getAllOrganization();
-		if (organizations == null || organizations.isEmpty()){
-			ActionContext.getContext().getSession().put("message", "目前无组织");
-		}
-		return "list";
-	}*/
+	public String list() {
+		organizations = ob.getAllOrganization();
+		return SUCCESS;
+	}
 
 
 
 	 /*保存修改后的组织信息 
 	public String edited() {
-		new OrganizationBusiness().update(organization);
+		ob.update(organization);
 		message = true;
 		return SUCCESS;
 	}

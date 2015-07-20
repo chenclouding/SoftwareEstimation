@@ -29,6 +29,9 @@ body{
 	background: url(../images/bg.jpg);
     min-height: 770px;
 }
+select{
+	font-family:"Times New Roman", "Microsoft YaHei";
+}
 h2 {
   text-align: center;
   font-size: 1.7em;
@@ -97,7 +100,10 @@ span.ribben {
   color: #000;
   margin: 15px 0px;
 }
-.signup input[type="submit"], input[type="button"]{
+.signup .btn-primary{
+	  margin:50px 0px 0px 8px;
+}
+.btn-primary, .signup input[type="submit"]{
   color: #FFF;
   letter-spacing: 0.5px;
   border:none;
@@ -111,16 +117,38 @@ span.ribben {
    -o-border-radius:4px;
   cursor: pointer;
   outline: none;
-  margin:50px 0px 0px 8px;
+  margin:0px;
   background: rgb(1,194,194); /* Old browsers */
 }
 
-.signup input[type="submit"]:hover , input[type="button"]:hover{
+.btn-primary:hover ,.btn-primary:focus, .signup input[type="submit"]:hover , input[type="button"]:hover{
 	background: #2ca5a5; /* Old browsers */
 	transition: all 0.3s ease; 
      -webkit-transition: all 0.3s ease;
      -moz-transition: all 0.3s ease;
      -o-transition: all 0.3s ease;
+}
+.modal-footer input[type="submit"], input[type="reset"]{
+width:20%;
+padding:8px;
+}
+.modal{
+width:450px;
+left:55%;
+}
+.modal .modal-body p{
+	font-size:14px;
+}
+#userRegisterModal .modal-body{
+padding-left:110px;
+}
+#orgRegisterModal .modal-body ol li label{
+	display:inline;
+	text-align:right; 
+	float:left; 
+	width:130px;
+	line-height:31px;
+	font-size:14px;
 }
 .copyright {
   text-align: center;
@@ -131,21 +159,11 @@ span.ribben {
   font-weight: 400;
   color: #000;
 }
-.copyright p a{
-	color: #01C2C2;
-}
-.copyright p a:hover{
-	color:#000;
-	transition: all 0.3s ease; 
-     -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-     -o-transition: all 0.3s ease;
-}
 /*--sign up page end here--*/
 /*--meadia quiries start here--*/
 @media(max-width:1440px){
 .signup {
-  width: 23%;	
+  width: 28%;	
 }
 .title h2 {
   margin: 3em 0em 0em 0em;

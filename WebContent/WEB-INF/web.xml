@@ -13,10 +13,12 @@
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>   
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>/common/login.jsp</welcome-file>
+        <welcome-file>/common/forwardLogin.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

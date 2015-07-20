@@ -28,12 +28,14 @@ margin-left:100px;
 </head>
 <body>
    	<h3>重置密码</h3>	
-  	<form class="theme-form" action="user!reset?user.id='${sessionScope.userId}'" name="industryForm" method="post">
+  	<form class="theme-form" action="user!reset" method="post">
 		<ol>
 			<li><label>当前密码：</label> <input class="ipt" type="text" name="user.password" /></li>
 			<li><label>新密码：</label> <input class="ipt" type="text" name="newPassword" /></li>
 			<li><label>确认密码：</label> <input class="ipt" type="text" /></li>
-			<li><input class="btn btn-primary" type="submit" value="保 存 "/>
+			<li><input display=none type="text" name="user.id" value="${sessionScope.userId}"/>
+			<input display=none type="text" name="user.role" value="${sessionScope.userRole}"/>
+			<input class="btn btn-primary" type="submit" value="保 存 "/>
 			<input class="btn btn-primary" type="reset" value="重置" /></li>
 		</ol>
    </form>

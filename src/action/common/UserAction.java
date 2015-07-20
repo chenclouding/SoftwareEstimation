@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport{
-	
+
 	private User user;
 	private Organization organization;
 	private String newPassword;
@@ -30,33 +30,45 @@ public class UserAction extends ActionSupport{
 	 */
 	public String login() {
 		Map<String,Object> map = ActionContext.getContext().getSession();
-		if (user != null) {
+		User user0 = new UserBusiness().findUserByNameAndPassword(user.getName(), user.getPassword());
+		if (user0 == null) {
 			if (user.getName().equals("admin") && user.getPassword().equals("admin")) {// 系统级管理员用户名admin，密码admin
 				map.put("userName", "admin");
 				map.put("userRole", "0");
-				map.put("userId", user.getId());
 				return "sysAdmin";
+			}else{
+				return INPUT;
 			}
 		}
-		user = new UserBusiness().findUserByNameAndPassword(user.getName(), user.getPassword());
-		if (user == null) {
-/*			addActionError("用户名或密码错误，请重试！");*/
-			return INPUT;
-		} else if(user.getRole()==1){			
-			map.put("userName", user.getName());
-			map.put("userRole", user.getRole());
-			map.put("userId", user.getId());
-			return "orgAdmin";
-		}else{
-			map.put("userName", user.getName());
-			map.put("userRole", user.getRole());
-			map.put("userId", user.getId());
-			return "commonUser";
+		else
+		{
+			if(user0.getRole()==0){
+			map.put("userName", user0.getName());
+			map.put("userRole", user0.getRole());
+			map.put("userId", user0.getId());
+			return "sysAdmin";
+			}else if(user0.getRole()==1){			
+				map.put("userName", user0.getName());
+				map.put("userRole", user0.getRole());
+				map.put("userId", user0.getId());
+				return "orgAdmin";
+			}else{
+				map.put("userName", user0.getName());
+				map.put("userRole", user0.getRole());
+				map.put("userId", user0.getId());
+				return "commonUser";
+			}
 		}
 	}
 
 	/* 重设用户密码 */
 	public String reset() {
+		if(user.getPassword().equals("admin")&&user.getRole().equals(0)){
+			user.setId(null);
+			user.setName("admin");
+			user.setPassword(newPassword);
+			new UserBusiness().create(user);
+		}
 		UserBusiness ub = new UserBusiness();
 		User u = ub.find(user);
 		if (u != null && u.getPassword() == user.getPassword()) {
@@ -74,11 +86,9 @@ public class UserAction extends ActionSupport{
 		this.user = user;
 	}
 
-
 	public Organization getOrganization() {
 		return organization;
 	}
-
 
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
