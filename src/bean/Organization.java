@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,8 +13,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 /** 组织信息 */
 
@@ -33,8 +32,7 @@ public class Organization {
 	private String email;// 电子邮件
 	private String fax;// 传真
 	
-	@OneToMany(mappedBy = "organization")
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "organization")
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
 	private List<User> users = new ArrayList<User>();
 	

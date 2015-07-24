@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-<constant name="struts.enable.DynamicMethodInvocation" value="true"/> 
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<package name="SoftwareEstimation" extends="struts-default">
 		<action name="user" class="action.common.UserAction">
 			<result name="login">/common/login.jsp</result>
@@ -12,7 +12,7 @@
 			<result name="sysAdmin">/common/sysAdminIndex.jsp</result>
 			<result name="orgAdmin">/common/orgAdminIndex.jsp</result>
 			<result name="commonUser">/common/commonUserIndex.jsp</result>
-			<result name="input">/common/sysAdminIndex.jsp</result>				
+			<result name="input">/common/sysAdminIndex.jsp</result>
 		</action>
 		<action name="organization" class="action.common.OrganizationAction">
 			<result name="success">/common/login.jsp</result>

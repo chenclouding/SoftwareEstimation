@@ -1,16 +1,17 @@
 @CHARSET "UTF-8";
+
 h3 {
-	color: #69BECD; 
+	color: #69BECD;
 	border-bottom: 1px solid #CCCCCC;
 	padding: 5px 0 5px 0px;
 	margin: 10px 0px 0px 0px;
 	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
-	font-weight: Bold; 		
+	font-weight: Bold;
 	font-size: 130%;
 }
 
-.table{
-margin:20px 0px 20px 0px;
-font-size:12px;
-font-family: "Times New Roman", "Microsoft YaHei";
+.table {
+	margin: 20px 0px 20px 0px;
+	font-size: 12px;
+	font-family: "Times New Roman", "Microsoft YaHei";
 }

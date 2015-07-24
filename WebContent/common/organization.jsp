@@ -29,11 +29,11 @@ jQuery(document).ready(function($) {
 			</h3>
 		</div>
 		<div class="theme-popbod dform">
-			<form class="theme-form" name="organizationform" action="organization!add"
-				method="post">
+			<form class="theme-form" name="organizationform"
+				action="organization!add" method="post">
 				<ol>
-					<li><label>组织名称：</label>
-						<input class="ipt" type="text" name="organization.name" /></li>
+					<li><label>组织名称：</label> <input class="ipt" type="text"
+						name="organization.name" /></li>
 					<li><label>组织类型：</label> <select class="ipt" type="text"
 						name="organization.type">
 							<option value="==请选择组织类型==">==请选择组织类型==</option>
@@ -58,18 +58,18 @@ jQuery(document).ready(function($) {
 							<option value="S.公共管理、社会保障和社会组织">S.公共管理、社会保障和组织</option>
 							<option value="T.国际组织">T.国际组织</option>
 					</select></li>
-					<li><label>组织简介：</label>
-						<input class="ipt" type="text" name="organization.description" /></li>
-					<li><label>组织地址：</label>
-						<input class="ipt" type="text" name="organization.address" /></li>
-					<li><label>传真：</label>
-						<input class="ipt" type="text" name="organization.postcode" /></li>
-					<li><label>联系人：</label>
-						<input class="ipt" type="text" name="organization.contact" /></li>
-					<li><label>电话：</label>
-						<input class="ipt" type="text" name="organization.phone" /></li>
-					<li><label>邮箱：</label>
-						<input class="ipt" type="text" name="organization.email" /></li>
+					<li><label>组织简介：</label> <input class="ipt" type="text"
+						name="organization.description" /></li>
+					<li><label>组织地址：</label> <input class="ipt" type="text"
+						name="organization.address" /></li>
+					<li><label>传真：</label> <input class="ipt" type="text"
+						name="organization.postcode" /></li>
+					<li><label>联系人：</label> <input class="ipt" type="text"
+						name="organization.contact" /></li>
+					<li><label>电话：</label> <input class="ipt" type="text"
+						name="organization.phone" /></li>
+					<li><label>邮箱：</label> <input class="ipt" type="text"
+						name="organization.email" /></li>
 					<li><input class="btn btn-primary" type="submit" value="新建" />
 						<input class="btn btn-primary" type="reset" value="重置" /></li>
 				</ol>

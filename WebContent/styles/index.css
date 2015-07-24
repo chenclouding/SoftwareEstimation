@@ -1,9 +1,14 @@
 /* Top Elements */
-* { margin: 0; padding: 0; outline: 0; }
+* {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}
 
 body {
 	background: #FFF;
-	font: 12px/1.6em 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, Sans-Serif;
+	font: 12px/1.6em 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+		Sans-Serif;
 	color: #555;
 	text-align: center;
 }
@@ -13,6 +18,7 @@ a:link, a:visited {
 	text-decoration: none;
 	color: #4493A1;
 }
+
 a:hover {
 	background: inherit;
 	color: #996800;
@@ -20,18 +26,30 @@ a:hover {
 /* headers */
 h1, h2, h3 {
 	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
-	font-weight: Bold; 		
+	font-weight: Bold;
 }
-h1 { font-size: 130%; }
-h2 { font-size: 120%; text-transform: uppercase; }
-h3 { font-size: 120%; color: #007E80; }
+
+h1 {
+	font-size: 130%;
+}
+
+h2 {
+	font-size: 120%;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-size: 120%;
+	color: #007E80;
+}
 
 p {
 	margin: 0;
 	padding: 10px 12px;
 }
+
 h1, h2, h3 {
-    padding: 15px 12px;
+	padding: 15px 12px;
 }
 
 ul, ol {
@@ -41,18 +59,22 @@ ul, ol {
 
 /* search form */
 form.search {
-	padding: 0; margin: 0; 
+	padding: 0;
+	margin: 0;
 	vertical-align: bottom;
 	border: none;
 	background-color: transparent;
 }
-form.search input.textbox { 
-	margin: 0; padding: 1px;
+
+form.search input.textbox {
+	margin: 0;
+	padding: 1px;
 	width: 120px;
-	border: 1px solid #CCC; 
+	border: 1px solid #CCC;
 	background: #FFF;
-	color: #333; 
+	color: #333;
 }
+
 form.search input.button {
 	height: 20px;
 	padding: 1px 3px;
@@ -68,11 +90,12 @@ form.search input.button {
 	margin: 0 auto;
 	text-align: left;
 }
+
 #content-wrap {
 	position: relative;
 	width: 91%;
 	margin: 0 auto;
-	padding: 0;	
+	padding: 0;
 }
 /* header */
 #header {
@@ -80,33 +103,38 @@ form.search input.button {
 	width: 1020px;
 	height: 100px;
 	background: #FFF url(../images/header.jpg) no-repeat center top;
-	margin: 0; padding: 0;
+	margin: 0;
+	padding: 0;
 	font-size: 14px;
 	color: #FFF;
 }
+
 #header h1#logo {
 	position: absolute;
-	margin: 0; padding: 0;
-	font: bold 40px Georgia, "Times New Roman", 
-             "Microsoft YaHei";
+	margin: 0;
+	padding: 0;
+	font: bold 40px Georgia, "Times New Roman", "Microsoft YaHei";
 	letter-spacing: 1px;
 	color: #FFF;
 	text-transform: none;
-	
 	/* change the values of top and Left to adjust the position of the logo*/
-	top: 22px; left: 53px;
+	top: 22px;
+	left: 53px;
 }
+
 #header h2#slogan {
 	position: absolute;
 	z-index: 9999999;
-	margin: 0; padding: 0;
+	margin: 0;
+	padding: 0;
 	font: bold 12px 'Trebuchet MS', Arial, Sans-serif;
 	text-transform: none;
 	color: #FFF;
-	
 	/* change the values of top and Left to adjust the position of the slogan*/
-	top: 75px; left:75px;			
+	top: 75px;
+	left: 75px;
 }
+
 #header #searchform {
 	float: right;
 	padding: 35px 40px 0 0;
@@ -119,102 +147,132 @@ form.search input.button {
 	height: 30px;
 	background: #FFF url(../images/menubg.jpg) repeat-y;
 	margin: 0;
-	font: bolder 12px/30px 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, Sans-Serif;
+	font: bolder 12px/30px 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+		Verdana, Sans-Serif;
 }
-#menu #login-info{
-	float:right;
-	padding-right:80px;
+
+#menu #login-info {
+	float: right;
+	padding-right: 80px;
 }
-#menu ul{
-	margin: 0; padding: 0 0 0 305px;
+
+#menu ul {
+	margin: 0;
+	padding: 0 0 0 305px;
 }
+
 #menu ul li {
 	float: left;
-	list-style: none;		
+	list-style: none;
 }
+
 #menu ul li a {
 	display: block;
-	text-decoration: none;	
+	text-decoration: none;
 	padding: 0 10px;
 	background: inherit;
 	color: #FFF;
 }
+
 #menu ul li a:hover {
-   background: #FFF; 
-	color: #333;  
+	background: #FFF;
+	color: #333;
 }
 
 /* Main */
 #main {
-	float: right;	
+	float: right;
 	width: 78%;
 	padding: 0;
-    margin: 10px 0 0 0;
+	margin: 10px 0 0 0;
 }
 
 /* sidebar */
 #sidebar {
 	float: left;
 	width: 20%;
-	padding: 0; margin: 10px 0 0 0;
-}	
-#sidebar h1 {
-	margin: 10px 0 0 0; 
-	padding: 5px 10px;
-	font: bold 1.1em 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, Sans-Serif;
-	color: #FFF;	
-	background: #B6B8BB;	
+	padding: 0;
+	margin: 10px 0 0 0;
 }
+
+#sidebar h1 {
+	margin: 10px 0 0 0;
+	padding: 5px 10px;
+	font: bold 1.1em 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+		Sans-Serif;
+	color: #FFF;
+	background: #B6B8BB;
+}
+
 #sidebar ul.sidemenu {
 	list-style: none;
 	text-align: left;
-	margin: 3px 0px 8px 0; padding: 0;
+	margin: 3px 0px 8px 0;
+	padding: 0;
 	text-decoration: none;
-    font-size: .9em;
+	font-size: .9em;
 }
+
 #sidebar ul.sidemenu li {
 	border-bottom: 1px solid #EFF0F1;
-	background: url(../images/bullet.gif) no-repeat 2px 5px ;
+	background: url(../images/bullet.gif) no-repeat 2px 5px;
 	padding: 3px 0 3px 25px;
-	margin: 0 2px;			 
+	margin: 0 2px;
 }
 
-* html body #sidebar ul.sidemenu li { height: 1%; }
+* html body #sidebar ul.sidemenu li {
+	height: 1%;
+}
 
-#sidebar ul.sidemenu a:link,
-#sidebar ul.sidemenu a:visited {
+#sidebar ul.sidemenu a:link, #sidebar ul.sidemenu a:visited {
 	font-weight: bold;
-	padding: 2px 0; 		
+	padding: 2px 0;
 	background: none;
-    color: #69BECD;
+	color: #69BECD;
 }
+
 #sidebar ul.sidemenu a:hover {
-    color: #555;
+	color: #555;
 }
 
 /* footer */
 #footer {
 	clear: both;
 	color: #66737B;
-	font: normal 90% 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, Sans-Serif;
-	background: #FFF url(../images/footerbg.jpg) no-repeat center top;	
+	font: normal 90% 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+		Sans-Serif;
+	background: #FFF url(../images/footerbg.jpg) no-repeat center top;
 	width: 1020px;
 	height: 60px;
 	text-align: center;
 	padding: 5px 0 3px 0;
 	margin: 0 auto;
-	position:fixed;
-	bottom:0px;
+	position: fixed;
+	bottom: 0px;
 }
-#footer a { text-decoration: none; }
+
+#footer a {
+	text-decoration: none;
+}
 
 /* alignment classes */
-.float-left  { float: left; }
-.float-right { float: right; }
-.align-left  { text-align: left; }
-.align-right { text-align: right; }
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
 
 /* additional classes */
-.clear { clear: both; }
-
-
+.clear {
+	clear: both;
+}
