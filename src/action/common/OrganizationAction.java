@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import bean.Organization;
+import bean.User;
 import business.OrganizationBusiness;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -14,34 +15,48 @@ public class OrganizationAction extends ActionSupport {
 	private List<Organization> organizations;
 	private OrganizationBusiness ob = new OrganizationBusiness();
 	
-	/* 新增组织 */
+	/* 鏂板缁勭粐 */
 	public String add() {
 		ob.create(organization);
 		return SUCCESS;
 	}
 	
-	/*获取要修改的组织信息 */
+	/* 鑾峰彇闇�瑕佷慨鏀圭殑缁勭粐淇℃伅 */
 	public String edit() {
 		if (organization == null)
 			organization = ob.find(organization);
 		return INPUT;
 	}
 	
-	/*删除组织信息*/
+	/* 鍒犻櫎缁勭粐淇℃伅 */
 	public String delete() {
 		ob.delete(organization);
 		return INPUT;
 	}
 	
-	/*获取组织列表 */
+	/* 鑾峰彇缁勭粐鍒楄〃 */
 	public String list() {
+		organizations = ob.getAllOrganization();
+		return INPUT;
+	}
+	
+	/* 鑾峰彇缁勭粐鍒楄〃 */
+	public String listOrg() {
 		organizations = ob.getAllOrganization();
 		return SUCCESS;
 	}
+	
+	/* 鑾峰彇缁勭粐鍒楄〃 */
+	public String listOrganization() {
+		organizations = ob.getAllOrganization();
+		for(Organization org:organizations){
+			List<User> users = org.getUsers();
+			System.out.println(users);
+		}
+		return "list";
+	}
 
-
-
-	 /*保存修改后的组织信息 
+	 /* 淇濆瓨淇敼鍚庣殑缁勭粐淇℃伅
 	public String edited() {
 		ob.update(organization);
 		message = true;

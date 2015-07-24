@@ -1,5 +1,6 @@
 package action.common;
 
+import java.util.List;
 import java.util.Map;
 
 import bean.Organization;
@@ -14,25 +15,29 @@ public class UserAction extends ActionSupport{
 
 	private User user;
 	private Organization organization;
+	private List<Organization> organizations;
+	private List<User> users;
 	private String newPassword;
+	private OrganizationBusiness ob = new OrganizationBusiness();
+	private UserBusiness ub = new UserBusiness();
 	
-	/* 新增用户 */
+	/* 鏂板鐢ㄦ埛*/
 	public String add() {
 		user.setRole(2);
-		Organization org = new OrganizationBusiness().getOrgById(organization.getId());
+		Organization org = ob.getOrgById(organization.getId());
 		user.setOrganization(org);
-		new UserBusiness().create(user);
+		ub.create(user);
 		return INPUT;
 	}
 	
 	/*
-	 * 检查用户名密码是否存在，之后根据用户的类型，决定跳转的页面（admin,org,user）
+	 * 妫�鏌ョ敤鎴峰悕瀵嗙爜鏄惁瀛樺湪锛屾牴鎹敤鎴风被鍨媋dmin,org,user璺宠浆涓嶅悓椤甸潰
 	 */
 	public String login() {
 		Map<String,Object> map = ActionContext.getContext().getSession();
-		User user0 = new UserBusiness().findUserByNameAndPassword(user.getName(), user.getPassword());
+		User user0 = ub.findUserByNameAndPassword(user.getName(), user.getPassword());
 		if (user0 == null) {
-			if (user.getName().equals("admin") && user.getPassword().equals("admin")) {// 系统级管理员用户名admin，密码admin
+			if (user.getName().equals("admin") && user.getPassword().equals("admin")) {// 系统锟斤拷锟斤拷锟斤拷员锟矫伙拷锟斤拷admin锟斤拷锟斤拷锟斤拷admin
 				map.put("userName", "admin");
 				map.put("userRole", "0");
 				return "sysAdmin";
@@ -61,15 +66,14 @@ public class UserAction extends ActionSupport{
 		}
 	}
 
-	/* 重设用户密码 */
+	/* 閲嶇疆瀵嗙爜 */
 	public String reset() {
 		if(user.getPassword().equals("admin")&&user.getRole().equals(0)){
 			user.setId(null);
 			user.setName("admin");
 			user.setPassword(newPassword);
-			new UserBusiness().create(user);
+			ub.create(user);
 		}
-		UserBusiness ub = new UserBusiness();
 		User u = ub.find(user);
 		if (u != null && u.getPassword() == user.getPassword()) {
 			u.setPassword(newPassword);
@@ -100,5 +104,21 @@ public class UserAction extends ActionSupport{
 
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
+	}
+
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 }

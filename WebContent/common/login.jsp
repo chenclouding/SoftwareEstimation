@@ -53,9 +53,9 @@
 				aria-hidden="true">×</button>
 			<h3 id="myModalLabel">注册用户</h3>
 		</div>
-		<div class="modal-body">
-			<form class="theme-form" name="loginform" action="user!add"
-				method="post">
+		<form class="theme-form" name="loginform" action="user!add"
+			method="post">
+			<div class="modal-body">
 				<ol>
 					<li><p>邮箱：</p>
 						<input class="ipt" type="text" name="user.email"
@@ -73,12 +73,12 @@
 							</s:iterator>
 					</select>
 				</ol>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<input class="btn btn-primary" type="submit" value="新建" /> <input
-				class="btn btn-primary" type="reset" value="重置" />
-		</div>
+			</div>
+			<div class="modal-footer">
+				<input class="btn btn-primary" type="submit" value="新建" /> <input
+					class="btn btn-primary" type="reset" value="重置" />
+			</div>
+		</form>
 	</div>
 
 	<!-- Modal for Organization Register -->
@@ -89,9 +89,10 @@
 				aria-hidden="true">×</button>
 			<h3 id="myModalLabel">注册组织</h3>
 		</div>
-		<div class="modal-body">
-			<form class="theme-form" name="organizationform"
-				action="organization!add" method="post">
+		<form class="theme-form" name="organizationform"
+			action="organization!add" method="post">
+			<div class="modal-body">
+
 				<ol>
 					<li><label>组织名称：</label> <input class="ipt" type="text"
 						name="organization.name" /></li>
@@ -132,12 +133,12 @@
 					<li><label>邮箱：</label> <input class="ipt" type="text"
 						name="organization.email" /></li>
 				</ol>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<input class="btn btn-primary" type="submit" value="新建" /> <input
-				class="btn btn-primary" type="reset" value="重置" />
-		</div>
+			</div>
+			<div class="modal-footer">
+				<input class="btn btn-primary" type="submit" value="新建" /> 
+				<input	class="btn btn-primary" type="reset" value="重置" />
+			</div>
+		</form>
 	</div>
 </body>
 </html>

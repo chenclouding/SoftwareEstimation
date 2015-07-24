@@ -36,7 +36,7 @@ public class UserBusiness {
 	}
 	
 	/*
-	 * ·µ»Ø×éÖ¯ËùÓÐÓÃ»§
+	 * è¿”å›žç»„ç»‡æ‰€æœ‰ç”¨æˆ·
 	 */
 	public List<User> getUsersByOrganization(Organization o) {
 		return dao.list("select c from User c where c.organization.id="+o.getId());
