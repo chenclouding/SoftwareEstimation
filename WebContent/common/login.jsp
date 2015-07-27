@@ -32,10 +32,11 @@
 			<p>
 				密码：<span class="dot"> </span>
 			</p>
-			<input type="password" name="user.password" placeholder="" /> <input
-				type="submit" value="登录" /> <a href="#userRegisterModal"
-				role="button" class="btn btn-primary" data-toggle="modal">用户注册</a> <a
-				href="#orgRegisterModal" role="button" class="btn btn-primary"
+			<input type="password" name="user.password" placeholder="" /> 
+			<input type="submit" value="登录" /> 
+			<a href="#userRegisterModal" role="button" class="btn btn-primary" 
+				data-toggle="modal">用户注册</a> 
+				<a href="#orgRegisterModal" role="button" class="btn btn-primary" 
 				data-toggle="modal">组织注册</a>
 		</div>
 	</form>

@@ -9,12 +9,38 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/common.css">
 <script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery.fn.rowspan = function(colIdx) { //封装的一个JQuery小插件 
+	return this.each(function() {
+		var that;
+		$('tr', this).each(function(row) {
+			$('td:eq(' + colIdx + ')', this).filter(':visible').each(function(col) {
+				if (that != null && $(this).html() == $(that).html()) {
+					rowspan = $(that).attr("rowSpan");
+					if (rowspan == undefined) {
+						$(that).attr("rowSpan",1);
+						rowspan = $(that).attr("rowSpan");
+					}
+					rowspan = Number(rowspan) + 1;
+					$(that).attr("rowSpan",rowspan);
+					$(this).hide();
+				} else {
+					that = this;
+				}
+			});
+		});
+	});
+}
+$(function() {
+	$("#user_table").rowspan(0);
+});
+</script>
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="userList">
 		<h3>用户列表</h3>
-		<table class="table table-bordered">
+		<table class="table table-bordered" id="user_table">
 			<thead>
 				<tr>
 					<th>组织名称</th>

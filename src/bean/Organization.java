@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-/** 组织信息 */
+/** 锟斤拷织锟斤拷息 */
 
 @Entity
 @Table(name="organization")
@@ -22,17 +22,17 @@ public class Organization {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private String name;// 名称
-	private String type;// 类型
-	private String description;// 简介
-	private String address;// 地址
-	private String postcode;// 邮编
-	private String contact;// 联系人
-	private String phone;// 固定电话
-	private String email;// 电子邮件
-	private String fax;// 传真
+	private String name;
+	private String type;
+	private String description;
+	private String address;
+	private String postcode;
+	private String contact;
+	private String phone;
+	private String email;
+	private String fax;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "organization")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "organization")
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
 	private List<User> users = new ArrayList<User>();
 	

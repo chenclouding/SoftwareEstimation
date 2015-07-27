@@ -27,4 +27,18 @@ public class OrganizationBusiness {
 	public void delete(Organization p) {
 		dao.delete(dao.find(Organization.class, p.getId()));
 	}
+	
+	public void update(Organization p) {
+		Organization d=dao.find(Organization.class, p.getId());
+		d.setName(p.getName());
+		d.setType(p.getType());
+		d.setDescription(p.getDescription());
+		d.setAddress(p.getAddress());
+		d.setPostcode(p.getPostcode());
+		d.setContact(p.getContact());
+		d.setPhone(p.getPhone());
+		d.setPhone(p.getEmail());
+		d.setFax(p.getFax());		
+		dao.update(d);
+	}
 }

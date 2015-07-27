@@ -56,14 +56,11 @@ public class OrganizationAction extends ActionSupport {
 		return "list";
 	}
 
-	 /* 保存修改后的组织信息
+	  /* 保存修改后的组织信息 */
 	public String edited() {
 		ob.update(organization);
-		message = true;
 		return SUCCESS;
 	}
-
-*/
 
 	public Organization getOrganization() {
 		return organization;

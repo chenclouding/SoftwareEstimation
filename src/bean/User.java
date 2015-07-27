@@ -17,10 +17,10 @@ public class User{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private String email;// 电子邮箱
-	private String password;// 密码
-	private String name;// 用户名
-	private Integer role;// 角色 ：一般用户为2、组织级管理员为1、超级管理员为0
+	private String email;
+	private String password;
+	private String name;
+	private Integer role;
 	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
