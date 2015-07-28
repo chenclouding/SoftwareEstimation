@@ -1,16 +1,51 @@
 @CHARSET "UTF-8";
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+body{
+	font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei";
+}
 h3 {
-	color: #69BECD; 
+	color: #69BECD;
 	border-bottom: 1px solid #CCCCCC;
 	padding: 5px 0 5px 0px;
 	margin: 10px 0px 0px 0px;
 	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
-	font-weight: Bold; 		
+	font-weight: Bold;
 	font-size: 130%;
 }
 
-.table{
-margin:20px 0px 20px 0px;
-font-size:12px;
-font-family: "Times New Roman", "Microsoft YaHei";
+.table {
+	margin: 20px 0px 20px 0px;
+	font-size: 12px;
+	font-family: "Times New Roman", "Microsoft YaHei";
+}
+
+.btn-primary, .signup input[type="submit"]{
+  color: #FFF;
+  letter-spacing: 0.5px;
+  border:none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 0px;
+  width: 85px;
+  border-radius: 4px;
+   -webkit-border-radius:4px;
+   -moz-border-radius:4px;
+   -o-border-radius:4px;
+  cursor: pointer;
+  outline: none;
+  margin:0px;
+  background: rgb(1,194,194); /* Old browsers */
+}
+
+.btn-primary:hover ,.btn-primary:focus, .signup input[type="submit"]:hover , input[type="button"]:hover{
+	background: #2ca5a5; /* Old browsers */
+	transition: all 0.3s ease; 
+     -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+     -o-transition: all 0.3s ease;
+}
+
+.modal-dialog{
+	width:500px;
 }

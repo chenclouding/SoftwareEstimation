@@ -14,9 +14,10 @@
 			<result name="commonUser">/common/commonUserIndex.jsp</result>				
 		</action>
 		<action name="organization" class="action.common.OrganizationAction">
-			<result name="success">/common/login.jsp</result>
+			<result name="success">/common/user.jsp</result>
 			<result name="input">/common/organizationList.jsp</result>
 			<result name="list">/common/userList.jsp</result>
+			<result name="edit">/common/organization.jsp</result>
 		</action>
 	</package>
 </struts>

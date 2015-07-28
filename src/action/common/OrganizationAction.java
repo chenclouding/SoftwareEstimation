@@ -14,6 +14,7 @@ public class OrganizationAction extends ActionSupport {
 	private Organization organization;
 	private List<Organization> organizations;
 	private OrganizationBusiness ob = new OrganizationBusiness();
+	private String actionName;
 	
 	/* 新增组织 */
 	public String add() {
@@ -23,9 +24,9 @@ public class OrganizationAction extends ActionSupport {
 	
 	/* 获取需要修改的组织信息 */
 	public String edit() {
-		if (organization == null)
-			organization = ob.find(organization);
-		return INPUT;
+		actionName = "organization!edited";
+		organization = ob.find(organization);
+		return "edit";
 	}
 	
 	/* 删除组织信息 */
@@ -42,6 +43,7 @@ public class OrganizationAction extends ActionSupport {
 	
 	/* 获取组织列表 */
 	public String listOrg() {
+		actionName = "user!add";
 		organizations = ob.getAllOrganization();
 		return SUCCESS;
 	}
@@ -76,6 +78,14 @@ public class OrganizationAction extends ActionSupport {
 
 	public void setOrganizations(List<Organization> organizations) {
 		this.organizations = organizations;
+	}
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
 	}
 
 }

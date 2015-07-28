@@ -20,6 +20,7 @@ public class UserAction extends ActionSupport{
 	private String newPassword;
 	private OrganizationBusiness ob = new OrganizationBusiness();
 	private UserBusiness ub = new UserBusiness();
+	private String actionName;
 	
 	/* 新增用户*/
 	public String add() {
@@ -120,5 +121,13 @@ public class UserAction extends ActionSupport{
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
 	}
 }

@@ -1,7 +1,6 @@
 /* start editing from here */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
-ol,ul{list-style:none;margin:0;padding:0;}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
 table{border-collapse:collapse;border-spacing:0;}
@@ -103,53 +102,7 @@ span.ribben {
 .signup .btn-primary{
 	  margin:50px 0px 0px 8px;
 }
-.btn-primary, .signup input[type="submit"]{
-  color: #FFF;
-  letter-spacing: 0.5px;
-  border:none;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 0px;
-  width: 29%;
-  border-radius: 4px;
-   -webkit-border-radius:4px;
-   -moz-border-radius:4px;
-   -o-border-radius:4px;
-  cursor: pointer;
-  outline: none;
-  margin:0px;
-  background: rgb(1,194,194); /* Old browsers */
-}
 
-.btn-primary:hover ,.btn-primary:focus, .signup input[type="submit"]:hover , input[type="button"]:hover{
-	background: #2ca5a5; /* Old browsers */
-	transition: all 0.3s ease; 
-     -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-     -o-transition: all 0.3s ease;
-}
-.modal-footer input[type="submit"], input[type="reset"]{
-width:20%;
-padding:8px;
-}
-.modal{
-width:450px;
-left:55%;
-}
-.modal .modal-body p{
-	font-size:14px;
-}
-#userRegisterModal .modal-body{
-padding-left:110px;
-}
-#orgRegisterModal .modal-body ol li label{
-	display:inline;
-	text-align:right; 
-	float:left; 
-	width:130px;
-	line-height:31px;
-	font-size:14px;
-}
 .copyright {
   text-align: center;
   padding: 100px 0px 0px 0px;
