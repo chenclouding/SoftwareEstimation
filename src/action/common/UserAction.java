@@ -83,6 +83,22 @@ public class UserAction extends ActionSupport{
 		return "reset";
 	}
 	
+	/* 获取用户列表 */
+	public String list() {
+		organizations = ob.getAllOrganization();
+		for(Organization org:organizations){
+			List<User> users = org.getUsers();
+			System.out.println(users);
+		}
+		return "list";
+	}
+	
+	/* 删除用户信息 */
+	public String delete() {
+		new UserBusiness().delete(user);
+		return list();
+	}
+	
 	public User getUser() {
 		return user;
 	}

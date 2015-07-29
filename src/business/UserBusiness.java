@@ -35,6 +35,11 @@ public class UserBusiness {
 		dao.update(user);
 	}
 	
+	//p only need to have an id
+	public void delete(User p) {
+		dao.delete(dao.find(User.class, p.getId()));
+	}
+	
 	/*
 	 * 返回组织所有用户
 	 */

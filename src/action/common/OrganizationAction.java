@@ -47,21 +47,11 @@ public class OrganizationAction extends ActionSupport {
 		organizations = ob.getAllOrganization();
 		return SUCCESS;
 	}
-	
-	/* 获取组织列表 */
-	public String listOrganization() {
-		organizations = ob.getAllOrganization();
-		for(Organization org:organizations){
-			List<User> users = org.getUsers();
-			System.out.println(users);
-		}
-		return "list";
-	}
 
 	  /* 保存修改后的组织信息 */
 	public String edited() {
 		ob.update(organization);
-		return SUCCESS;
+		return list();
 	}
 
 	public Organization getOrganization() {

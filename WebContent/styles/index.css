@@ -98,7 +98,7 @@ form.search input.button {
 }
 #header h2#slogan {
 	position: absolute;
-	z-index: 9999999;
+	z-index: 100;
 	margin: 0; padding: 0;
 	font: bold 12px 'Trebuchet MS', Arial, Sans-serif;
 	text-transform: none;

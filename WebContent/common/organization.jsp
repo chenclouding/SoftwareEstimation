@@ -10,11 +10,11 @@
 	<h4 class="modal-title" id="myModalLabel">组织信息</h4>
 </div>
 <s:if test="actionName==null"> 
-<form class="form-horizontal" name="organizationform"
+<form class="form-horizontal" name="organizationform" id="orgForm"
 	action="organization!add" method="post">
 </s:if> 
 <s:else> 
-<form class="form-horizontal" name="organizationform"
+<form class="form-horizontal" name="organizationform" id="orgForm"
 	action="<s:property value="actionName"/>" method="post">
 </s:else> 
 	<div class="modal-body">
@@ -111,9 +111,15 @@
 						value="<s:property value="organization.email"/>" />
 				</div>
 			</div>
+		  	<input type="hidden" name="organization.id" value="<s:property value="organization.id"/>"/>
 		</div>
 		<div class="modal-footer">
-			<input class="btn btn-primary" type="submit" value="确定" /> 
+			<s:if test="actionName==null">
+				<input class="btn btn-primary" type="submit" value="确定" />
+			</s:if>
+			<s:else>
+				<input class="btn btn-primary" onclick="$.postData()" value="确定" />
+			</s:else>
 			<input class="btn btn-primary" type="reset" value="重置" />
 		</div>
 </form>

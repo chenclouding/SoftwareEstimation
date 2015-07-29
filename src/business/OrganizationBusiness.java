@@ -37,7 +37,7 @@ public class OrganizationBusiness {
 		d.setPostcode(p.getPostcode());
 		d.setContact(p.getContact());
 		d.setPhone(p.getPhone());
-		d.setPhone(p.getEmail());
+		d.setEmail(p.getEmail());
 		d.setFax(p.getFax());		
 		dao.update(d);
 	}

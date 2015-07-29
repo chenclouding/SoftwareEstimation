@@ -7,10 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/common.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap-switch.min.css">
 <script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/bootstrap-switch.min.js"></script>
 <script type="text/javascript">
-jQuery.fn.rowspan = function(colIdx) { //封装的一个JQuery小插件 
+jQuery.fn.rowspan = function(colIdx) { //合并相同的行
 	return this.each(function() {
 		var that;
 		$('tr', this).each(function(row) {
@@ -33,6 +35,12 @@ jQuery.fn.rowspan = function(colIdx) { //封装的一个JQuery小插件
 }
 $(function() {
 	$("#user_table").rowspan(0);
+	$("[name='my-checkbox']").bootstrapSwitch();
+	$('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+		  console.log(this); // DOM element
+		  console.log(event); // jQuery event
+		  console.log(state); // true | false
+		});
 });
 </script>
 <title>Insert title here</title>
@@ -57,9 +65,17 @@ $(function() {
 							<td><s:property value="#org.name" /></td>
 							<td><s:property value="#user.email" /></td>
 							<td><s:property value="#user.name" /></td>
-							<td><s:property value="#user.role" /></td>
+							<td><s:if test="#user.role==2">
+							    <input type="checkbox" name="my-checkbox" data-size="mini" data-animate="false" 
+    							data-on-text="是" data-off-text="否" data-on-color="info" />
+							</s:if>			
+							<s:else>
+							    <input type="checkbox" name="my-checkbox" data-size="mini" data-animate="false" 
+    							data-on-text="是" data-off-text="否" checked data-on-color="info" />
+							</s:else></td>
+							<%-- <s:property value="#user.role" /></td> --%>
 							<td><a href="user!delete?user.id=<s:property value="#user.id" />">
-									<i class="icon-trash"></i>
+								<span class="glyphicon glyphicon-trash"></span>
 							</a></td>
 						</tr>
 					</s:iterator>

@@ -46,10 +46,8 @@
 						<td><s:property value="#org.contact" /></td>
 						<td><s:property value="#org.phone" /></td>
 						<td><s:property value="#org.email" /></td>
-						<td><a
-							href="organization!edit?organization.id=<s:property value="#org.id" />"
-							data-toggle="modal" data-target="#orgEditModal"> <span
-								class="glyphicon glyphicon-edit"></span>
+						<td><a onclick="window.parent.$.showModal(<s:property value='#org.id' />);"> 
+						<span class="glyphicon glyphicon-edit"></span>
 						</a></td>
 						<td><a
 							href="organization!delete?organization.id=<s:property value="#org.id" />">
@@ -60,19 +58,15 @@
 			</tbody>
 		</table>
 	</div>
-
-	<!-- Modal for Organization Register -->
-	<div id="orgEditModal" class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-			</div>
-		</div>
-	</div>
 	<script>
-	$('#orgEditModal').on('hide.bs.modal', function (e) {
-		  $(this).removeData();
-		});
+	$.extend({
+		postOrgData : function(orgData) {
+			$.post("organization!edited", orgData, function(data){
+				var doms = $.parseHTML(data);
+				$("#orgList").html(doms);
+			});
+		}
+	});
 	</script>
 </body>
 </html>
