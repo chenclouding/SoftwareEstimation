@@ -37,10 +37,11 @@ $(function() {
 	$("#user_table").rowspan(0);
 	$("[name='my-checkbox']").bootstrapSwitch();
 	$('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-		  console.log(this); // DOM element
-		  console.log(event); // jQuery event
-		  console.log(state); // true | false
-		});
+		var inputNodeElement = this.parentNode.parentNode.parentNode.childNodes[1];
+ 		var userId = inputNodeElement.value;
+		var userRole = (state==true)?1:2;
+		$.post("user!edited", {"user.id": userId,"user.role": userRole});
+	});
 });
 </script>
 <title>Insert title here</title>
@@ -64,16 +65,18 @@ $(function() {
 						<tr>
 							<td><s:property value="#org.name" /></td>
 							<td><s:property value="#user.email" /></td>
-							<td><s:property value="#user.name" /></td>
-							<td><s:if test="#user.role==2">
+							<td><s:property value="#user.name" /></td>						
+							<td>
+							<input type="hidden" value="<s:property value="#user.id" />" />
+							<s:if test="#user.role==2">
 							    <input type="checkbox" name="my-checkbox" data-size="mini" data-animate="false" 
     							data-on-text="是" data-off-text="否" data-on-color="info" />
 							</s:if>			
 							<s:else>
 							    <input type="checkbox" name="my-checkbox" data-size="mini" data-animate="false" 
     							data-on-text="是" data-off-text="否" checked data-on-color="info" />
-							</s:else></td>
-							<%-- <s:property value="#user.role" /></td> --%>
+							</s:else>
+							</td>
 							<td><a href="user!delete?user.id=<s:property value="#user.id" />">
 								<span class="glyphicon glyphicon-trash"></span>
 							</a></td>

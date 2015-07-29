@@ -69,17 +69,19 @@ public class UserAction extends ActionSupport{
 
 	/* 重置密码 */
 	public String reset() {
-		if(user.getPassword().equals("admin")&&user.getRole().equals(0)){
+/*		if(user.getPassword().equals("admin")&&user.getRole().equals(0)){
 			user.setId(null);
 			user.setName("admin");
 			user.setPassword(newPassword);
 			ub.create(user);
-		}
+		}*/
 		User u = ub.find(user);
 		if (u != null && u.getPassword() == user.getPassword()) {
 			u.setPassword(newPassword);
 			ub.update(u);
-		} 
+		}else{
+			addActionError("用户名或密码错误！");
+		}
 		return "reset";
 	}
 	
@@ -95,7 +97,13 @@ public class UserAction extends ActionSupport{
 	
 	/* 删除用户信息 */
 	public String delete() {
-		new UserBusiness().delete(user);
+		ub.delete(user);
+		return list();
+	}
+	
+	/* 保存修改后的用户信息 */
+	public String edited() {
+		ub.update(user);
 		return list();
 	}
 	

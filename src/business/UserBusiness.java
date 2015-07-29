@@ -27,11 +27,16 @@ public class UserBusiness {
 	
 	public void update(User p) {
 		User user = dao.find(User.class, p.getId());
-		user.setEmail(p.getEmail());
-		user.setName(p.getName());
-		user.setOrganization(p.getOrganization());
-		user.setPassword(p.getPassword());
-		user.setRole(p.getRole());
+		//update user role only
+		if(p.getName()==null){
+			user.setRole(p.getRole());
+		}else{
+			user.setEmail(p.getEmail());
+			user.setName(p.getName());
+			user.setOrganization(p.getOrganization());
+			user.setPassword(p.getPassword());
+			user.setRole(p.getRole());
+		}
 		dao.update(user);
 	}
 	
