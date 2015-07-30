@@ -19,7 +19,6 @@ public class BaseDAO<T> {
 	}
 
 	/**
-	 * 插入数据
 	 * 
 	 * @param object
 	 */
@@ -39,7 +38,6 @@ public class BaseDAO<T> {
 	}
 
 	/**
-	 * 更新数据库
 	 * 
 	 * @param object
 	 */
@@ -53,7 +51,6 @@ public class BaseDAO<T> {
 	  session.getTransaction().commit(); } catch (Exception e) {
 	  session.getTransaction().rollback(); } finally { session.close(); } }
 	 /**
-	 * 从数据库中删除
 	 * 
 	 * @param object
 	 */	
@@ -74,7 +71,6 @@ public class BaseDAO<T> {
 	}
 	
 	 /**
-	 * 查找单个Entity Bean
 	 * 
 	 * @param clazz
 	 * @param id
@@ -94,7 +90,6 @@ public class BaseDAO<T> {
 	}
 
 	 /**
-	 * 查找多个Entity Bean
 	 * 
 	 * @param hql
 	 * @return

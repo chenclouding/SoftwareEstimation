@@ -1,6 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ include file="layout.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
+<script>
+$(document).ready(function(){ 
+	$("#orgForm").validate({
+		rules: {
+			"organization.name": {
+				required: true,
+				minlength:2,
+			},
+			"organization.type":"required",
+			"organization.address":"required",
+			"organization.postcode":{
+				isZipCode: true,
+			},
+			"organization.fax":{
+				isFax: true,
+			},
+			"organization.contact":"required",
+			"organization.phone": {
+				isPhone: true,
+			},
+			"organization.email": {
+				required:true,
+				email: true,
+			},
+		}
+	}); 
+	}); 
+</script>
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"

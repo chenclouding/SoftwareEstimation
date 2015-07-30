@@ -1,44 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="s" uri="/struts-tags"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<base href="<%=basePath%>">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/styles/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/common.css">
-<title>Insert title here</title>
-</head>
+<%@ include file="layout.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<script>
+$(document).ready(function(){ 
+	$(".resetPwdForm").validate({
+		rules: {
+			"user.password": "required",
+			newPassword: {
+				required: true,
+				minlength: 6,
+			},
+			rePassword: {
+				required: true,
+				minlength: 6,
+				equalTo: "#newPassword"
+			}
+		}
+	}); 
+	}); 
+</script>
+
 <body>
    	<h3>重置密码</h3>	
    	<s:actionerror />
-   	<form name="resetPwdForm" action="user!reset" method="post">
-		<div class="form-group">
+   	<s:actionmessage />   	
+   	<form class="resetPwdForm" action="user!reset" method="post">
+		<div class="form-group form-group-sm">
 			<label for="userPwd" class="col-sm-3 control-label">当前密码</label>
 			<div class="col-sm-7">
-				<input type="text" class="form-control" id="userPwd" name="user.password" />
+				<input type="password" class="form-control" id="userPwd" name="user.password" />
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group form-group-sm">
 			<label for="userNewPwd" class="col-sm-3 control-label">新密码</label>
 			<div class="col-sm-7">
-				<input type="text" class="form-control" id="userNewPwd" name="newPassword" />
+				<input type="password" class="form-control" id="userNewPwd" name="newPassword" />
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group form-group-sm">
 			<label for="userRePwd" class="col-sm-3 control-label">确认密码</label>
 			<div class="col-sm-7">
-				<input type="text" class="form-control" id="userRePwd" name="rePassword" />
+				<input type="password" class="form-control" id="userRePwd" name="rePassword" />
 			</div>
 		</div>
+		<input type="hidden" name=user.id value="<%=session.getAttribute("userId") %>" />
+		<div class="btn-submit">
 			<input class="btn btn-primary" type="submit" value="保 存 "/>
 			<input class="btn btn-primary" type="reset" value="重置" />
+		</div>
    </form>
 </body>
-</html>

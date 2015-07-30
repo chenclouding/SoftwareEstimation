@@ -8,7 +8,7 @@ h3 {
 	color: #69BECD;
 	border-bottom: 1px solid #CCCCCC;
 	padding: 5px 0 5px 0px;
-	margin: 10px 0px 0px 0px;
+	margin: 10px 0px 10px 0px;
 	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
 	font-weight: Bold;
 	font-size: 130%;
@@ -48,4 +48,25 @@ h3 {
 
 .modal-dialog{
 	width:500px;
+}
+
+.resetPwdForm .form-control{
+	width:40%;
+}
+
+.resetPwdForm {
+	font-size:12px;
+}
+.resetPwdForm .btn-primary{
+	 font-size: 12px;
+	 padding: 7px 0px;
+	 width: 50px;
+}
+.resetPwdForm .btn-submit{
+	 margin-left:15px;
+}
+
+label.error{
+	color:red;
+	font-style:italic;
 }

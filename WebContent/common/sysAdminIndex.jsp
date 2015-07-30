@@ -1,19 +1,7 @@
+<%@ include file="layout.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
-<title>软件成本估算工具</title>
-
-<meta http-equiv="content-type"
-	content="application/xhtml+xml; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="<%=request.getContextPath()%>/styles/index.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/common.css">
-<script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
 <script>
 $(document).ready(function(){
 	var height = $(document).height(); //浏览器当前窗口可视区域高度
@@ -57,7 +45,7 @@ iframe {
 				<li><a href="common/resetPassword.jsp" target="main"><span>修改密码</span></a></li>
 			</ul>
 			<div id="login-info">
-				当前用户：${sessionScope.userName}&nbsp;&nbsp;<a href="#">退出</a>
+				当前用户：<%=session.getAttribute("userName") %>&nbsp;&nbsp;<a href="#">退出</a>
 			</div>
 		</div>
 

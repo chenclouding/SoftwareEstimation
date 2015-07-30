@@ -1,6 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ include file="layout.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<script>
+$(document).ready(function(){ 
+	$("#userForm").validate({
+		rules: {
+			"user.email": {
+				required: true,
+				email: true,
+			},
+			"user.password": {
+				required: true,
+				minlength: 6,
+			},
+			rePassword: {
+				required: true,
+				minlength: 6,
+				equalTo: "#userPwd"
+			},
+			"organization.id":"required"
+		}
+	}); 
+	}); 
+</script>
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
@@ -10,7 +31,7 @@
 	<h4 class="modal-title" id="myModalLabel">用户信息</h4>
 </div>
 
-<form class="form-horizontal" name="loginform" action="<s:property value="actionName"/>"
+<form class="form-horizontal" id="userForm" action="<s:property value="actionName"/>"
 	method="post">
 	<div class="modal-body">
 		<div class="form-group">
@@ -33,7 +54,7 @@
 			<label for="userRePwd" class="col-sm-3 control-label">重复密码</label>
 			<div class="col-sm-7">
 				<input type="password" class="form-control" id="userRePwd" 
-					name="repassword" />
+					name="rePassword" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -47,7 +68,7 @@
 		<div class="form-group">
 			<label for="userOrg" class="col-sm-3 control-label">所属单位</label>
 			<div class="col-sm-7">
-			      <s:select class="form-control" id="userOrg" list="organizations" listValue="name" listKey="id" name="organization.id"></s:select>  
+			      <s:select class="form-control" id="userOrg" list="organizations" listValue="name" listKey="id" headerValue="--请选择--" name="organization.id"></s:select>  
 			</div>
 		</div>
 	</div>

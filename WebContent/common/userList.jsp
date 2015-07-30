@@ -1,16 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/common.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/bootstrap-switch.min.css">
-<script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/bootstrap-switch.min.js"></script>
+<%@ include file="layout.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="styles/bootstrap-switch.min.css" />
+<script src="scripts/bootstrap-switch.min.js"></script>
+
 <script type="text/javascript">
 jQuery.fn.rowspan = function(colIdx) { //合并相同的行
 	return this.each(function() {
@@ -35,7 +27,7 @@ jQuery.fn.rowspan = function(colIdx) { //合并相同的行
 }
 $(function() {
 	$("#user_table").rowspan(0);
-	$("[name='my-checkbox']").bootstrapSwitch();
+	$("[name='my-checkbox']").bootstrapSwitch();//修改是否为组织管理员
 	$('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
 		var inputNodeElement = this.parentNode.parentNode.parentNode.childNodes[1];
  		var userId = inputNodeElement.value;
@@ -44,8 +36,6 @@ $(function() {
 	});
 });
 </script>
-<title>Insert title here</title>
-</head>
 <body>
 	<div id="userList">
 		<h3>用户列表</h3>
@@ -87,4 +77,3 @@ $(function() {
 		</table>
 	</div>
 </body>
-</html>

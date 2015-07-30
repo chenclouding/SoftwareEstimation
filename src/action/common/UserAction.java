@@ -3,6 +3,11 @@ package action.common;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import bean.Organization;
 import bean.User;
 import business.OrganizationBusiness;
@@ -35,12 +40,13 @@ public class UserAction extends ActionSupport{
 	 * 检查用户名密码是否存在，根据用户类型admin,org,user跳转不同页面
 	 */
 	public String login() {
-		Map<String,Object> map = ActionContext.getContext().getSession();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
 		User user0 = ub.findUserByNameAndPassword(user.getName(), user.getPassword());
 		if (user0 == null) {
-			if (user.getName().equals("admin") && user.getPassword().equals("admin")) {// ϵͳ������Ա�û���admin������admin
-				map.put("userName", "admin");
-				map.put("userRole", "0");
+			if (user.getName().equals("admin") && user.getPassword().equals("admin")) {
+				session.setAttribute("userName", "admin");
+				session.setAttribute("userRole", "0");
 				return "sysAdmin";
 			}else{
 				return INPUT;
@@ -48,20 +54,14 @@ public class UserAction extends ActionSupport{
 		}
 		else
 		{
+			session.setAttribute("userName", user0.getName());
+			session.setAttribute("userRole", user0.getRole());
+			session.setAttribute("userId", user0.getId());
 			if(user0.getRole()==0){
-			map.put("userName", user0.getName());
-			map.put("userRole", user0.getRole());
-			map.put("userId", user0.getId());
 			return "sysAdmin";
 			}else if(user0.getRole()==1){			
-				map.put("userName", user0.getName());
-				map.put("userRole", user0.getRole());
-				map.put("userId", user0.getId());
 				return "orgAdmin";
 			}else{
-				map.put("userName", user0.getName());
-				map.put("userRole", user0.getRole());
-				map.put("userId", user0.getId());
 				return "commonUser";
 			}
 		}
@@ -76,9 +76,10 @@ public class UserAction extends ActionSupport{
 			ub.create(user);
 		}*/
 		User u = ub.find(user);
-		if (u != null && u.getPassword() == user.getPassword()) {
+		if (u != null && u.getPassword().equals(user.getPassword())) {
 			u.setPassword(newPassword);
 			ub.update(u);
+			addActionMessage("修改成功！");
 		}else{
 			addActionError("用户名或密码错误！");
 		}

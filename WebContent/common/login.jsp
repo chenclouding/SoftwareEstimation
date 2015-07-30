@@ -1,23 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<title>软件成本估算工具</title>
-<!-- Custom Theme files -->
-<script src="<%=request.getContextPath()%>/scripts/jquery-2.1.4.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/styles/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/styles/common.css" />
-<link href="<%=request.getContextPath()%>/styles/login.css"
-	rel="stylesheet" type="text/css" media="all" />
-<style>
-</style>
-</head>
+<%@ include file="layout.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<link href="styles/login.css" rel="stylesheet" media="all" />
+	
 <body>
 	<div class="title">
 		<h2>软件成本估算工具登录页面</h2>
@@ -26,7 +10,7 @@
 		<div class="signup">
 			<span class="ribben"></span>
 			<p>
-				邮箱：<span class="dot"> </span>
+				用户名：<span class="dot"> </span>
 			</p>
 			<input type="text" name="user.name" placeholder="example@email.com" />
 			<p>
@@ -62,4 +46,3 @@
 		</div>
 	</div>
 </body>
-</html>
