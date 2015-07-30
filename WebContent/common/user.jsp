@@ -1,27 +1,5 @@
 <%@ include file="layout.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<script>
-$(document).ready(function(){ 
-	$("#userForm").validate({
-		rules: {
-			"user.email": {
-				required: true,
-				email: true,
-			},
-			"user.password": {
-				required: true,
-				minlength: 6,
-			},
-			rePassword: {
-				required: true,
-				minlength: 6,
-				equalTo: "#userPwd"
-			},
-			"organization.id":"required"
-		}
-	}); 
-	}); 
-</script>
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
@@ -77,3 +55,25 @@ $(document).ready(function(){
 			class="btn btn-primary" type="reset" value="重置" />
 	</div>
 </form>
+<script>
+$(document).ready(function(){ 
+	$("#userForm").validate({
+		rules: {
+			"user.email": {
+				required: true,
+				email: true,
+			},
+			"user.password": {
+				required: true,
+				minlength: 6,
+			},
+			rePassword: {
+				required: true,
+				minlength: 6,
+				equalTo: "#userPwd"
+			},
+			"organization.id":"required"
+		}
+	}); 
+	}); 
+</script>

@@ -1,23 +1,5 @@
 <%@ include file="layout.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<script>
-$(document).ready(function(){ 
-	$(".resetPwdForm").validate({
-		rules: {
-			"user.password": "required",
-			newPassword: {
-				required: true,
-				minlength: 6,
-			},
-			rePassword: {
-				required: true,
-				minlength: 6,
-				equalTo: "#newPassword"
-			}
-		}
-	}); 
-	}); 
-</script>
 
 <body>
    	<h3>重置密码</h3>	
@@ -49,3 +31,21 @@ $(document).ready(function(){
 		</div>
    </form>
 </body>
+<script>
+$(document).ready(function(){ 
+	$(".resetPwdForm").validate({
+		rules: {
+			"user.password": "required",
+			newPassword: {
+				required: true,
+				minlength: 6,
+			},
+			rePassword: {
+				required: true,
+				minlength: 6,
+				equalTo: "#newPassword"
+			}
+		}
+	}); 
+	}); 
+</script>

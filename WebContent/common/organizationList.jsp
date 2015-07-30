@@ -35,14 +35,14 @@
 			</tbody>
 		</table>
 	</div>
-	<script>
-	$.extend({
-		postOrgData : function(orgData) {
-			$.post("organization!edited", orgData, function(data){
-				var doms = $.parseHTML(data);
-				$("#orgList").html(doms);
-			});
-		}
-	});
-	</script>
 </body>
+<script>
+$.extend({
+	postOrgData : function(orgData) {
+		$.post("organization!edited", orgData, function(data){
+			var doms = $.parseHTML(data);
+			$("#orgList").html(doms);
+		});
+	}
+});
+</script>

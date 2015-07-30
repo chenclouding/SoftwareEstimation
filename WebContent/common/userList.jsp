@@ -3,39 +3,6 @@
 <link rel="stylesheet" href="styles/bootstrap-switch.min.css" />
 <script src="scripts/bootstrap-switch.min.js"></script>
 
-<script type="text/javascript">
-jQuery.fn.rowspan = function(colIdx) { //合并相同的行
-	return this.each(function() {
-		var that;
-		$('tr', this).each(function(row) {
-			$('td:eq(' + colIdx + ')', this).filter(':visible').each(function(col) {
-				if (that != null && $(this).html() == $(that).html()) {
-					rowspan = $(that).attr("rowSpan");
-					if (rowspan == undefined) {
-						$(that).attr("rowSpan",1);
-						rowspan = $(that).attr("rowSpan");
-					}
-					rowspan = Number(rowspan) + 1;
-					$(that).attr("rowSpan",rowspan);
-					$(this).hide();
-				} else {
-					that = this;
-				}
-			});
-		});
-	});
-}
-$(function() {
-	$("#user_table").rowspan(0);
-	$("[name='my-checkbox']").bootstrapSwitch();//修改是否为组织管理员
-	$('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-		var inputNodeElement = this.parentNode.parentNode.parentNode.childNodes[1];
- 		var userId = inputNodeElement.value;
-		var userRole = (state==true)?1:2;
-		$.post("user!edited", {"user.id": userId,"user.role": userRole});
-	});
-});
-</script>
 <body>
 	<div id="userList">
 		<h3>用户列表</h3>
@@ -77,3 +44,36 @@ $(function() {
 		</table>
 	</div>
 </body>
+<script type="text/javascript">
+jQuery.fn.rowspan = function(colIdx) { //合并相同的行
+	return this.each(function() {
+		var that;
+		$('tr', this).each(function(row) {
+			$('td:eq(' + colIdx + ')', this).filter(':visible').each(function(col) {
+				if (that != null && $(this).html() == $(that).html()) {
+					rowspan = $(that).attr("rowSpan");
+					if (rowspan == undefined) {
+						$(that).attr("rowSpan",1);
+						rowspan = $(that).attr("rowSpan");
+					}
+					rowspan = Number(rowspan) + 1;
+					$(that).attr("rowSpan",rowspan);
+					$(this).hide();
+				} else {
+					that = this;
+				}
+			});
+		});
+	});
+}
+$(function() {
+	$("#user_table").rowspan(0);
+	$("[name='my-checkbox']").bootstrapSwitch();//修改是否为组织管理员
+	$('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+		var inputNodeElement = this.parentNode.parentNode.parentNode.childNodes[1];
+ 		var userId = inputNodeElement.value;
+		var userRole = (state==true)?1:2;
+		$.post("user!edited", {"user.id": userId,"user.role": userRole});
+	});
+});
+</script>

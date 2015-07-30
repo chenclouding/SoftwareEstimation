@@ -2,13 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
-<script>
-$(document).ready(function(){
-	var height = $(document).height(); //浏览器当前窗口可视区域高度
-	 $("#wrap").css("min-height",height);
-	
-})
-</script>
+
 <style>
 iframe {
 	width: 700px;
@@ -84,7 +78,13 @@ iframe {
 			</div>
 		</div>
 	</div>
+</body>
 <script>
+	$(document).ready(function(){
+		var height = $(document).height(); //浏览器当前窗口可视区域高度
+		 $("#wrap").css("min-height",height);
+		
+	});
 	$('#orgEditModal').on('hide.bs.modal', function(e) {
 		$(this).removeData();
 	});
@@ -106,5 +106,5 @@ iframe {
 		}
 	});
 </script>
-</body>
-</html>
+
+
