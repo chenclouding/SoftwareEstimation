@@ -50,8 +50,7 @@
   				'R.文化、体育和娱乐业',
   				'S.公共管理、社会保障和组织',
   				'T.国际组织'}"
-					value="organization.type" headerValue="--请选择--"
-					name="organization.type" />
+					value="organization.type" name="organization.type" />
 			</div>
 			</div>
 			<div class="form-group">
@@ -110,7 +109,9 @@
 						value="<s:property value="organization.email"/>" />
 				</div>
 			</div>
-		  	<input type="hidden" name="organization.id" value="<s:property value="organization.id"/>"/>
+			<s:if test="actionName!=null"> 
+		  		<input type="hidden" name="organization.id" value="<s:property value="organization.id"/>"/>
+			</s:if>
 		</div>
 		<div class="modal-footer">
 			<s:if test="actionName==null">

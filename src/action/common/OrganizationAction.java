@@ -45,7 +45,7 @@ public class OrganizationAction extends ActionSupport {
 	public String listOrg() {
 		actionName = "user!add";
 		organizations = ob.getAllOrganization();
-		return SUCCESS;
+		return "list";
 	}
 
 	  /* 保存修改后的组织信息 */
