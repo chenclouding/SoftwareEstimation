@@ -19,11 +19,12 @@
 				<s:iterator id="org" value="organizations" status="index">
 					<tr>
 						<td><s:property value="#index.count" /></td>
-						<td><s:property value="#org.name" /></td>
+						<td><a onclick="window.parent.$.showModal(<s:property value='#org.id' />,'detail');">
+						<s:property value="#org.name" /></a></td>
 						<td><s:property value="#org.contact" /></td>
 						<td><s:property value="#org.phone" /></td>
 						<td><s:property value="#org.email" /></td>
-						<td><a onclick="window.parent.$.showModal(<s:property value='#org.id' />);"> 
+						<td><a onclick="window.parent.$.showModal(<s:property value='#org.id' />,'edit');"> 
 						<span class="glyphicon glyphicon-edit"></span>
 						</a></td>
 						<td><a

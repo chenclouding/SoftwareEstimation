@@ -8,6 +8,7 @@
 	</button>
 	<h4 class="modal-title" id="myModalLabel">组织信息</h4>
 </div>
+<label class="message" style="display:none;">修改成功！</label>
 <s:if test="actionName==null"> 
 <form class="form-horizontal" name="organizationform" id="orgForm"
 	action="organization!add" method="post">
@@ -104,7 +105,7 @@
 			<div class="form-group">
 				<label for="orgEmail" class="col-sm-3 control-label">邮箱</label>
 				<div class="col-sm-7">
-					<input type="email" class="form-control col-xs-4" id="orgEmail"
+					<input type="email" class="form-control" id="orgEmail"
 						name="organization.email"
 						value="<s:property value="organization.email"/>" />
 				</div>
@@ -149,5 +150,26 @@ $(document).ready(function(){
 			},
 		}
 	}); 
+	
+	//若在组织级管理员界面下，组织信息的style要进行修改
+	if(!$(".modal-header").parent().hasClass("modal-content")){
+		$(".col-sm-3").css({'float':'left','width':'15%','font-size':'12px'});
+		$(".col-sm-7").css({'float':'left','width':'50%'});
+		$(".form-control").css({'font-size':'12px','height':'30px'});
+		$(".modal-title").css({'color':'#69BECD','font-weight':'Bold','font-size':'130%','font-family':'Verdana'});
+		$("button.close").css({'color':'#FFF'});
+		$(".form-group").css({'margin-bottom':'10px'});
+		$(".modal-footer .btn-primary").css({'float':'left','padding':'6px 0px'});
+		$(".modal-header").css({'padding-bottom':'1px'});
+		$("input[onclick]").attr("onclick","$.postOrgEditData()");
+	}
+	
 }); 
+$.extend({
+	postOrgEditData : function() {
+		$.post("organization!edited", $('#orgForm').serialize(), function(){
+			$("label.message").css('display','block');
+		});
+	}
+});
 </script>

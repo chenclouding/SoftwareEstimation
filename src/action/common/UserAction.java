@@ -42,11 +42,15 @@ public class UserAction extends ActionSupport{
 	public String login() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		User user0 = ub.findUserByNameAndPassword(user.getName(), user.getPassword());
+		User user0 = ub.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
 		if (user0 == null) {
-			if (user.getName().equals("admin") && user.getPassword().equals("admin")) {
-				session.setAttribute("userName", "admin");
-				session.setAttribute("userRole", "0");
+			if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) {
+				//邮箱：admin 密码：admin为初始默认值，首次登陆时在数据库新建该用户
+				user.setRole(0);
+				user.setName("admin");
+				ub.create(user);
+				
+				session.setAttribute("userEmail", "admin");
 				return "sysAdmin";
 			}else{
 				return INPUT;
@@ -54,12 +58,12 @@ public class UserAction extends ActionSupport{
 		}
 		else
 		{
-			session.setAttribute("userName", user0.getName());
-			session.setAttribute("userRole", user0.getRole());
+			session.setAttribute("userEmail", user0.getEmail());
 			session.setAttribute("userId", user0.getId());
 			if(user0.getRole()==0){
-			return "sysAdmin";
-			}else if(user0.getRole()==1){			
+				return "sysAdmin";
+			}else if(user0.getRole()==1){	
+				session.setAttribute("orgId", user0.getOrganization().getId());
 				return "orgAdmin";
 			}else{
 				return "commonUser";
@@ -69,12 +73,6 @@ public class UserAction extends ActionSupport{
 
 	/* 重置密码 */
 	public String reset() {
-/*		if(user.getPassword().equals("admin")&&user.getRole().equals(0)){
-			user.setId(null);
-			user.setName("admin");
-			user.setPassword(newPassword);
-			ub.create(user);
-		}*/
 		User u = ub.find(user);
 		if (u != null && u.getPassword().equals(user.getPassword())) {
 			u.setPassword(newPassword);
@@ -88,12 +86,17 @@ public class UserAction extends ActionSupport{
 	
 	/* 获取用户列表 */
 	public String list() {
-		organizations = ob.getAllOrganization();
-		for(Organization org:organizations){
-			List<User> users = org.getUsers();
-			System.out.println(users);
+		if(organization!=null){
+			Organization org = ob.getOrgById(organization.getId());
+			List<User> users = organization.getUsers();
+		}else{
+			organizations = ob.getAllOrganization();
+			for(Organization org:organizations){
+				List<User> users = org.getUsers();
+			}
 		}
 		return "list";
+		
 	}
 	
 	/* 删除用户信息 */

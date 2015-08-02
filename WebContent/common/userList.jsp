@@ -9,7 +9,9 @@
 		<table class="table table-bordered" id="user_table">
 			<thead>
 				<tr>
+					<s:if test="organization==null">				
 					<th>组织名称</th>
+					</s:if>
 					<th>邮箱</th>
 					<th>姓名</th>
 					<th>组织管理员</th>
@@ -17,8 +19,9 @@
 				</tr>
 			</thead>
 			<tbody>
+				<s:if test="organization==null">
 				<s:iterator id="org" value="organizations">
-					<s:iterator id="user" value="#org.users">
+						<s:iterator id="user" value="#org.users">
 						<tr>
 							<td><s:property value="#org.name" /></td>
 							<td><s:property value="#user.email" /></td>
@@ -40,6 +43,30 @@
 						</tr>
 					</s:iterator>
 				</s:iterator>
+				</s:if>
+				<s:else>
+					<s:iterator id="user" value="organization.users">
+						<tr>
+							<td><s:property value="#user.email" /></td>
+							<td><s:property value="#user.name" /></td>						
+							<td>
+							<input type="hidden" value="<s:property value="#user.id" />" />
+							<s:if test="#user.role==2">
+							    <input type="checkbox" name="my-checkbox" data-size="mini" data-animate="false" 
+    							data-on-text="是" data-off-text="否" data-on-color="info" />
+							</s:if>			
+							<s:else>
+							    <input type="checkbox" name="my-checkbox" data-size="mini" data-animate="false" 
+    							data-on-text="是" data-off-text="否" checked data-on-color="info" />
+							</s:else>
+							</td>
+							<td><a href="user!delete?user.id=<s:property value="#user.id" />">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a></td>
+						</tr>
+					</s:iterator>
+				</s:else>
+
 			</tbody>
 		</table>
 	</div>

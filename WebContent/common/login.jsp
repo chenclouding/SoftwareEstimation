@@ -12,7 +12,7 @@
 			<p>
 				用户名：<span class="dot"> </span>
 			</p>
-			<input type="text" name="user.name" placeholder="example@email.com" />
+			<input type="text" name="user.email" placeholder="example@email.com" />
 			<p>
 				密码：<span class="dot"> </span>
 			</p>

@@ -26,9 +26,10 @@
 		<!-- menu -->
 		<div id="menu">
 			<ul>
-				<li><a href="organization!list" target="main"><span>组织管理</span></a></li>
+				<li><a href="organization!edit" target="main"><span>组织信息</span></a></li>
 				<li><a href="index.html" target="main"><span>项目管理</span></a></li>
 				<li><a href="user!list" target="main"><span>用户管理</span></a></li>
+				<li><a href="common/resetPassword.jsp" target="main">设置调整因子</a></li>
 				<li><a href="common/resetPassword.jsp" target="main"><span>修改密码</span></a></li>
 			</ul>
 			<div id="login-info">
@@ -39,16 +40,19 @@
 		<!--Content Wrap -->
 		<div id="content-wrap">
 			<div id="main">
-				<iframe frameborder="0" scrolling="no" name="main"
-					src="organization!list"></iframe>
+				<iframe frameborder="0" scrolling="auto" name="main"
+					src="organization!edit?organization.id=
+					<%=session.getAttribute("orgId") %>"></iframe>
 			</div>
 
 			<div id="sidebar">
-				<h1>系统管理员</h1>
+				<h1>组织管理员</h1>
 				<ul class="sidemenu">
-					<li><a href="organization!list" target="main">组织管理</a></li>
+					<li><a href="organization!edit?organization.id=
+					<%=session.getAttribute("orgId") %>" target="main">组织信息</a></li>
 					<li><a href="#" target="main">项目管理</a></li>
-					<li><a href="user!list" target="main">用户管理</a></li>
+					<li><a href="user!list?organization.id=<%=session.getAttribute("orgId") %>" target="main">用户管理</a></li>
+					<li><a href="common/resetPassword.jsp" target="main">设置调整因子</a></li>
 					<li><a href="common/resetPassword.jsp" target="main">修改密码</a></li>
 				</ul>
 			</div>
@@ -63,14 +67,14 @@
 		</div>
 		<!-- END Wrap -->
 	</div>
-	<!-- Modal for Organization Register -->
+<!-- 	
 	<div id="orgEditModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			</div>
 		</div>
-	</div>
+	</div> -->
 </body>
 <script>
 	$(document).ready(function(){
@@ -78,7 +82,7 @@
 		 $("#wrap").css("min-height",height);
 		
 	});
-	$('#orgEditModal').on('hide.bs.modal', function(e) {
+/* 	$('#orgEditModal').on('hide.bs.modal', function(e) {
 		$(this).removeData();
 	});
 
@@ -101,7 +105,7 @@
 			$("#orgEditModal").modal('hide');
 			main.window.$.postOrgData($('#orgForm').serialize());
 		}
-	});
+	}); */
 </script>
 
 

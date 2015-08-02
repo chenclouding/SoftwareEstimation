@@ -13,8 +13,8 @@ public class UserBusiness {
 		dao.create(p);
 	}
 	
-	public User findUserByNameAndPassword(String name, String password) {
-		List<User> users=dao.list("select c from User c where c.name='"+name+"' and c.password='"+password+"'");
+	public User findUserByEmailAndPassword(String email, String password) {
+		List<User> users=dao.list("select c from User c where c.email='"+email+"' and c.password='"+password+"'");
 		if(users==null||users.isEmpty())
 			return null;
 		else
