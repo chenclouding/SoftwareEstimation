@@ -3,10 +3,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 body{
 	font-family: Georgia, "Times New Roman", 
              "Microsoft YaHei";
+      font-size:12px;
 }
 iframe {
 	width: 700px;
-	height: 500px;
+	height: 600px;
 }
 h3 {
 	color: #69BECD;
@@ -58,9 +59,9 @@ h3 {
 	width:40%;
 }
 
-.resetPwdForm {
+/* .form-inline {
 	font-size:12px;
-}
+} */
 .resetPwdForm .btn-primary{
 	 font-size: 12px;
 	 padding: 7px 0px;

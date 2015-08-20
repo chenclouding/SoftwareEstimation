@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+.form-control{
+	font-size:12px;
+	height:30px;
+}
+.col-sm-3{
+	float:left;
+	width:40%;
+	padding-right:8px;
+}
+.col-sm-7{
+	float:left;
+	width:40%;
+}
+.form-group{
+	margin-bottom:10px;
+	float:left;
+	width:53%;
+}
+.title{
+	color: #69BECD;
+	width:100%;
+	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
+	font-weight: Bold;
+	font-size: 130%;
+	padding: 8px 0 8px 0px;
+}
+.btn-primary{
+	 font-size: 12px;
+	 margin-top:2px;
+	 padding: 6px 0px;
+	 width: 70px;
+}
+.footer{
+	clear:both;
+}

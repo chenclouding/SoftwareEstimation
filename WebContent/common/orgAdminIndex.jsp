@@ -26,7 +26,7 @@
 		<!-- menu -->
 		<div id="menu">
 			<ul>
-				<li><a href="organization!edit" target="main"><span>组织信息</span></a></li>
+				<li><a href="organization!edit" target="main"><span>修改组织</span></a></li>
 				<li><a href="index.html" target="main"><span>项目管理</span></a></li>
 				<li><a href="user!list" target="main"><span>用户管理</span></a></li>
 				<li><a href="common/resetPassword.jsp" target="main">设置调整因子</a></li>
@@ -49,10 +49,10 @@
 				<h1>组织管理员</h1>
 				<ul class="sidemenu">
 					<li><a href="organization!edit?organization.id=
-					<%=session.getAttribute("orgId") %>" target="main">组织信息</a></li>
+					<%=session.getAttribute("orgId") %>" target="main">修改组织</a></li>
 					<li><a href="#" target="main">项目管理</a></li>
 					<li><a href="user!list?organization.id=<%=session.getAttribute("orgId") %>" target="main">用户管理</a></li>
-					<li><a href="common/resetPassword.jsp" target="main">设置调整因子</a></li>
+					<li><a href="cocomo/param.jsp" target="main">设置调整因子</a></li>
 					<li><a href="common/resetPassword.jsp" target="main">修改密码</a></li>
 				</ul>
 			</div>

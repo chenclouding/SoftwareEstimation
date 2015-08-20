@@ -88,12 +88,9 @@ public class UserAction extends ActionSupport{
 	public String list() {
 		if(organization!=null){
 			Organization org = ob.getOrgById(organization.getId());
-			List<User> users = organization.getUsers();
+			users = ub.getUsersByOrganization(org);
 		}else{
 			organizations = ob.getAllOrganization();
-			for(Organization org:organizations){
-				List<User> users = org.getUsers();
-			}
 		}
 		return "list";
 		

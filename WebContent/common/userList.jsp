@@ -45,7 +45,7 @@
 				</s:iterator>
 				</s:if>
 				<s:else>
-					<s:iterator id="user" value="organization.users">
+					<s:iterator id="user" value="users">
 						<tr>
 							<td><s:property value="#user.email" /></td>
 							<td><s:property value="#user.name" /></td>						
@@ -60,7 +60,7 @@
     							data-on-text="是" data-off-text="否" checked data-on-color="info" />
 							</s:else>
 							</td>
-							<td><a href="user!delete?user.id=<s:property value="#user.id" />">
+							<td><a href="user!delete?user.id=<s:property value="#user.id" />&organization.id=<%=session.getAttribute("orgId") %>">
 								<span class="glyphicon glyphicon-trash"></span>
 							</a></td>
 						</tr>
