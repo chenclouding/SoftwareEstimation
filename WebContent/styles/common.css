@@ -14,15 +14,17 @@ h3 {
 	border-bottom: 1px solid #CCCCCC;
 	padding: 5px 0 5px 0px;
 	margin: 10px 0px 10px 0px;
-	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
 	font-weight: Bold;
 	font-size: 130%;
+}
+
+h4.modal-title {
+	font-size: 16px;
 }
 
 .table {
 	margin: 20px 0px 20px 0px;
 	font-size: 12px;
-	font-family: "Times New Roman", "Microsoft YaHei";
 }
 
 .btn-primary, .signup input[type="submit"]{
@@ -59,9 +61,6 @@ h3 {
 	width:40%;
 }
 
-/* .form-inline {
-	font-size:12px;
-} */
 .resetPwdForm .btn-primary{
 	 font-size: 12px;
 	 padding: 7px 0px;
@@ -71,7 +70,7 @@ h3 {
 	 margin-left:15px;
 }
 
-label.error,label.message{
+ul.actionMessage,ul.errorMessage,.error,.message{
 	color:red;
 	font-style:italic;
 	font-size:12px;
@@ -83,4 +82,12 @@ a{
 a:hover{
 	cursor:pointer;
 	text-decoration: none;
+}
+
+#projectList a#projectAdd{
+	font-size:16px;
+}
+
+.datetimepicker .active{
+background-color:#2ca5a5;
 }

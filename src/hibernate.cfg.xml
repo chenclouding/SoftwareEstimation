@@ -15,5 +15,8 @@
 
 		<mapping class="bean.User" />
 		<mapping class="bean.Organization" />
+		<mapping class="bean.Param" />
+		<mapping class="bean.DevLang" />
+		<mapping class="bean.Project" />
 	</session-factory>
 </hibernate-configuration>

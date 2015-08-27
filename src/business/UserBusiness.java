@@ -35,7 +35,6 @@ public class UserBusiness {
 			user.setName(p.getName());
 			user.setOrganization(p.getOrganization());
 			user.setPassword(p.getPassword());
-			user.setRole(p.getRole());
 		}
 		dao.update(user);
 	}

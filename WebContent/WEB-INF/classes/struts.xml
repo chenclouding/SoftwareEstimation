@@ -12,13 +12,23 @@
 			<result name="sysAdmin">/common/sysAdminIndex.jsp</result>
 			<result name="orgAdmin">/common/orgAdminIndex.jsp</result>
 			<result name="commonUser">/common/commonUserIndex.jsp</result>	
-			<result name="list">/common/userList.jsp</result>			
+			<result name="list">/common/userList.jsp</result>		
+			<result name="edit">/common/user.jsp</result>		
 		</action>
 		<action name="organization" class="action.common.OrganizationAction">
-		<result name="success">/common/login.jsp</result>
+			<result name="success">/common/login.jsp</result>
 			<result name="list">/common/user.jsp</result>
 			<result name="input">/common/organizationList.jsp</result>
 			<result name="edit">/common/organization.jsp</result>
+		</action>
+		<action name="param" class="action.cocomo.ParamAction">
+			<result name="edit">/cocomo/param.jsp</result>
+		</action>
+		<action name="devLang" class="action.cocomo.DevLangAction">
+			<result name="edit">/cocomo/devLang.jsp</result>	
+			<result name="list">/common/project.jsp</result>		
+		</action>
+		<action name="project" class="action.common.ProjectAction">
 		</action>
 	</package>
 </struts>

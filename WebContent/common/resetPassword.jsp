@@ -43,7 +43,7 @@ $(document).ready(function(){
 			rePassword: {
 				required: true,
 				minlength: 6,
-				equalTo: "#newPassword"
+				equalTo: "#userNewPwd"
 			}
 		}
 	}); 

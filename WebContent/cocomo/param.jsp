@@ -1,10 +1,10 @@
 <%@ include file="/common/layout.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <link rel="stylesheet"	href="styles/param.css" />
-
-<label class="message" style="display:none;">设置成功！</label>
-<form class="form-horizontal paramForm" id="paramForm" method="post">
+    <link rel="stylesheet"	href="styles/param.css" /> 
+<form class="form-horizontal paramForm" id="paramForm" 
+action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method="post">
+<s:actionmessage />  
 <div id="scaleFactor">
 <label class="title control-label">规模因子</label>
 	<div class="form-group">
@@ -18,7 +18,7 @@
   				'高',
   				'非常高',
   				'极其高'}"
-				value="param.sf_PREC" name="param.sf_PREC" />
+  				value="param.sf_PREC" name="param.sf_PREC" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -78,8 +78,9 @@
 		</div>
 	</div>
 </div>
+
 <div id="costDriver">
-<label class="title control-label">成本驱动因子</label>
+<label class="title control-label" >成本驱动因子</label>
 	<div class="form-group">
 		<label for="cd_RELY" class="col-sm-3 control-label">软件可靠性需求</label>
 		<div class="col-sm-7">
@@ -300,8 +301,29 @@
 		</div>
 	</div>
 </div>
+<div id="monthlyAvg">
+<label class="title control-label" >其他参数</label>
+	<div class="form-group">
+		<label for="monthlyAvg" class="col-sm-3 control-label">人员薪资水平</label>
+		<div class="col-sm-7">
+			<input class="form-control" id="monthlyAvg"	name="param.monthlyAvg" value="<s:property value="param.monthlyAvg"/>" />
+		</div>
+	</div>
+</div>
 <div class="footer">
 	<input class="btn btn-primary"  type="submit" value="确定" />
 	<input class="btn btn-primary" type="reset" value="重置" />
 </div>
 </form>
+<script>
+$(document).ready(function(){ 
+	$("#paramForm").validate({
+		rules: {
+			"param.monthlyAvg": {
+				required: true,
+				number:true
+			}
+		}
+	}); 
+}); 
+</script>

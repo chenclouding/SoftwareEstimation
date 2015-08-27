@@ -62,11 +62,13 @@ public class UserAction extends ActionSupport{
 			session.setAttribute("userId", user0.getId());
 			if(user0.getRole()==0){
 				return "sysAdmin";
-			}else if(user0.getRole()==1){	
+			}else{ 
 				session.setAttribute("orgId", user0.getOrganization().getId());
-				return "orgAdmin";
-			}else{
-				return "commonUser";
+				if(user0.getRole()==1){	
+					return "orgAdmin";
+				}else{
+					return "commonUser";
+				}
 			}
 		}
 	}
@@ -92,8 +94,7 @@ public class UserAction extends ActionSupport{
 		}else{
 			organizations = ob.getAllOrganization();
 		}
-		return "list";
-		
+		return "list";		
 	}
 	
 	/* 删除用户信息 */
@@ -102,10 +103,19 @@ public class UserAction extends ActionSupport{
 		return list();
 	}
 	
+	public String edit() {
+		actionName = "user!edited";
+		organizations = ob.getAllOrganization();
+		user = ub.find(user);
+		return "edit";
+	}
+	
 	/* 保存修改后的用户信息 */
 	public String edited() {
+		organization = ob.getOrgById(organization.getId());
+		user.setOrganization(organization);
 		ub.update(user);
-		return list();
+		return edit();
 	}
 	
 	public User getUser() {

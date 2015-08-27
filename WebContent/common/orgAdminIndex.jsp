@@ -52,7 +52,8 @@
 					<%=session.getAttribute("orgId") %>" target="main">修改组织</a></li>
 					<li><a href="#" target="main">项目管理</a></li>
 					<li><a href="user!list?organization.id=<%=session.getAttribute("orgId") %>" target="main">用户管理</a></li>
-					<li><a href="cocomo/param.jsp" target="main">设置调整因子</a></li>
+					<li><a href="param!edit?organization.id=<%=session.getAttribute("orgId") %>" target="main">设置调整因子</a></li>
+					<li><a href="devLang!edit?organization.id=<%=session.getAttribute("orgId") %>" target="main">设置编程语言</a></li>
 					<li><a href="common/resetPassword.jsp" target="main">修改密码</a></li>
 				</ul>
 			</div>
@@ -67,14 +68,6 @@
 		</div>
 		<!-- END Wrap -->
 	</div>
-<!-- 	
-	<div id="orgEditModal" class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-			</div>
-		</div>
-	</div> -->
 </body>
 <script>
 	$(document).ready(function(){
@@ -82,30 +75,10 @@
 		 $("#wrap").css("min-height",height);
 		
 	});
-/* 	$('#orgEditModal').on('hide.bs.modal', function(e) {
+ 	$('#orgEditModal').on('hide.bs.modal', function(e) {
 		$(this).removeData();
 	});
 
-	$.extend({
-		showModal : function(orgId,option) {
-			var url = "organization!edit?organization.id=" + orgId;
-			$.get(url, function(data) {
-				var doms = $.parseHTML(data);
-				$(".modal-content").html(doms);
-				//若是显示组织信息，则input变为disabled
-				if(option=="detail"){
-					$("#orgForm .form-control").attr("disabled",true);
-				}
-				$("#orgEditModal").modal('show');
-			});
-		}
-	});
-	$.extend({
-		postData : function() {
-			$("#orgEditModal").modal('hide');
-			main.window.$.postOrgData($('#orgForm').serialize());
-		}
-	}); */
 </script>
 
 
