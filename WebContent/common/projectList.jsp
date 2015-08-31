@@ -6,10 +6,7 @@
 <body>
 	<div id="projectList">
 		<h3>项目列表</h3>
-		<script>
-			$("#projectAdd").mouseover(function(){console.log(window.parent)});
-		</script>
-		<a id="projectAdd" onclick="window.parent.$.showModal('<%=session.getAttribute("orgId") %>','add');"><span class="glyphicon glyphicon-plus-sign"></span></a>
+		<a id="projectAdd" onclick="window.parent.$.showProjectModal('<%=session.getAttribute("orgId") %>','add');"><span class="glyphicon glyphicon-plus-sign"></span></a>
 		<table class="table table-bordered" id="project_table">
 			<thead>
 				<tr>			
@@ -25,16 +22,31 @@
 				<s:iterator id="project" value="projects" status="index">
 					<tr>
 						<td><s:property value="#index.count" /></td>
-						<td><s:property value="#project.name" /></td>					
-						<td><a onclick="window.parent.$.showModal(<s:property value='#project.id' />,'edit');"> 
+						<td><a onclick="window.parent.$.showProjectModal(<s:property value='#project.id' />,'detail');" >
+						<s:property value="#project.name" />
+						</a></td>					
+						<td><a onclick="window.parent.$.showProjectModal(<s:property value='#project.id' />,'edit');"> 
 						<span class="glyphicon glyphicon-edit"></span>
 						</a></td>
-						<td><a href="project!delete?user.id=<s:property value="#project.id" />">
+						<td><a href="project!delete?project.id=<s:property value="#project.id" />&
+						user.id=<s:property value="#project.user.id" />">
 							<span class="glyphicon glyphicon-trash"></span>
 						</a></td>
+						<td><a href="project!listProjects?user.id=<%=session.getAttribute("userId") %>">下一步</a></td>
+						<td><a href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>">查看估算</a></td>
 					</tr>
 				</s:iterator>
 			</tbody>
 		</table>
 	</div>
 </body>
+<script>
+$.extend({
+	postProjectData : function(projectData,actionName) {
+			$.post(actionName, projectData, function(data){
+				var doms = $.parseHTML(data);
+				$("#projectList").html(doms);
+			});			
+	}
+});
+</script>

@@ -36,6 +36,10 @@ public class Organization {
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
 	private List<User> users = new ArrayList<User>();
 	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "organization")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<DevLang> devLangs = new ArrayList<DevLang>();
+	
 	public Integer getId() {
 		return id;
 	}
@@ -101,5 +105,11 @@ public class Organization {
 	}
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	public List<DevLang> getDevLangs() {
+		return devLangs;
+	}
+	public void setDevLangs(List<DevLang> devLangs) {
+		this.devLangs = devLangs;
 	}
 }

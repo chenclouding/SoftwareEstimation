@@ -1,15 +1,22 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -25,7 +32,7 @@ public class Project {
 	private String ide;// 集成开发环境
 	private String devLang;// 编程语言
 	private String os;// 操作系统
-	private String database;// 数据库
+	private String usedDatabase;// 数据库
 	private String lifeCycleModel;// 生命周期模型类型
 	@Temporal(TemporalType.DATE)
 	private java.util.Date startDate;// 开发开始时间
@@ -36,6 +43,14 @@ public class Project {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "project")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<Module> modules = new ArrayList<Module>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "project")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<CountSession> sessions = new ArrayList<CountSession>();
 	
 	public Integer getId() {
 		return id;
@@ -93,12 +108,12 @@ public class Project {
 		this.os = os;
 	}
 
-	public String getDatabase() {
-		return database;
+	public String getUsedDatabase() {
+		return usedDatabase;
 	}
 
-	public void setDatabase(String database) {
-		this.database = database;
+	public void setUsedDatabase(String usedDatabase) {
+		this.usedDatabase = usedDatabase;
 	}
 
 	public String getLifeCycleModel() {
@@ -131,6 +146,22 @@ public class Project {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
+	}
+
+	public List<CountSession> getSession() {
+		return sessions;
+	}
+
+	public void setSession(List<CountSession> sessions) {
+		this.sessions = sessions;
 	}
 	
 }

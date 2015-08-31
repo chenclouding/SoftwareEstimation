@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+#projectSelectForm .btn-primary{
+	 font-size: 12px;
+	 padding: 6px 0px;
+	 width: 70px;
+}
+
+#projectSelectForm .col-sm-7,#projectSelectForm .col-sm-3,#projectSelectForm .form-group{
+	float:left;
+}
+
+#projectSelectForm .form-group{
+	width:60%;
+}
+
+#projectSelectForm .col-sm-7{
+	width:70%;
+}
+
+#projectSelectForm .col-sm-3{
+	margin-top:8px;
+}
+
+#moduleForm{
+	clear:both;
+}
+
+#countSessionForm{
+	clear:both;
+}
+

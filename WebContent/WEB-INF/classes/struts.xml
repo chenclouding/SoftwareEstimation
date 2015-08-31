@@ -29,6 +29,18 @@
 			<result name="list">/common/project.jsp</result>		
 		</action>
 		<action name="project" class="action.common.ProjectAction">
+			<result name="list">/common/projectList.jsp</result>
+			<result name="edit">/common/project.jsp</result>	
+			<result name="success">/common/moduleList.jsp</result>	
+			<result name="input">/common/countSessionList.jsp</result>	
+		</action>
+		<action name="module" class="action.common.ModuleAction">
+			<result name="list">/common/moduleList.jsp</result>
+			<result name="edit">/common/module.jsp</result>	
+		</action>
+		<action name="countSession" class="action.common.CountSessionAction">
+			<result name="list">/common/countSessionList.jsp</result>
+			<result name="edit">/common/countSession.jsp</result>	
 		</action>
 	</package>
 </struts>

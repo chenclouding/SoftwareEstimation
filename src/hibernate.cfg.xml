@@ -18,5 +18,7 @@
 		<mapping class="bean.Param" />
 		<mapping class="bean.DevLang" />
 		<mapping class="bean.Project" />
+		<mapping class="bean.Module" />
+		<mapping class="bean.CountSession" />
 	</session-factory>
 </hibernate-configuration>

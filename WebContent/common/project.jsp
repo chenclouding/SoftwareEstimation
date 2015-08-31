@@ -3,6 +3,9 @@
 <script src="scripts/bootstrap-datetimepicker.min.js"></script>
 <script src="scripts/bootstrap-datetimepicker.zh-CN.js"></script>
 <link rel="stylesheet" href="styles/bootstrap-datetimepicker.min.css">
+<script src="scripts/jquery.validate.min.js"></script>
+<script src="scripts/jquery.validate.expand.js"></script>
+<script src="scripts/messages_zh.min.js"></script>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
 		aria-label="Close">
@@ -10,14 +13,8 @@
 	</button>
 	<h4 class="modal-title" id="myModalLabel">项目信息</h4>
 </div>
-<s:if test="actionName==null"> 
 <form class="form-horizontal" name="projectForm" id="projectForm"
-	action="project!add" method="post">
-</s:if> 
-<s:else> 
-<form class="form-horizontal" name="projectForm" id="projectForm"
-	action="<s:property value="actionName"/>" method="post">
-</s:else> 
+	action="" method="post">
 	<div class="modal-body">
 		<div class="form-group">
 			<label for="projectName" class="col-sm-3 control-label">项目名称</label>
@@ -55,7 +52,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="projectDevLang" class="col-sm-3 control-label">开发语言(refine)</label>
+				<label for="projectDevLang" class="col-sm-3 control-label">开发语言</label>
 				<div class="col-sm-7">
 					<s:select class="form-control" id="projectDevLang" list="devLangs"
 					listValue="name" listKey="id" name="project.devLang"
@@ -71,9 +68,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="projectDatabase" class="col-sm-3 control-label">数据库</label>
+				<label for="projectUsedDatabase" class="col-sm-3 control-label">数据库</label>
 				<div class="col-sm-7">
-					<s:select class="form-control" id="projectDatabase"
+					<s:select class="form-control" id="projectUsedDatabase"
 					list="{
 		  				'MySQL',
 		  				'SQL Server',
@@ -83,7 +80,7 @@
 		  				'Informix',
 		  				'DB2',
 		  				'PostgreSQL'}"
-							value="project.database" name="project.database" />
+							value="project.usedDatabase" name="project.usedDatabase" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -101,19 +98,19 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="projectStartTime" class="col-sm-3 control-label">开始时间</label>
+				<label for="projectStartDate" class="col-sm-3 control-label">开始时间</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control form_date" id="projectStartTime" readonly 
-					data-date-format="yyyy-mm-dd" name="project.startTime" 
-					value="<s:property value="project.startTime"/>" />
+					<input type="text" class="form-control form_date" id="projectStartDate" 
+					data-date-format="yyyy-mm-dd" name="project.startDate" 
+					value="<s:date name="project.startDate" format="yyyy-MM-dd"/>" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="projectEndTime" class="col-sm-3 control-label">结束时间</label>
+				<label for="projectEndDate" class="col-sm-3 control-label">结束时间</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control form_date" id="projectEndTime" readonly
-					data-date-format="yyyy-mm-dd" name="project.endTime"
-					value="<s:property value="project.endTime"/>" />
+					<input type="text" class="form-control form_date" id="projectEndDate" 
+					data-date-format="yyyy-mm-dd" name="project.endDate"
+					value="<s:date name="project.endDate" format="yyyy-MM-dd"/>" />
 				</div>
 			</div>
 			<input type="hidden" name="user.id" value="<%=session.getAttribute("userId") %>"/>
@@ -122,12 +119,7 @@
 			</s:if>
 		</div>
 		<div class="modal-footer">
-			<s:if test="actionName==null">
-				<input class="btn btn-primary" type="submit" value="确定" />
-			</s:if>
-			<s:else>
-				<input class="btn btn-primary" onclick="$.postData()" value="确定" />
-			</s:else>
+				<input class="btn btn-primary" onclick="$.postProjectData('<s:property value="actionName"/>')" value="确定" />
 			<input class="btn btn-primary" type="reset" value="重置" />
 		</div>
 </form>
@@ -140,13 +132,20 @@ $(document).ready(function(){
 			"project.ide":"required",
 			"project.lifeCycleModel":"required",
 			"project.os":"required",
-			"project.database":"required",
-			"project.startTime":"required",
-			"project.endTime":"required",
+			"project.usedDatabase":"required",
+			"project.startDate":{
+				dateISO:true,
+				required:true,
+			},
+			"project.endDate":{
+				dateISO:true,
+				required:true,
+				dateCompare:"#projectStartDate"
+			},
 		} 
 	}); 
 }); 
-$('#projectStartTime').datetimepicker({
+$('#projectStartDate').datetimepicker({
     weekStart: 1,
     todayBtn:  1,
 	autoclose: 1,
@@ -155,8 +154,9 @@ $('#projectStartTime').datetimepicker({
 	minView: 2,
 	forceParse: 0,
     pickerPosition: "bottom-left",
+    format: "yyyy-mm-dd"
 });
-$('#projectEndTime').datetimepicker({
+$('#projectEndDate').datetimepicker({
     weekStart: 1,
     todayBtn:  1,
 	autoclose: 1,
@@ -165,12 +165,6 @@ $('#projectEndTime').datetimepicker({
 	minView: 2,
 	forceParse: 0,
     pickerPosition: "bottom-left",
+    format: "yyyy-mm-dd"
 });
-/* $.extend({
-	postOrgEditData : function() {
-		$.post("project!edited", $('#orgForm').serialize(), function(){
-			$("label.message").css('display','block');
-		});
-	}
-}); */
 </script>

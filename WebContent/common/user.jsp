@@ -82,6 +82,7 @@ $(document).ready(function(){
 			},
 			"organization.id":"required"
 		}
+
 	}); 
 	//若在一般用户界面下，用户信息的style要进行修改
 	if(!$(".modal-header").parent().hasClass("modal-content")){

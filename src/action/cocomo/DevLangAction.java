@@ -18,6 +18,7 @@ public class DevLangAction extends ActionSupport{
 	private DevLang devLang;
 	private List<DevLang> devLangs;
 	private Organization organization;
+	private String actionName;
 	private DevLangBusiness dlb = new DevLangBusiness();
 	private OrganizationBusiness ob = new OrganizationBusiness();
 	
@@ -83,8 +84,8 @@ public class DevLangAction extends ActionSupport{
 	
 	/* 获取组织内所有编程语言列表 */
 	public String list() {
-		organization = ob.getOrgById(organization.getId());
 		devLangs = dlb.findDevLangByOrg(organization);
+		setActionName("project!add");
 		return "list";
 	}
 	
@@ -110,5 +111,13 @@ public class DevLangAction extends ActionSupport{
 
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
+	}
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
 	}
 }

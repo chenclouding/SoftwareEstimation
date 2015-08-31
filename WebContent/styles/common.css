@@ -84,10 +84,14 @@ a:hover{
 	text-decoration: none;
 }
 
-#projectList a#projectAdd{
+#projectList a#projectAdd,#moduleForm a#moduleAdd,#countSessionForm a#countSessionAdd{
 	font-size:16px;
 }
 
 .datetimepicker .active{
 background-color:#2ca5a5;
+}
+
+#moduleModal .modal-dialog{
+	margin-top:200px;
 }

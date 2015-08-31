@@ -2,75 +2,66 @@ package action.common;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.DevLang;
+import bean.Module;
 import bean.Organization;
 import bean.Project;
 import bean.User;
 import business.DevLangBusiness;
+import business.ModuleBusiness;
 import business.ProjectBusiness;
 import business.UserBusiness;
 
-public class ProjectAction extends ActionSupport{
-	private User user;
+public class ModuleAction extends ActionSupport{
 	private Project project;
+	private Module module;
 	private List<Project> projects;
+	private List<Module> modules;
 	private String actionName;
-	private List<DevLang> devLangs;
-	private Organization organization;
-	private DevLangBusiness dlb = new DevLangBusiness();
-	private UserBusiness ub = new UserBusiness();
 	private ProjectBusiness pb = new ProjectBusiness();
+	private ModuleBusiness mb = new ModuleBusiness();
+
 	public String add() {
-		user = ub.find(user);
-		project.setUser(user);
-		pb.create(project);
+		project = pb.find(project);
+		module.setProject(project);
+		mb.create(module);
 		return list();
 	}
 	
 	public String list() {
-		projects = pb.getProjectsByUser(user);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		project = pb.find(project);
+		session.setAttribute("projectId", project.getId());
+		projects = pb.getProjectsByUser(project.getUser());		
+		setModules(mb.getModulesByProject(project));
 		return "list";		
 	}
 	
-	public String listProjects() {
-		projects = pb.getProjectsByUser(user);
-		return SUCCESS;		
-	}
-	
-	public String listProjectsForSession() {
-		projects = pb.getProjectsByUser(user);
-		return INPUT;		
-	}
-	
 	public String edit() {
-		actionName = "project!edited";
-		project = pb.find(project);
-		organization = project.getUser().getOrganization();
-		devLangs = dlb.findDevLangByOrg(organization);
+		actionName = "module!edited";
+		module = mb.find(module);
 		return "edit";
 	}
 	
 	public String edited() {
-		pb.update(project);
+		mb.update(module);
 		return list();
 	}
 	
 	public String delete() {
-		pb.delete(project);
+		mb.delete(module);
 		return list();
 	}
 	
 	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Project getProject() {
 		return project;
 	}
@@ -95,11 +86,19 @@ public class ProjectAction extends ActionSupport{
 		this.actionName = actionName;
 	}
 
-	public List<DevLang> getDevLangs() {
-		return devLangs;
+	public List<Module> getModules() {
+		return modules;
 	}
 
-	public void setDevLangs(List<DevLang> devLangs) {
-		this.devLangs = devLangs;
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
+	}
+	
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
 	}
 }
