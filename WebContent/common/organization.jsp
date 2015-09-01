@@ -1,6 +1,12 @@
-<%@ include file="layout.jsp"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<s:if test="#session.userRole==1">	
+<%@ include file="layout/orgAdmin_head.jsp"%>
+<div id="content-wrap">
+</s:if>
+<s:else>
+</s:else>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
 		aria-label="Close">
@@ -9,15 +15,21 @@
 	<h4 class="modal-title" id="myModalLabel">组织信息</h4>
 </div>
 <label class="message" style="display:none;">修改成功！</label>
-<s:if test="actionName==null"> 
-<form class="form-horizontal" name="organizationform" id="orgForm"
-	action="organization!add" method="post">
-</s:if> 
-<s:else> 
-<form class="form-horizontal" name="organizationform" id="orgForm"
-	action="<s:property value="actionName"/>" method="post">
-</s:else> 
-	<div class="modal-body">
+<s:if test="actionName==null">
+	<form class="form-horizontal" name="organizationform" id="orgForm"
+		action="organization!add" method="post">
+</s:if>
+<s:else>
+	<s:if test="actionName=='organization!detail'">
+		<form class="form-horizontal" name="organizationform" id="orgForm"
+			action="" method="post">
+	</s:if>
+	<s:else>
+		<form class="form-horizontal" name="organizationform" id="orgForm"
+			action="organization!edited" method="post">
+	</s:else>
+</s:else>
+<div class="modal-body">
 		<div class="form-group">
 			<label for="orgName" class="col-sm-3 control-label">组织名称</label>
 			<div class="col-sm-7">
@@ -110,20 +122,25 @@
 						value="<s:property value="organization.email"/>" />
 				</div>
 			</div>
-			<s:if test="actionName!=null"> 
 		  		<input type="hidden" name="organization.id" value="<s:property value="organization.id"/>"/>
-			</s:if>
 		</div>
 		<div class="modal-footer">
-			<s:if test="actionName==null">
-				<input class="btn btn-primary" type="submit" value="确定" />
-			</s:if>
-			<s:else>
-				<input class="btn btn-primary" onclick="$.postData()" value="确定" />
-			</s:else>
+		<s:if test="#session.userRole==1">
+			<input class="btn btn-primary" onclick="$.postOrgEditData();" value="确定" />
+		</s:if>
+		<s:else>
+			<input class="btn btn-primary" type="submit" value="确定" />
+		</s:else>
 			<input class="btn btn-primary" type="reset" value="重置" />
 		</div>
 </form>
+<s:if test="#session.userRole==1">
+</div>
+<%@ include file="layout/orgAdmin_footer.jsp"%>
+
+</s:if>
+<s:else>
+</s:else>
 <script>
 $(document).ready(function(){ 
 	$("#orgForm").validate({
@@ -150,8 +167,12 @@ $(document).ready(function(){
 			},
 		}
 	}); 
+	//若为show detail设置input为不可编辑
+ 	if($(".form-horizontal").attr("action")==""){
+			$("#orgForm .form-control").attr("disabled",true);
+	} 
 	
-	//若在组织级管理员界面下，组织信息的style要进行修改
+ 	//若在组织级管理员界面下，组织信息的style要进行修改
 	if(!$(".modal-header").parent().hasClass("modal-content")){
 		$(".col-sm-3").css({'float':'left','width':'15%','font-size':'12px'});
 		$(".col-sm-7").css({'float':'left','width':'50%'});
@@ -162,7 +183,7 @@ $(document).ready(function(){
 		$(".modal-footer .btn-primary").css({'float':'left','padding':'6px 0px'});
 		$(".modal-header").css({'padding-bottom':'1px'});
 		$("input[onclick]").attr("onclick","$.postOrgEditData()");
-	}
+	} 
 	
 }); 
 $.extend({
@@ -171,5 +192,5 @@ $.extend({
 			$("label.message").css('display','block');
 		});
 	}
-});
+}); 
 </script>

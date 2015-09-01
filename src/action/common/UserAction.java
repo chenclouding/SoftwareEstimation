@@ -47,10 +47,11 @@ public class UserAction extends ActionSupport{
 			if (user.getEmail().equals("admin") && user.getPassword().equals("admin")) {
 				//邮箱：admin 密码：admin为初始默认值，首次登陆时在数据库新建该用户
 				user.setRole(0);
-				user.setName("admin");
+				user.setEmail("admin");
 				ub.create(user);
 				
 				session.setAttribute("userEmail", "admin");
+				session.setAttribute("userRole", "0");
 				return "sysAdmin";
 			}else{
 				return INPUT;
@@ -60,6 +61,7 @@ public class UserAction extends ActionSupport{
 		{
 			session.setAttribute("userEmail", user0.getEmail());
 			session.setAttribute("userId", user0.getId());
+			session.setAttribute("userRole", user0.getRole());
 			if(user0.getRole()==0){
 				return "sysAdmin";
 			}else{ 
@@ -112,8 +114,6 @@ public class UserAction extends ActionSupport{
 	
 	/* 保存修改后的用户信息 */
 	public String edited() {
-		organization = ob.getOrgById(organization.getId());
-		user.setOrganization(organization);
 		ub.update(user);
 		return edit();
 	}

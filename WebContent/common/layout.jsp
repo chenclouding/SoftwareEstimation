@@ -20,4 +20,5 @@
 <script src="scripts/messages_zh.min.js"></script>
 <link rel="stylesheet" href="styles/bootstrap.min.css">
 <link rel="stylesheet"	href="styles/common.css" />
+<link rel="stylesheet" href="styles/index.css" />
 </head>

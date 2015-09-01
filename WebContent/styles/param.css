@@ -58,3 +58,6 @@
 #devLangAddForm .form-group{
 	clear:both;
 }
+.form-horizontal .control-label{
+	text-align:left;
+}

@@ -22,6 +22,7 @@ public class ProjectAction extends ActionSupport{
 	private DevLangBusiness dlb = new DevLangBusiness();
 	private UserBusiness ub = new UserBusiness();
 	private ProjectBusiness pb = new ProjectBusiness();
+	private Boolean isDetail;
 	public String add() {
 		user = ub.find(user);
 		project.setUser(user);
@@ -45,8 +46,12 @@ public class ProjectAction extends ActionSupport{
 	}
 	
 	public String edit() {
-		actionName = "project!edited";
 		project = pb.find(project);
+		if(isDetail==true){
+			actionName = "project!detail";
+		}else{
+			actionName = "project!edited";
+		}
 		organization = project.getUser().getOrganization();
 		devLangs = dlb.findDevLangByOrg(organization);
 		return "edit";
@@ -101,5 +106,13 @@ public class ProjectAction extends ActionSupport{
 
 	public void setDevLangs(List<DevLang> devLangs) {
 		this.devLangs = devLangs;
+	}
+
+	public Boolean getIsDetail() {
+		return isDetail;
+	}
+
+	public void setIsDetail(Boolean isDetail) {
+		this.isDetail = isDetail;
 	}
 }

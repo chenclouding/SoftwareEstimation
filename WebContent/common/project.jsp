@@ -2,10 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <script src="scripts/bootstrap-datetimepicker.min.js"></script>
 <script src="scripts/bootstrap-datetimepicker.zh-CN.js"></script>
-<link rel="stylesheet" href="styles/bootstrap-datetimepicker.min.css">
-<script src="scripts/jquery.validate.min.js"></script>
-<script src="scripts/jquery.validate.expand.js"></script>
-<script src="scripts/messages_zh.min.js"></script>
+<link rel="stylesheet" href="styles/bootstrap-datetimepicker.min.css" />
+
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
 		aria-label="Close">
@@ -13,8 +11,14 @@
 	</button>
 	<h4 class="modal-title" id="myModalLabel">项目信息</h4>
 </div>
+<s:if test="<s:property value='actionName' />=='project!detail'">
 <form class="form-horizontal" name="projectForm" id="projectForm"
-	action="" method="post">
+	action="" method="post" >
+</s:if>
+<s:else>
+<form class="form-horizontal" name="projectForm" id="projectForm"
+	action="<s:property value='actionName' />" method="post" >
+</s:else>
 	<div class="modal-body">
 		<div class="form-group">
 			<label for="projectName" class="col-sm-3 control-label">项目名称</label>
@@ -119,7 +123,7 @@
 			</s:if>
 		</div>
 		<div class="modal-footer">
-				<input class="btn btn-primary" onclick="$.postProjectData('<s:property value="actionName"/>')" value="确定" />
+				<input class="btn btn-primary" type="submit" value="确定" />
 			<input class="btn btn-primary" type="reset" value="重置" />
 		</div>
 </form>
@@ -144,6 +148,10 @@ $(document).ready(function(){
 			},
 		} 
 	}); 
+	//若为show detail设置input为不可编辑
+ 	if($(".form-horizontal").attr("action")==""){
+			$("#projectForm .form-control").attr("disabled",true);
+	} 
 }); 
 $('#projectStartDate').datetimepicker({
     weekStart: 1,

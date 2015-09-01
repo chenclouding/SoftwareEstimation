@@ -1,7 +1,7 @@
-<%@ include file="/common/layout.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ include file="/common/layout/orgAdmin_head.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
  <link rel="stylesheet"	href="styles/param.css" /> 
+<div id="content-wrap">
 <h3>已有编程语言</h3>	
  <form class="form-horizontal" id="devLangEditForm" 
 action="devLang!edited?organization.id=<%=session.getAttribute("orgId") %>" method="post">
@@ -21,7 +21,6 @@ action="devLang!edited?organization.id=<%=session.getAttribute("orgId") %>" meth
 </s:iterator>
 <div class="footer">
 	<input class="btn btn-primary" type="submit" value="修改 "/>
-	<input class="btn btn-primary" type="reset" value="重置" />
 </div>
 </form>
 <form class="form-horizontal" id="devLangAddForm" 
@@ -44,6 +43,9 @@ action="devLang!add?organization.id=<%=session.getAttribute("orgId") %>" method=
 	<input class="btn btn-primary" type="reset" value="重置" />
 </div>
 </form>
+</div>
+</div>
+<%@ include file="/common/layout/orgAdmin_footer.jsp"%>
 <script>
 $(document).ready(function(){ 
 	$("#devLangAddForm").validate({

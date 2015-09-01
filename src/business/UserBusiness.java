@@ -33,7 +33,6 @@ public class UserBusiness {
 		}else{
 			user.setEmail(p.getEmail());
 			user.setName(p.getName());
-			user.setOrganization(p.getOrganization());
 			user.setPassword(p.getPassword());
 		}
 		dao.update(user);

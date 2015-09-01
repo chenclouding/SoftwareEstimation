@@ -18,19 +18,18 @@ a:hover {
 	color: #996800;
 }
 /* headers */
-h1, h2, h3 {
+h1, h2{
 	font-family: Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
 	font-weight: Bold; 		
 }
 h1 { font-size: 130%; }
 h2 { font-size: 120%; text-transform: uppercase; }
-h3 { font-size: 120%; color: #007E80; }
 
 p {
 	margin: 0;
 	padding: 10px 12px;
 }
-h1, h2, h3 {
+h1, h2{
     padding: 15px 12px;
 }
 
@@ -70,9 +69,10 @@ form.search input.button {
 }
 #content-wrap {
 	position: relative;
-	width: 91%;
+	width: 72%;
 	margin: 0 auto;
 	padding: 0;	
+	margin-left:230px;
 }
 /* header */
 #header {
@@ -154,9 +154,11 @@ form.search input.button {
 
 /* sidebar */
 #sidebar {
-	float: left;
-	width: 20%;
-	padding: 0; margin: 10px 0 0 0;
+
+	top: 130px;
+  left: 250px;
+  width: 12%;
+  position: absolute;
 }	
 #sidebar h1 {
 	margin: 10px 0 0 0; 
@@ -203,18 +205,9 @@ form.search input.button {
 	text-align: center;
 	padding: 5px 0 3px 0;
 	margin: 0 auto;
-	position:fixed;
+	margin-top:-20px;
 	bottom:0px;
 }
 #footer a { text-decoration: none; }
-
-/* alignment classes */
-.float-left  { float: left; }
-.float-right { float: right; }
-.align-left  { text-align: left; }
-.align-right { text-align: right; }
-
-/* additional classes */
-.clear { clear: both; }
 
 

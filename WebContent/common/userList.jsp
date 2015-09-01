@@ -1,9 +1,14 @@
-<%@ include file="layout.jsp"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<s:if test="organization==null">	
+<%@ include file="layout/sysAdmin_head.jsp"%>
+</s:if>
+<s:else>
+<%@ include file="layout/orgAdmin_head.jsp"%>
+</s:else>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="styles/bootstrap-switch.min.css" />
 <script src="scripts/bootstrap-switch.min.js"></script>
-
-<body>
+<div id="content-wrap">
 	<div id="userList">
 		<h3>用户列表</h3>
 		<table class="table table-bordered" id="user_table">
@@ -70,7 +75,15 @@
 			</tbody>
 		</table>
 	</div>
-</body>
+</div>
+</div>
+<s:if test="organization==null">	
+<%@ include file="layout/sysAdmin_footer.jsp"%>
+</s:if>
+<s:else>
+<%@ include file="layout/orgAdmin_footer.jsp"%>
+</s:else>
+
 <script type="text/javascript">
 jQuery.fn.rowspan = function(colIdx) { //合并相同的行
 	return this.each(function() {

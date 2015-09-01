@@ -1,7 +1,7 @@
-<%@ include file="/common/layout.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ include file="/common/layout/orgAdmin_head.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
     <link rel="stylesheet"	href="styles/param.css" /> 
+<div id="content-wrap">
 <form class="form-horizontal paramForm" id="paramForm" 
 action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method="post">
 <s:actionmessage />  
@@ -315,6 +315,9 @@ action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method
 	<input class="btn btn-primary" type="reset" value="重置" />
 </div>
 </form>
+</div>
+</div>
+<%@ include file="/common/layout/orgAdmin_footer.jsp"%>
 <script>
 $(document).ready(function(){ 
 	$("#paramForm").validate({

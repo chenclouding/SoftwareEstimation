@@ -9,9 +9,9 @@
 		<action name="user" class="action.common.UserAction">
 			<result name="input">/common/login.jsp</result>
 			<result name="reset">/common/resetPassword.jsp</result>
-			<result name="sysAdmin">/common/sysAdminIndex.jsp</result>
-			<result name="orgAdmin">/common/orgAdminIndex.jsp</result>
-			<result name="commonUser">/common/commonUserIndex.jsp</result>	
+			<result name="sysAdmin" type="redirectAction">organization!list</result>
+			<result name="orgAdmin">/common/welcome.jsp</result>
+			<result name="commonUser">/common/welcome.jsp</result>	
 			<result name="list">/common/userList.jsp</result>		
 			<result name="edit">/common/user.jsp</result>		
 		</action>

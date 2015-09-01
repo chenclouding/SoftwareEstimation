@@ -5,10 +5,7 @@ body{
              "Microsoft YaHei";
       font-size:12px;
 }
-iframe {
-	width: 700px;
-	height: 600px;
-}
+
 h3 {
 	color: #69BECD;
 	border-bottom: 1px solid #CCCCCC;
@@ -16,6 +13,11 @@ h3 {
 	margin: 10px 0px 10px 0px;
 	font-weight: Bold;
 	font-size: 130%;
+}
+
+h3.welcome{
+border-bottom:none;
+margin:20px;
 }
 
 h4.modal-title {
@@ -67,7 +69,12 @@ h4.modal-title {
 	 width: 50px;
 }
 .resetPwdForm .btn-submit{
+	clear:both;
 	 margin-left:15px;
+}
+
+.resetPwdForm .col-sm-7{
+	margin-bottom:5px;
 }
 
 ul.actionMessage,ul.errorMessage,.error,.message{

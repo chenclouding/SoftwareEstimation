@@ -6,13 +6,10 @@
 <body>
 	<!-- Wrap -->
 	<div id="wrap">
-
 		<!-- Header -->
 		<div id="header">
-
 			<h1 id="logo">软件成本估算工具</h1>
 			<h2 id="slogan">提供更快捷的软件估算支持平台...</h2>
-
 			<div id="searchform">
 				<form method="post" class="search" action="#">
 					<p>

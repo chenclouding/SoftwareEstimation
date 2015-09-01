@@ -1,7 +1,13 @@
-<%@ include file="layout.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-
-<body>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<s:if test="#session.userRole==0">	
+<%@ include file="layout/sysAdmin_head.jsp"%>
+</s:if>
+<s:else>
+<%@ include file="layout/orgAdmin_head.jsp"%>
+</s:else>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div id="content-wrap">
    	<h3>重置密码</h3>	
    	<s:actionerror />
    	<s:actionmessage />   	
@@ -30,7 +36,15 @@
 			<input class="btn btn-primary" type="reset" value="重置" />
 		</div>
    </form>
-</body>
+</div>
+</div>
+<s:if test="#session.userRole==0">	
+<%@ include file="layout/sysAdmin_footer.jsp"%>
+</s:if>
+<s:else>
+<%@ include file="layout/orgAdmin_footer.jsp"%>
+</s:else>
+
 <script>
 $(document).ready(function(){ 
 	$(".resetPwdForm").validate({
