@@ -30,7 +30,7 @@ public class UserAction extends ActionSupport{
 	/* 新增用户*/
 	public String add() {
 		user.setRole(2);
-		Organization org = ob.getOrgById(organization.getId());
+		Organization org = ob.find(organization);
 		user.setOrganization(org);
 		ub.create(user);
 		return INPUT;
@@ -91,7 +91,7 @@ public class UserAction extends ActionSupport{
 	/* 获取用户列表 */
 	public String list() {
 		if(organization!=null){
-			Organization org = ob.getOrgById(organization.getId());
+			Organization org = ob.find(organization);
 			users = ub.getUsersByOrganization(org);
 		}else{
 			organizations = ob.getAllOrganization();
@@ -114,6 +114,8 @@ public class UserAction extends ActionSupport{
 	
 	/* 保存修改后的用户信息 */
 	public String edited() {
+		organization = ob.find(organization);
+		user.setOrganization(organization);
 		ub.update(user);
 		return edit();
 	}

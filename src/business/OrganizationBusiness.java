@@ -15,9 +15,9 @@ public class OrganizationBusiness {
 		return dao.list("from Organization");
 	}
 	
-	public Organization getOrgById(int orgId){
+/*	public Organization getOrgById(int orgId){
 		return dao.find(Organization.class, orgId);
-	}
+	}*/
 	
 	//p only need to have an id
 	public Organization find(Organization p) {

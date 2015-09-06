@@ -25,6 +25,7 @@ public class ModuleAction extends ActionSupport{
 	private List<Project> projects;
 	private List<Module> modules;
 	private String actionName;
+	private Boolean isDetail;
 	private ProjectBusiness pb = new ProjectBusiness();
 	private ModuleBusiness mb = new ModuleBusiness();
 
@@ -46,8 +47,12 @@ public class ModuleAction extends ActionSupport{
 	}
 	
 	public String edit() {
-		actionName = "module!edited";
 		module = mb.find(module);
+		if(isDetail==true){
+			actionName = "module!detail";
+		}else{
+			actionName = "module!edited";
+		}
 		return "edit";
 	}
 	
@@ -100,5 +105,13 @@ public class ModuleAction extends ActionSupport{
 
 	public void setModule(Module module) {
 		this.module = module;
+	}
+
+	public Boolean getIsDetail() {
+		return isDetail;
+	}
+
+	public void setIsDetail(Boolean isDetail) {
+		this.isDetail = isDetail;
 	}
 }

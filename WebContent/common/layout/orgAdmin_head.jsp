@@ -44,11 +44,11 @@
 		<!-- menu -->
 		<div id="menu">
 			<ul>
-				<li><a href="organization!edit" target="main"><span>修改组织</span></a></li>
-				<li><a href="index.html" target="main"><span>项目管理</span></a></li>
-				<li><a href="user!list" target="main"><span>用户管理</span></a></li>
-				<li><a href="common/resetPassword.jsp" target="main">设置调整因子</a></li>
-				<li><a href="common/resetPassword.jsp" target="main"><span>修改密码</span></a></li>
+				<li><a href="organization!edit" ><span>修改组织</span></a></li>
+				<li><a href="index.html" ><span>项目管理</span></a></li>
+				<li><a href="user!list" ><span>用户管理</span></a></li>
+				<li><a href="common/resetPassword.jsp" >设置调整因子</a></li>
+				<li><a href="common/resetPassword.jsp" ><span>修改密码</span></a></li>
 			</ul>
 			<div id="login-info">
 				当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a href="common/login.jsp">退出</a>

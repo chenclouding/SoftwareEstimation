@@ -21,6 +21,7 @@ public class CountSessionAction  extends ActionSupport{
 	private List<Project> projects;
 	private List<CountSession> countSessions;
 	private String actionName;
+	private Boolean isDetail;
 	private ProjectBusiness pb = new ProjectBusiness();
 	private CountSessionBusiness sb = new CountSessionBusiness();
 	Date dt=new Date();//获取当前时间
@@ -44,8 +45,12 @@ public class CountSessionAction  extends ActionSupport{
 	}
 	
 	public String edit() {
-		actionName = "countSession!edited";
 		countSession = sb.find(countSession);
+		if(isDetail==true){
+			actionName = "countSession!detail";
+		}else{
+			actionName = "countSession!edited";
+		}
 		return "edit";
 	}
 	
@@ -97,6 +102,14 @@ public class CountSessionAction  extends ActionSupport{
 
 	public void setCountSession(CountSession countSession) {
 		this.countSession = countSession;
+	}
+
+	public Boolean getIsDetail() {
+		return isDetail;
+	}
+
+	public void setIsDetail(Boolean isDetail) {
+		this.isDetail = isDetail;
 	}
 	
 }

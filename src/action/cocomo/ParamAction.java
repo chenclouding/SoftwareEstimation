@@ -15,14 +15,14 @@ public class ParamAction extends ActionSupport{
 	
 	/* 获取需要修改的调整因子信息 */
 	public String edit() {
-		organization = ob.getOrgById(organization.getId());
+		organization = ob.find(organization);
 		param = pb.findParamByOrg(organization);
 		return "edit";
 	}
 	
 	/* 保存修改后的调整因子信息 */
 	public String edited() {
-		organization = ob.getOrgById(organization.getId());
+		organization = ob.find(organization);
 		Param p = pb.findParamByOrg(organization);
 		if(p!=null){
 			pb.update(p);

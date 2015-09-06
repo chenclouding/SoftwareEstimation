@@ -31,7 +31,7 @@ public class DevLangAction extends ActionSupport{
 				return edit();
 			}
 		}
-		organization = ob.getOrgById(organization.getId());
+		organization = ob.find(organization);
 		devLang.setOrganization(organization);
 		dlb.create(devLang);
 		addActionMessage("新增成功！");
@@ -51,7 +51,7 @@ public class DevLangAction extends ActionSupport{
 		devLangs = dlb.findDevLangByOrg(organization);
 		//为每个组织的编程语言设置初始默认值
 		if(devLangs==null){
-			organization = ob.getOrgById(organization.getId());
+			organization = ob.find(organization);
 			HashMap<String, Integer> map = new HashMap<>();
 		    map.put("C",128);
 		    map.put("Pascal",91);

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<s:if test="#session.userRole==2">	
+<%@ include file="layout/commonUser_head.jsp"%>
+<div id="content-wrap">
+</s:if>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
 		aria-label="Close">
@@ -46,7 +50,7 @@
 		<div class="col-sm-7">
 			<s:select class="form-control" id="userOrg" list="organizations"
 				listValue="name" listKey="id" name="organization.id"
-				value="%{user.organization.name}"></s:select>
+				value="%{user.organization.id}"></s:select>
 		</div>
 		
 	</div>
@@ -62,6 +66,11 @@
 	</div>
 </div>
 </form>
+<s:if test="#session.userRole==2">
+</div>
+</div>
+<%@ include file="layout/commonUser_footer.jsp"%>
+</s:if>
 <script>
 $(document).ready(function(){ 
 	$("#userForm").validate({

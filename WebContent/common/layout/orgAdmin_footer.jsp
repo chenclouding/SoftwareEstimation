@@ -6,18 +6,18 @@
 		<li><a
 			href="organization!edit?organization.id=
 					<%=session.getAttribute("orgId") %>&isDetail=false"
-			target="main">修改组织</a></li>
-		<li><a href="#" target="main">项目管理</a></li>
+			>修改组织</a></li>
+		<li><a href="#" >项目管理</a></li>
 		<li><a
 			href="user!list?organization.id=<%=session.getAttribute("orgId") %>"
-			target="main">用户管理</a></li>
+			>用户管理</a></li>
 		<li><a
 			href="param!edit?organization.id=<%=session.getAttribute("orgId") %>"
-			target="main">设置调整因子</a></li>
+			>设置调整因子</a></li>
 		<li><a
 			href="devLang!edit?organization.id=<%=session.getAttribute("orgId") %>"
-			target="main">设置编程语言</a></li>
-		<li><a href="common/resetPassword.jsp" target="main">修改密码</a></li>
+			>设置编程语言</a></li>
+		<li><a href="common/resetPassword.jsp" >修改密码</a></li>
 	</ul>
 </div>
 <!--End content-wrap-->

@@ -48,8 +48,11 @@ public class BaseDAO<T> {
 	  sf.openSession();
 	  
 	  try { session.beginTransaction(); session.update(object);
-	  session.getTransaction().commit(); } catch (Exception e) {
-	  session.getTransaction().rollback(); } finally { session.close(); } }
+	  session.getTransaction().commit(); } 
+	  catch (Exception e) {
+		  session.getTransaction().rollback(); 
+	  } 
+	  finally { session.close(); } }
 	 /**
 	 * 
 	 * @param object

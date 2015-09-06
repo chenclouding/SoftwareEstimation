@@ -11,7 +11,7 @@
 	</button>
 	<h4 class="modal-title" id="myModalLabel">项目信息</h4>
 </div>
-<s:if test="<s:property value='actionName' />=='project!detail'">
+<s:if test="actionName=='project!detail'">
 <form class="form-horizontal" name="projectForm" id="projectForm"
 	action="" method="post" >
 </s:if>
@@ -123,11 +123,22 @@
 			</s:if>
 		</div>
 		<div class="modal-footer">
-				<input class="btn btn-primary" type="submit" value="确定" />
+<s:if test="actionName=='project!detail'">
+			<input class="btn btn-primary" type="submit" onClick="$.preventPost();" value="确定" />
+</s:if>
+<s:else>
+<input class="btn btn-primary" type="submit" value="确定" />
+</s:else>
 			<input class="btn btn-primary" type="reset" value="重置" />
 		</div>
 </form>
 <script>
+$.extend({
+	preventPost : function() {
+		event.preventDefault();
+		$("#projectModal").modal('hide');
+	}
+});
 $(document).ready(function(){ 
 	$("#projectForm").validate({
  		rules: {
@@ -153,6 +164,7 @@ $(document).ready(function(){
 			$("#projectForm .form-control").attr("disabled",true);
 	} 
 }); 
+
 $('#projectStartDate').datetimepicker({
     weekStart: 1,
     todayBtn:  1,

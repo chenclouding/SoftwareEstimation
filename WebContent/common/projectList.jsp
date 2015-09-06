@@ -5,7 +5,7 @@
 	<div id="projectList">
 		<h3>项目列表</h3>
 <%-- 		<a id="projectAdd" onclick="window.parent.$.showProjectModal('<%=session.getAttribute("orgId") %>','add');"> --%>
-	<a href="devLang!list?organization.id=<%=session.getAttribute("orgId") %>" role="button"  
+	<a id="projectAdd"  href="devLang!list?organization.id=<%=session.getAttribute("orgId") %>" role="button"  
 	data-toggle="modal" data-target="#projectModal"><span class="glyphicon glyphicon-plus-sign"></span></a>	
 		<table class="table table-bordered" id="project_table">
 			<thead>

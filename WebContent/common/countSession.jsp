@@ -1,6 +1,6 @@
-<%@ include file="layout.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
 <style>
 #countSessionForm ul {
 margin:0px;
@@ -24,7 +24,17 @@ margin:0px;
 	</button>
 	<h4 class="modal-title" id="myModalLabel">估算会话信息</h4>
 </div>
-<form class="form-horizontal" id="countSessionForm"	action="" method="post">
+<s:if test="actionName==null">
+	<form class="form-horizontal" id="countSessionForm" action="countSession!add" method="post" >
+</s:if>
+<s:else>
+	<s:if test="actionName=='countSession!detail'">
+		<form class="form-horizontal" id="countSessionForm" action="" method="post" >
+	</s:if>
+	<s:else>
+		<form class="form-horizontal" id="countSessionForm" action="<s:property value='actionName' />" method="post" >
+	</s:else>
+</s:else>
 <div class="modal-body">
 	<div class="form-group">
 		<label for="countSessionName" class="col-sm-3 control-label">名称</label>
@@ -97,18 +107,40 @@ margin:0px;
 	<input type="hidden" name="project.id" value="<%=session.getAttribute("projectId") %>" />
 	<input type="hidden" name="countSession.id" value="<s:property value="countSession.id" />" />
 	<div class="modal-footer">
-		<input class="btn btn-primary" onclick="$.postCountSessionData('<s:property value='actionName'/>')" value="确定" />
+	<s:if test="actionName=='countSession!detail'">
+			<input class="btn btn-primary" type="submit" onClick="$.preventPost();" value="确定" />
+</s:if>
+<s:else>
+<input class="btn btn-primary" type="submit" value="确定" />
+</s:else>
 		<input class="btn btn-primary" type="reset" value="重置" />
 	</div>
 </div>
+</form>
 <script>
+$.extend({
+	preventPost : function() {
+		event.preventDefault();
+		$("#countSessionModal").modal('hide');
+	}
+});
+
 $(document).ready(function(){
-	$("#countSessionForm").validate({
+	$(".form-horizontal").validate({
 		rules: {
 			"countSession.name":"required",
 			"countSession.scope":"required"
 		}
 	}); 
+	//countSession中，选择目的填充input
+	$(document).on('click', 'input[name="purpose"]', function() { 
+		$("input[name='countSession.purpose']").val(jQuery(this).val());		
+	});
+	
+	//若为show detail设置input为不可编辑
+ 	if($(".form-horizontal").attr("action")==""){
+			$("#countSessionForm .form-control").attr("disabled",true);
+	} 
 });
 </script>
-</form>
+

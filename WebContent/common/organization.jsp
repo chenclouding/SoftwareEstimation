@@ -3,10 +3,7 @@
 <%@ include file="layout/orgAdmin_head.jsp"%>
 <div id="content-wrap">
 </s:if>
-<s:else>
-</s:else>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal"
 		aria-label="Close">
@@ -137,10 +134,7 @@
 <s:if test="#session.userRole==1">
 </div>
 <%@ include file="layout/orgAdmin_footer.jsp"%>
-
 </s:if>
-<s:else>
-</s:else>
 <script>
 $(document).ready(function(){ 
 	$("#orgForm").validate({

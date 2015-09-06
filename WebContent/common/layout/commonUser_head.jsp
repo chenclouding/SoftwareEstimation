@@ -42,10 +42,10 @@
 		<!-- menu -->
 		<div id="menu">
 			<ul>
-				<li><a href="project!list?user.id=<%=session.getAttribute("userId") %>" target="main">项目管理</a></li>
-				<li><a href="project!listProjects?user.id=<%=session.getAttribute("userId") %>" target="main">模块分解</a></li>
-				<li><a href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>" target="main">估算场景</a></li>
-				<li><a href="user!edit?user.id=<%=session.getAttribute("userId") %>" target="main">修改个人信息</a></li>
+				<li><a href="project!list?user.id=<%=session.getAttribute("userId") %>" >项目管理</a></li>
+				<li><a href="project!listProjects?user.id=<%=session.getAttribute("userId") %>" >模块分解</a></li>
+				<li><a href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>" >估算场景</a></li>
+				<li><a href="user!edit?user.id=<%=session.getAttribute("userId") %>" >修改个人信息</a></li>
 			</ul>
 			<div id="login-info">
 				当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a href="common/login.jsp">退出</a>
