@@ -41,10 +41,10 @@
 <!-- menu -->
 <div id="menu">
 	<ul>
-		<li><a href="organization!list" ><span>组织管理</span></a></li>
-		<li><a href="index.html" ><span>项目管理</span></a></li>
-		<li><a href="user!list" ><span>用户管理</span></a></li>
-		<li><a href="common/resetPassword.jsp" ><span>修改密码</span></a></li>
+		<li><a href="organization!list">组织管理</a></li>
+		<li><a href="countSession!list">项目管理</a></li>
+		<li><a href="user!list">用户管理</a></li>
+		<li><a href="common/resetPassword.jsp">修改密码</a></li>
 	</ul>
 	<div id="login-info">
 		当前用户：<%=session.getAttribute("userEmail")%>&nbsp;&nbsp;<a

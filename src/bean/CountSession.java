@@ -1,15 +1,22 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -37,11 +44,28 @@ public class CountSession {
 	private Double effort;// 工作量
 	private Double duration;// 工期
 	private Double cost;// 成本
+	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "project_id")
 	private Project project;
 
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "countSession")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<DataFunction> dataFunctions = new ArrayList<DataFunction>();
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "countSession")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<TransFunction> transFunctions = new ArrayList<TransFunction>();
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "countSession")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<InterestObject> interestObjects = new ArrayList<InterestObject>();
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "countSession")
+	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
+	private List<FunctionProcess> functionProcesses = new ArrayList<FunctionProcess>();
+	
 	public String getName() {
 		return name;
 	}

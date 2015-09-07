@@ -44,11 +44,21 @@
 		<!-- menu -->
 		<div id="menu">
 			<ul>
-				<li><a href="organization!edit" ><span>修改组织</span></a></li>
-				<li><a href="index.html" ><span>项目管理</span></a></li>
-				<li><a href="user!list" ><span>用户管理</span></a></li>
-				<li><a href="common/resetPassword.jsp" >设置调整因子</a></li>
-				<li><a href="common/resetPassword.jsp" ><span>修改密码</span></a></li>
+		<li><a
+			href="organization!edit?organization.id=
+					<%=session.getAttribute("orgId") %>&isDetail=false"
+			>修改组织</a></li>
+		<li><a href="countSession!list?organization.id=<%=session.getAttribute("orgId") %>" >项目管理</a></li>
+		<li><a
+			href="user!list?organization.id=<%=session.getAttribute("orgId") %>"
+			>用户管理</a></li>
+		<li><a
+			href="param!edit?organization.id=<%=session.getAttribute("orgId") %>"
+			>设置调整因子</a></li>
+		<li><a
+			href="devLang!edit?organization.id=<%=session.getAttribute("orgId") %>"
+			>设置编程语言</a></li>
+		<li><a href="common/resetPassword.jsp" >修改密码</a></li>
 			</ul>
 			<div id="login-info">
 				当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a href="common/login.jsp">退出</a>

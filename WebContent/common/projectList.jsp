@@ -4,7 +4,6 @@
 <div id="content-wrap">
 	<div id="projectList">
 		<h3>项目列表</h3>
-<%-- 		<a id="projectAdd" onclick="window.parent.$.showProjectModal('<%=session.getAttribute("orgId") %>','add');"> --%>
 	<a id="projectAdd"  href="devLang!list?organization.id=<%=session.getAttribute("orgId") %>" role="button"  
 	data-toggle="modal" data-target="#projectModal"><span class="glyphicon glyphicon-plus-sign"></span></a>	
 		<table class="table table-bordered" id="project_table">
@@ -22,12 +21,12 @@
 				<s:iterator id="project" value="projects" status="index">
 					<tr>
 						<td><s:property value="#index.count" /></td>
-						<td><%-- <a onclick="window.parent.$.showProjectModal(<s:property value='#project.id' />,'detail');" > --%>
+						<td>
 		<a href="project!edit?project.id=<s:property value='#project.id' />&isDetail=true" role="button"  
 	data-toggle="modal" data-target="#projectModal">
 						<s:property value="#project.name" />
 						</a></td>					
-						<td><%-- <a onclick="window.parent.$.showProjectModal(<s:property value='#project.id' />,'edit');">  --%>
+						<td>
 			<a href="project!edit?project.id=<s:property value='#project.id' />&isDetail=false" role="button"  
 	data-toggle="modal" data-target="#projectModal">
 						<span class="glyphicon glyphicon-edit"></span>

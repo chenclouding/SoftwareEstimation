@@ -1,7 +1,6 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" media="screen"
-	href="styles/index.css" />
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -42,14 +41,15 @@
 
 	<!-- menu -->
 	<div id="menu">
-		<ul>
-			<li><a href="project!list?user.id=<%=session.getAttribute("userId") %>">项目管理</a></li>
-			<li><a href="project!listProjects?user.id=<%=session.getAttribute("userId") %>">模块分解</a></li>
-			<li><a href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>">估算场景</a></li>
-			<li><a href="user!edit?user.id=<%=session.getAttribute("userId") %>">修改个人信息</a></li>
+			<ul>
+			<li><a href="#">数据功能</a></li>
+			<s:if test="#session.methodType!='NESMA-预估型'" >
+			<li><a href="#">事务功能</a></li>
+			</s:if>
+			<li><a href="#">度量结果查看</a></li>
 		</ul>
 		<div id="login-info">
-			当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a
-				href="common/login.jsp">退出</a>
+			当前项目：<%=session.getAttribute("projectName") %>&nbsp;&nbsp;
+			当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a href="common/login.jsp">退出</a>
 		</div>
 	</div>

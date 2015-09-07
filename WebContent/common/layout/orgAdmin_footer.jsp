@@ -7,7 +7,7 @@
 			href="organization!edit?organization.id=
 					<%=session.getAttribute("orgId") %>&isDetail=false"
 			>修改组织</a></li>
-		<li><a href="#" >项目管理</a></li>
+		<li><a href="countSession!list?organization.id=<%=session.getAttribute("orgId") %>" >项目管理</a></li>
 		<li><a
 			href="user!list?organization.id=<%=session.getAttribute("orgId") %>"
 			>用户管理</a></li>

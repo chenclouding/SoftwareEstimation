@@ -9,15 +9,10 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import bean.DevLang;
 import bean.Module;
-import bean.Organization;
 import bean.Project;
-import bean.User;
-import business.DevLangBusiness;
 import business.ModuleBusiness;
 import business.ProjectBusiness;
-import business.UserBusiness;
 
 public class ModuleAction extends ActionSupport{
 	private Project project;
@@ -42,8 +37,16 @@ public class ModuleAction extends ActionSupport{
 		project = pb.find(project);
 		session.setAttribute("projectId", project.getId());
 		projects = pb.getProjectsByUser(project.getUser());		
-		setModules(mb.getModulesByProject(project));
-		return "list";		
+		modules = mb.getModulesByProject(project);
+/*		//若在countSession界面调用list功能，返回dataFunctionList.jsp或transFunctionList.jsp
+		if(actionName.equals("dataFunction")){
+			return "dataFunction";
+		}
+		else if(actionName.equals("transFunction")){
+			return "transFunction";
+		}else{*/
+		return "list";
+/*		}*/
 	}
 	
 	public String edit() {

@@ -56,7 +56,9 @@ margin:0px;
 			<s:select class="form-control" id="countSessionMethodType"
 				list="{
 					'IFPUG',
-					'NESMA',
+					'NESMA-预估型',
+					'NESMA-估计型',
+					'NESMA-详细型',
 					'COSMIC',
 					'Pert',
 					'Delphi'}"

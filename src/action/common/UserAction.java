@@ -114,8 +114,10 @@ public class UserAction extends ActionSupport{
 	
 	/* 保存修改后的用户信息 */
 	public String edited() {
+		if(organization!=null){ //只修改权限时，无需修改组织
 		organization = ob.find(organization);
 		user.setOrganization(organization);
+		}
 		ub.update(user);
 		return edit();
 	}

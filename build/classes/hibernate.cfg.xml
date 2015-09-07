@@ -20,5 +20,11 @@
 		<mapping class="bean.Project" />
 		<mapping class="bean.Module" />
 		<mapping class="bean.CountSession" />
+		<mapping class="bean.DataFunction" />
+		<mapping class="bean.TransFunction" />
+		<mapping class="bean.FunctionProcess" />
+		<mapping class="bean.DataMovement" />
+		<mapping class="bean.DataGroup" />
+		<mapping class="bean.InterestObject" />
 	</session-factory>
 </hibernate-configuration>

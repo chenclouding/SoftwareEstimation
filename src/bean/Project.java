@@ -48,9 +48,9 @@ public class Project {
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
 	private List<Module> modules = new ArrayList<Module>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "project")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "project")
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
-	private List<CountSession> sessions = new ArrayList<CountSession>();
+	private List<CountSession> countSessions = new ArrayList<CountSession>();
 	
 	public Integer getId() {
 		return id;
@@ -155,13 +155,13 @@ public class Project {
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
 	}
-
-	public List<CountSession> getSession() {
-		return sessions;
+	
+	public List<CountSession> getCountSessions() {
+		return countSessions;
 	}
 
-	public void setSession(List<CountSession> sessions) {
-		this.sessions = sessions;
+	public void setCountSessions(List<CountSession> countSessions) {
+		this.countSessions = countSessions;
 	}
 	
 }

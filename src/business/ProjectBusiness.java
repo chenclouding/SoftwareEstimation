@@ -19,6 +19,10 @@ public class ProjectBusiness {
 		return dao.list("select c from Project c where c.user.id="+u.getId());
 	}
 	
+	public List<Project> getProjectsByOrg(Organization o){
+		return dao.list("select c from Project c where c.user.id in (select u.id from User u where u.organization.id="+o.getId() +"and u.role=2)");
+	}
+	
 	public Project find(Project p) {
 		return dao.find(Project.class, p.getId());
 	}

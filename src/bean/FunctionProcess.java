@@ -19,65 +19,76 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
-@Table(name="user")
-public class User{
+@Table(name="functionProcess")
+public class FunctionProcess {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private String email;
-	private String password;
 	private String name;
-	private Integer role;
+	private String description;
 	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name = "organization_id")
-	private Organization organization;
+	@JoinColumn(name = "countSession_id")
+	private CountSession countSession;
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "module_id")
+	private Module module;
+	
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "functionProcess")
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
-	private List<Project> projects = new ArrayList<Project>();
+	private List<DataMovement> dataMovements = new ArrayList<DataMovement>();
 	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public List<Project> getProjects() {
-		return projects;
-	}
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String mail) {
-		this.email = mail;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getRole() {
-		return role;
+
+	public String getDescription() {
+		return description;
 	}
-	public void setRole(Integer role) {
-		this.role = role;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public Organization getOrganization() {
-		return organization;
+
+	public CountSession getCountSession() {
+		return countSession;
 	}
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
+
+	public void setCountSession(CountSession countSession) {
+		this.countSession = countSession;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
+	public List<DataMovement> getDataMovements() {
+		return dataMovements;
+	}
+
+	public void setDataMovements(List<DataMovement> dataMovements) {
+		this.dataMovements = dataMovements;
 	}
 }
+

@@ -41,6 +41,11 @@
 		<action name="countSession" class="action.common.CountSessionAction">
 			<result name="list">/common/countSessionList.jsp</result>
 			<result name="edit">/common/countSession.jsp</result>	
+			<result name="sessionList">/common/countSessionListForAdmin.jsp</result>
+			<result name="success">/nesma/welcome.jsp</result>
+		</action>
+		<action name="dataFunction" class="action.nesma.DataFunctionAction">
+			<result name="list">/nesma/dataFunctionList.jsp</result>
 		</action>
 	</package>
 </struts>

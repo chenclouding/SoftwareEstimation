@@ -18,10 +18,6 @@
 		<input class="btn btn-primary" type="submit" value="确定" />
 	</form>
 	<div id="countSessionForm">
-<%-- 		<a id="countSessionAdd"
-			onclick="window.parent.$.showCountSessionModal('<%=session.getAttribute("projectId")%>','add');">
-			<span class="glyphicon glyphicon-plus-sign"></span>
-		</a> --%>
 			<a id="countSessionAdd" href="common/countSession.jsp" role="button" data-toggle="modal" data-target="#countSessionModal">
 			<span class="glyphicon glyphicon-plus-sign"></span>
 		</a>
@@ -32,7 +28,9 @@
 				<td>序号</td>
 				<td>名称</td>
 				<td>估算方法</td>
-				<td>新建时间</td>				
+				<td>新建时间</td>
+				<td>功能点数</td>
+				<td>工作量</td>						
 				<td>修改</td>
 				<td>删除</td>
 				<td>开始估算</td>
@@ -40,19 +38,15 @@
 			<s:iterator id="countSession" value="countSessions" status="index">
 				<tr>
 					<td><s:property value="#index.count" /></td>
-					<td><%-- <a
-						onclick="window.parent.$.showCountSessionModal(<s:property value='#countSession.id' />,'detail');">
-							<s:property value="#countSession.name" />
-					</a> --%>
+					<td>
 			<a href="countSession!edit?countSession.id=<s:property value='#countSession.id' />&isDetail=true" role="button"  
 	data-toggle="modal" data-target="#countSessionModal"><s:property value="#countSession.name" /> </a>
 					</td>
 					<td><s:property value="#countSession.methodType" /></td>
 					<td><s:date name="#countSession.time" format="yyyy-MM-dd"/></td>
-					<td><%-- <a
-						onclick="window.parent.$.showCountSessionModal(<s:property value='#countSession.id' />,'edit');">
-							<span class="glyphicon glyphicon-edit"></span>
-					</a> --%>
+					<td>功能点数</td>
+					<td>工作量</td>
+					<td>
 					<a href="countSession!edit?countSession.id=<s:property value='#countSession.id' />&isDetail=false" role="button"  
 	data-toggle="modal" data-target="#countSessionModal"><span class="glyphicon glyphicon-edit"></span></a>
 					</td>
@@ -61,7 +55,7 @@
 						project.id=<%=session.getAttribute("projectId")%>">
 							<span class="glyphicon glyphicon-trash"></span>
 					</a></td>
-					<td><a>开始估算</a></td>
+						<td><a href="countSession!select?countSession.id=<s:property value="#countSession.id" />">开始估算</a></td>
 				</tr>
 			</s:iterator>
 		</table>
