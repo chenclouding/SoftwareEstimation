@@ -11,47 +11,36 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.CountSession;
-import bean.DataFunction;
+import bean.TransFunction;
 import bean.Module;
 import bean.Organization;
 import bean.Project;
-import business.DataFunctionBusiness;
+import business.TransFunctionBusiness;
 import business.ModuleBusiness;
 import business.OrganizationBusiness;
 import business.ProjectBusiness;
 import business.CountSessionBusiness;
 
-public class DataFunctionAction  extends ActionSupport{
+public class TransFunctionAction  extends ActionSupport{
 	private CountSession countSession;
 	private Module module;
 	private Project project;
 	private Boolean isDetail;
 	private Boolean listAll;
-	private DataFunction dataFunction;
+	private TransFunction transFunction;
 	private List<Module> modules;
 	private String actionName;
-	private List<DataFunction> dataFunctions;
+	private List<TransFunction> transFunctions;
 	private CountSessionBusiness sb = new CountSessionBusiness();
 	private ModuleBusiness mb = new ModuleBusiness();
-	private DataFunctionBusiness db = new DataFunctionBusiness();
-	/*	private Organization organization;
-
-	private List<Project> projects;
-	private List<Organization> organizations;
-	private List<CountSession> countSessions;
-	private String actionName;
-	private Boolean isDetail;
-	private ProjectBusiness pb = new ProjectBusiness();
-	private OrganizationBusiness ob = new OrganizationBusiness();
-
-	Date dt=new Date();//获取当前时间
-*/	
+	private TransFunctionBusiness tb = new TransFunctionBusiness();
+	
 	public String add() {
 		module = mb.find(module);
 		countSession = sb.find(countSession);
-		dataFunction.setCountSession(countSession);
-		dataFunction.setModule(module);
-		db.create(dataFunction);
+		transFunction.setCountSession(countSession);
+		transFunction.setModule(module);
+		tb.create(transFunction);
 		listAll=false;
 		return list();
 	}
@@ -62,10 +51,10 @@ public class DataFunctionAction  extends ActionSupport{
 		modules = mb.getModulesByProject(project);
 		int fpCountAll = 0;
 		for(Module m:modules){
-			dataFunctions = db.listAllByCountSessionFunctionModule(countSession, m);
-			m.setDataFunctions(dataFunctions);
+			transFunctions = tb.listAllByCountSessionFunctionModule(countSession, m);
+			m.setTransFunctions(transFunctions);
 			if(listAll==true){
-				for(DataFunction d:dataFunctions){
+				for(TransFunction d:transFunctions){
 					fpCountAll += d.getFpCount();
 				}
 			}
@@ -79,23 +68,23 @@ public class DataFunctionAction  extends ActionSupport{
 	}
 	
 	public String edit() {
-		dataFunction = db.find(dataFunction);
+		transFunction = tb.find(transFunction);
 		if(isDetail==true){
-			actionName = "dataFunction!detail";
+			actionName = "transFunction!detail";
 		}else{
-			actionName = "dataFunction!edited";
+			actionName = "transFunction!edited";
 		}
 		return "edit";
 	}
 	
-	public String edited() {
-		db.update(dataFunction);
+/*	public String edited() {
+		tb.update(transFunction);
 		listAll=false;
 		return list();
-	}
+	}*/
 	
 	public String delete() {
-		db.delete(dataFunction);
+		tb.delete(transFunction);
 		listAll=false;
 		return list();
 	}
@@ -124,12 +113,12 @@ public class DataFunctionAction  extends ActionSupport{
 		this.project = project;
 	}
 
-	public DataFunction getDataFunction() {
-		return dataFunction;
+	public TransFunction getTransFunction() {
+		return transFunction;
 	}
 
-	public void setDataFunction(DataFunction dataFunction) {
-		this.dataFunction = dataFunction;
+	public void setTransFunction(TransFunction transFunction) {
+		this.transFunction = transFunction;
 	}
 
 	public List<Module> getModules() {
@@ -140,12 +129,12 @@ public class DataFunctionAction  extends ActionSupport{
 		this.modules = modules;
 	}
 
-	public List<DataFunction> getDataFunctions() {
-		return dataFunctions;
+	public List<TransFunction> getTransFunctions() {
+		return transFunctions;
 	}
 
-	public void setDataFunctions(List<DataFunction> dataFunctions) {
-		this.dataFunctions = dataFunctions;
+	public void setTransFunctions(List<TransFunction> transFunctions) {
+		this.transFunctions = transFunctions;
 	}
 
 	public Boolean getIsDetail() {

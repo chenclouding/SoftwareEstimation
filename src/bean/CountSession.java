@@ -25,10 +25,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name="countSession")
 public class CountSession {
-/*	public Session(){
-		super();
-		System.out.print("session created!");
-	}*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -40,7 +36,7 @@ public class CountSession {
 	private java.util.Date time;// 估算开始时间
 	private String purpose;// 估算目的
 	private String scope;// 估算范围
-	private Double ufpc;// 未调整功能点数
+	private Integer ufpc;// 未调整功能点数
 	private Double effort;// 工作量
 	private Double duration;// 工期
 	private Double cost;// 成本
@@ -98,14 +94,6 @@ public class CountSession {
 
 	public void setMethodType(String methodType) {
 		this.methodType = methodType;
-	}
-
-	public Double getUfpc() {
-		return ufpc;
-	}
-
-	public void setUfpc(Double ufpc) {
-		this.ufpc = ufpc;
 	}
 
 
@@ -170,5 +158,13 @@ public class CountSession {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getUfpc() {
+		return ufpc;
+	}
+
+	public void setUfpc(Integer ufpc) {
+		this.ufpc = ufpc;
 	}
 }

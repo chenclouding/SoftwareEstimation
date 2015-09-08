@@ -99,6 +99,6 @@ a:hover{
 background-color:#2ca5a5;
 }
 
-#moduleModal .modal-dialog{
+#moduleModal .modal-dialog,#dataFunctionModal .modal-dialog{
 	margin-top:200px;
 }

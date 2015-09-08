@@ -17,35 +17,35 @@ font-size:15px;
 </style>
 <div id="content-wrap">
 <h3>数据功能列表</h3>
-<div id="dataFunctionList">
+<div id="transFunctionList">
 <s:iterator id="module" value="modules" status="index">
 <div class="panel panel-default">
   <div class="panel-heading">
    <div class="col-md-2">
   <s:property value="#module.name" />
   </div>
-	<a id="dataFunctionAdd" onclick="$.showModal(<s:property value="#module.id" />)" role="button" data-toggle="modal" data-target="#dataFunctionModal">
+	<a id="transFunctionAdd" onclick="$.showModal(<s:property value="#module.id" />)" role="button" data-toggle="modal" data-target="#transFunctionModal">
 	<span class="glyphicon glyphicon-plus-sign"></span></a></div>
   <div class="panel-body">
-  <s:iterator id="dataFunction" value="#module.dataFunctions">
+  <s:iterator id="transFunction" value="#module.transFunctions">
     <div class="col-md-6" style="background-color:lightcyan;">
-	    <div class="col-md-5"><a href="dataFunction!edit?dataFunction.id=<s:property value='#dataFunction.id' />&isDetail=true" role="button"  
-	data-toggle="modal" data-target="#dataFunctionModal">
-	    <s:property value="#dataFunction.name" /></a>
+	    <div class="col-md-5"><a href="transFunction!edit?transFunction.id=<s:property value='#transFunction.id' />&isDetail=true" role="button"  
+	data-toggle="modal" data-target="#transFunctionModal">
+	    <s:property value="#transFunction.name" /></a>
 	    </div>
 	    <div class="col-md-1">
-	    <s:property value="#dataFunction.type" />
+	    <s:property value="#transFunction.type" />
 	    </div>
 	    <div class="col-md-1">
-	    <s:property value="#dataFunction.fpCount" />
+	    <s:property value="#transFunction.fpCount" />
 	    </div>
 	    <div class="col-md-1">
-	    <a id="dataFunctionEdit" href="dataFunction!edit?dataFunction.id=<s:property value='#dataFunction.id' />&isDetail=false"
-	    role="button" data-toggle="modal" data-target="#dataFunctionModal">
+	    <a id="transFunctionEdit" href="transFunction!edit?transFunction.id=<s:property value='#transFunction.id' />&isDetail=false"
+	    role="button" data-toggle="modal" data-target="#transFunctionModal">
 		<span class="glyphicon glyphicon-edit"></span></a>
 		</div>
 		<div class="col-md-1">
-		<a id="dataFunctionDelete" href="dataFunction!delete?dataFunction.id=<s:property value='#dataFunction.id' />&
+		<a id="transFunctionDelete" href="transFunction!delete?transFunction.id=<s:property value='#transFunction.id' />&
 		countSession.id=<%=session.getAttribute("countSessionId") %>" >
 		<span class="glyphicon glyphicon-trash"></span></a>
 		</div>
@@ -57,8 +57,8 @@ font-size:15px;
 </div>
  </div>
  </div>
- 	<!-- Modal for create dataFunction-->
-	<div id="dataFunctionModal" class="modal fade" tabindex="-1" role="dialog"
+ 	<!-- Modal for create transFunction-->
+	<div id="transFunctionModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -71,16 +71,16 @@ font-size:15px;
 //新增module时，设置moduleId
 $.extend({
 	showModal : function(moduleId) {
-		$.get("nesma/dataFunction.jsp", function(data) {
+		$.get("nesma/transFunction.jsp", function(data) {
 			var doms = $.parseHTML(data);
-			$("#dataFunctionModal .modal-content").html(doms);
+			$("#transFunctionModal .modal-content").html(doms);
 			$('input[name="module.id"]').attr("value",moduleId);
-			$("#dataFunctionModal").show();
+			$("#transFunctionModal").show();
 		});
 		}
 });
 
-$('#dataFunctionModal').on('hide.bs.modal', function(e) {
+$('#transFunctionModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();
 });
 </script>
