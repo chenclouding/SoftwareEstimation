@@ -43,16 +43,18 @@
 			<result name="edit">/common/countSession.jsp</result>	
 			<result name="sessionList">/common/countSessionListForAdmin.jsp</result>
 			<result name="success">/nesma/welcome.jsp</result>
+			<result name="functions">/nesma/sizeEstimateResult.jsp</result>
+			<result name="cosmic">/cosmic/welcome.jsp</result>
 		</action>
 		<action name="dataFunction" class="action.nesma.DataFunctionAction">
-			<result name="success">/nesma/sizeEstimateResult.jsp</result>
 			<result name="list">/nesma/dataFunctionList.jsp</result>
-			<result name="edit">/nesma/dataFunction.jsp</result>	
+			<result name="edit">/nesma/dataFunction.jsp</result>
+			<result name="params">/nesma/dataFunction.jsp</result>
 		</action>
 		<action name="transFunction" class="action.nesma.TransFunctionAction">
-			<result name="success">/nesma/sizeEstimateResult.jsp</result>
 			<result name="list">/nesma/transFunctionList.jsp</result>
 			<result name="edit">/nesma/transFunction.jsp</result>	
+			<result name="params">/nesma/transFunction.jsp</result>
 		</action>
 	</package>
 </struts>

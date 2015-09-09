@@ -79,7 +79,7 @@ public class TransFunctionBusiness{
 		return dao.find(TransFunction.class, p.getId());
 	}
 	
-/*	public void update(TransFunction p) {
+	public void update(TransFunction p) {
 		TransFunction transFunction = dao.find(TransFunction.class, p.getId());
 		transFunction.setDescription(p.getDescription());
 		transFunction.setType(p.getType());
@@ -87,12 +87,12 @@ public class TransFunctionBusiness{
 		if(transFunction.getDetCount()!=0){//只有详细型和ifpug才有det/ftr
 			transFunction.setDetCount(p.getDetCount());
 		}
-		if(transFunction.getRetCount()!=0){//只有详细型和ifpug才有det/ftr
-			transFunction.setDetCount(p.getRetCount());
+		if(transFunction.getFtrCount()!=0){//只有详细型和ifpug才有det/ftr
+			transFunction.setFtrCount(p.getFtrCount());
 		}
 		transFunction.setFpCount(countFpForTransFunction(transFunction));//若改变类型，更新FP数
 		dao.update(transFunction);
-	}*/
+	}
 	
 	public void delete(TransFunction p) {
 		dao.delete(dao.find(TransFunction.class, p.getId()));

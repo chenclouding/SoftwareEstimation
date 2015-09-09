@@ -180,6 +180,19 @@ form.search input.button {
 	padding: 3px 0 3px 25px;
 	margin: 0 2px;			 
 }
+/* just for cosmic method */
+#sidebar ul.sidemenu li.category{
+	background:none;
+	font-weight:bold;
+	font-size:15px;
+	color:rgb(34, 127, 152);
+	padding:10px 0px 3px 10px;
+}
+/* just for cosmic method */
+#sidebar ul.sidemenu li.submenu{
+	padding-left:35px;
+	background: url(../img/bullet.gif) no-repeat 5px 5px ;
+}
 
 * html body #sidebar ul.sidemenu li { height: 1%; }
 

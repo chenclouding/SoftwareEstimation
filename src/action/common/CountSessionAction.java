@@ -11,24 +11,36 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.CountSession;
+import bean.DataFunction;
+import bean.Module;
 import bean.Organization;
 import bean.Project;
+import bean.TransFunction;
+import business.DataFunctionBusiness;
+import business.ModuleBusiness;
 import business.OrganizationBusiness;
 import business.ProjectBusiness;
 import business.CountSessionBusiness;
+import business.TransFunctionBusiness;
 
 public class CountSessionAction  extends ActionSupport{
 	private Project project;
 	private Organization organization;
 	private CountSession countSession;
 	private List<Project> projects;
+	private List<Module> modules;
 	private List<Organization> organizations;
 	private List<CountSession> countSessions;
+	private List<DataFunction> dataFunctions;
+	private List<TransFunction> transFunctions;
 	private String actionName;
 	private Boolean isDetail;
 	private ProjectBusiness pb = new ProjectBusiness();
 	private OrganizationBusiness ob = new OrganizationBusiness();
 	private CountSessionBusiness sb = new CountSessionBusiness();
+	private DataFunctionBusiness db = new DataFunctionBusiness();
+	private TransFunctionBusiness tb = new TransFunctionBusiness();
+	private ModuleBusiness mb = new ModuleBusiness();
 	Date dt=new Date();//获取当前时间
 	
 	public String add() {
@@ -80,7 +92,6 @@ public class CountSessionAction  extends ActionSupport{
 		session.setAttribute("countSessionId", countSession.getId());
 		countSession = new CountSessionBusiness().find(countSession);
 		session.setAttribute("methodType", countSession.getMethodType());
-/*		session.setAttribute("countSessionName", countSession.getName());*/
 		session.setAttribute("projectName", countSession.getProject().getName());
 		if (countSession.getMethodType().equals("COSMIC")){
 			return "cosmic";
@@ -97,6 +108,27 @@ public class CountSessionAction  extends ActionSupport{
 	public String delete() {
 		sb.delete(countSession);
 		return list();
+	}
+	
+	public String listFunctions(){
+		countSession = sb.find(countSession);
+		project = countSession.getProject();
+		modules = mb.getModulesByProject(project);
+		int fpCountAll = 0;
+		for(Module m:modules){
+			dataFunctions = db.listAllByCountSessionFunctionModule(countSession, m);
+			transFunctions = tb.listAllByCountSessionFunctionModule(countSession, m);
+			m.setDataFunctions(dataFunctions);
+			m.setTransFunctions(transFunctions);
+			for(DataFunction d:dataFunctions){
+				fpCountAll += d.getFpCount();
+			}
+			for(TransFunction t:transFunctions){
+				fpCountAll += t.getFpCount();
+			}
+		}
+		countSession.setUfpc(fpCountAll);
+		return "functions";
 	}
 
 	public Project getProject() {
@@ -161,6 +193,14 @@ public class CountSessionAction  extends ActionSupport{
 
 	public void setOrganizations(List<Organization> organizations) {
 		this.organizations = organizations;
+	}
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 	
 }

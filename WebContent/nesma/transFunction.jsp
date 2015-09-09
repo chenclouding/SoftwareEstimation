@@ -44,17 +44,33 @@
 			value="transFunction.type" name="transFunction.type" />
 		</div>
 	</div>
-	<input type="hidden" name="countSession.id" value="<%=session.getAttribute("countSessionId") %>" />
-	<input type="hidden" name="module.id" value="" />
+		<s:if test="countSession.methodType=='NESMA-详细型' || countSession.methodType=='IFPUG'">
+			<div class="form-group">
+			<label for="transFunctionDet" class="col-sm-3 control-label">DET个数</label>
+			<div class="col-sm-7">
+				<input type="text" class="form-control" id="transFunctionDet"
+					name="transFunction.detCount" value="<s:property value="transFunction.detCount"/>" />
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="transFunctionFtr" class="col-sm-3 control-label">FTR个数</label>
+			<div class="col-sm-7">
+				<input type="text" class="form-control" id="transFunctionFtr"
+					name="transFunction.ftrCount" value="<s:property value="transFunction.ftrCount"/>" />
+			</div>
+			</div>
+		</s:if>
+	<input type="hidden" name="countSession.id" value="<s:property value="countSession.id" />" />
+	<input type="hidden" name="module.id" value="<s:property value="module.id" />" />
 	<input type="hidden" name="transFunction.id" value="<s:property value="transFunction.id" />" /> 
 	<div class="modal-footer">
-<s:if test="actionName=='transFunction!detail'">
-			<input class="btn btn-primary" type="submit" onClick="$.preventPost();" value="确定" />
-</s:if>
-<s:else>
-		<input class="btn btn-primary" type="submit" value="确定" />
-</s:else>
-		<input class="btn btn-primary" type="reset" value="重置" />
+	<s:if test="actionName=='transFunction!detail'">
+				<input class="btn btn-primary" type="submit" onClick="$.preventPost();" value="确定" />
+	</s:if>
+	<s:else>
+			<input class="btn btn-primary" type="submit" value="确定" />
+	</s:else>
+	<input class="btn btn-primary" type="reset" value="重置" />
 	</div>
 </div>
 </form>
@@ -63,7 +79,15 @@
 $(document).ready(function(){ 
 	$(".form-horizontal").validate({
 		rules: {
-			"transFunction.name":"required"
+			"transFunction.name":"required",
+			"transFunction.detCount":{
+				digits:true,
+				required:true
+			},
+			"transFunction.ftrCount":{
+				digits:true,
+				required:true
+			}
 		}
 	});
 	//若为show detail设置input为不可编辑

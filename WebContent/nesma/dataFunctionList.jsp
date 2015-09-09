@@ -24,7 +24,8 @@ font-size:15px;
    <div class="col-md-2">
   <s:property value="#module.name" />
   </div>
-	<a id="dataFunctionAdd" onclick="$.showModal(<s:property value="#module.id" />)" role="button" data-toggle="modal" data-target="#dataFunctionModal">
+	<a id="dataFunctionAdd" href="dataFunction!passParams?module.id=<s:property value="#module.id" />&
+		countSession.id=<%=session.getAttribute("countSessionId") %>" role="button" data-toggle="modal" data-target="#dataFunctionModal">
 	<span class="glyphicon glyphicon-plus-sign"></span></a></div>
   <div class="panel-body">
   <s:iterator id="dataFunction" value="#module.dataFunctions">
@@ -69,8 +70,8 @@ font-size:15px;
 <script>
 /* $( "#accordion" ).accordion(); */
 //新增module时，设置moduleId
-$.extend({
-	showModal : function(moduleId) {
+/* $.extend({
+	showModal : function(moduleId,countSessionName) {
 		$.get("nesma/dataFunction.jsp", function(data) {
 			var doms = $.parseHTML(data);
 			$("#dataFunctionModal .modal-content").html(doms);
@@ -78,7 +79,7 @@ $.extend({
 			$("#dataFunctionModal").show();
 		});
 		}
-});
+}); */
 
 $('#dataFunctionModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();

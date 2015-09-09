@@ -78,7 +78,7 @@ public class DataFunctionBusiness{
 			dataFunction.setDetCount(p.getDetCount());
 		}
 		if(dataFunction.getRetCount()!=0){//只有详细型和ifpug才有det/ftr
-			dataFunction.setDetCount(p.getRetCount());
+			dataFunction.setRetCount(p.getRetCount());
 		}
 		dataFunction.setFpCount(countFpForDataFunction(dataFunction));//若改变类型，更新FP数
 		dao.update(dataFunction);

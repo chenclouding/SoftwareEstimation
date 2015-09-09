@@ -16,7 +16,7 @@ font-size:15px;
 
 </style>
 <div id="content-wrap">
-<h3>数据功能列表</h3>
+<h3>事务功能列表</h3>
 <div id="transFunctionList">
 <s:iterator id="module" value="modules" status="index">
 <div class="panel panel-default">
@@ -24,7 +24,8 @@ font-size:15px;
    <div class="col-md-2">
   <s:property value="#module.name" />
   </div>
-	<a id="transFunctionAdd" onclick="$.showModal(<s:property value="#module.id" />)" role="button" data-toggle="modal" data-target="#transFunctionModal">
+	<a id="transFunctionAdd" href="transFunction!passParams?module.id=<s:property value="#module.id" />&
+		countSession.id=<%=session.getAttribute("countSessionId") %>" role="button" data-toggle="modal" data-target="#transFunctionModal">
 	<span class="glyphicon glyphicon-plus-sign"></span></a></div>
   <div class="panel-body">
   <s:iterator id="transFunction" value="#module.transFunctions">
@@ -69,7 +70,7 @@ font-size:15px;
 <script>
 /* $( "#accordion" ).accordion(); */
 //新增module时，设置moduleId
-$.extend({
+/* $.extend({
 	showModal : function(moduleId) {
 		$.get("nesma/transFunction.jsp", function(data) {
 			var doms = $.parseHTML(data);
@@ -78,7 +79,7 @@ $.extend({
 			$("#transFunctionModal").show();
 		});
 		}
-});
+}); */
 
 $('#transFunctionModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();

@@ -42,9 +42,25 @@
 				'EIF'}"
 			value="dataFunction.type" name="dataFunction.type" />
 		</div>
-	</div>
-	<input type="hidden" name="countSession.id" value="<%=session.getAttribute("countSessionId") %>" />
-	<input type="hidden" name="module.id" value="" />
+		</div>
+		<s:if test="countSession.methodType=='NESMA-详细型' || countSession.methodType=='IFPUG'">
+			<div class="form-group">
+			<label for="dataFunctionDet" class="col-sm-3 control-label">DET个数</label>
+			<div class="col-sm-7">
+				<input type="text" class="form-control" id="dataFunctionDet"
+					name="dataFunction.detCount" value="<s:property value="dataFunction.detCount"/>" />
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="dataFunctionRet" class="col-sm-3 control-label">RET个数</label>
+			<div class="col-sm-7">
+				<input type="text" class="form-control" id="dataFunctionRet"
+					name="dataFunction.retCount" value="<s:property value="dataFunction.retCount"/>" />
+			</div>
+			</div>
+		</s:if>
+	<input type="hidden" name="countSession.id" value="<s:property value="countSession.id" />" />
+	<input type="hidden" name="module.id" value="<s:property value="module.id" />" />
 	<input type="hidden" name="dataFunction.id" value="<s:property value="dataFunction.id" />" /> 
 	<div class="modal-footer">
 <s:if test="actionName=='dataFunction!detail'">
@@ -62,7 +78,15 @@
 $(document).ready(function(){ 
 	$(".form-horizontal").validate({
 		rules: {
-			"dataFunction.name":"required"
+			"dataFunction.name":"required",
+			"dataFunction.detCount":{
+					digits:true,
+					required:true
+			},
+			"dataFunction.retCount":{
+				digits:true,
+				required:true
+			}
 		}
 	});
 	//若为show detail设置input为不可编辑

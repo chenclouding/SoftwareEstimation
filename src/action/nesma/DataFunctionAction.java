@@ -26,7 +26,6 @@ public class DataFunctionAction  extends ActionSupport{
 	private Module module;
 	private Project project;
 	private Boolean isDetail;
-	private Boolean listAll;
 	private DataFunction dataFunction;
 	private List<Module> modules;
 	private String actionName;
@@ -34,25 +33,13 @@ public class DataFunctionAction  extends ActionSupport{
 	private CountSessionBusiness sb = new CountSessionBusiness();
 	private ModuleBusiness mb = new ModuleBusiness();
 	private DataFunctionBusiness db = new DataFunctionBusiness();
-	/*	private Organization organization;
 
-	private List<Project> projects;
-	private List<Organization> organizations;
-	private List<CountSession> countSessions;
-	private String actionName;
-	private Boolean isDetail;
-	private ProjectBusiness pb = new ProjectBusiness();
-	private OrganizationBusiness ob = new OrganizationBusiness();
-
-	Date dt=new Date();//获取当前时间
-*/	
 	public String add() {
 		module = mb.find(module);
 		countSession = sb.find(countSession);
 		dataFunction.setCountSession(countSession);
 		dataFunction.setModule(module);
 		db.create(dataFunction);
-		listAll=false;
 		return list();
 	}
 	
@@ -60,26 +47,28 @@ public class DataFunctionAction  extends ActionSupport{
 		countSession = sb.find(countSession);
 		project = countSession.getProject();
 		modules = mb.getModulesByProject(project);
-		int fpCountAll = 0;
+/*		int fpCountAll = 0;*/
 		for(Module m:modules){
 			dataFunctions = db.listAllByCountSessionFunctionModule(countSession, m);
 			m.setDataFunctions(dataFunctions);
-			if(listAll==true){
+/*			if(listAll==true){
 				for(DataFunction d:dataFunctions){
 					fpCountAll += d.getFpCount();
 				}
-			}
+			}*/
 		}
-		if(listAll==true){
+/*		if(listAll==true){
 			countSession.setUfpc(fpCountAll);
 			return SUCCESS;
-		}else{
+		}else{*/
 			return "list";
-		}
+/*		}*/
 	}
 	
 	public String edit() {
 		dataFunction = db.find(dataFunction);
+		countSession = sb.find(dataFunction.getCountSession());
+		module = mb.find(dataFunction.getModule());
 		if(isDetail==true){
 			actionName = "dataFunction!detail";
 		}else{
@@ -90,14 +79,18 @@ public class DataFunctionAction  extends ActionSupport{
 	
 	public String edited() {
 		db.update(dataFunction);
-		listAll=false;
 		return list();
 	}
 	
 	public String delete() {
 		db.delete(dataFunction);
-		listAll=false;
 		return list();
+	}
+	
+	public String passParams(){
+		module = mb.find(module);
+		countSession = sb.find(countSession);
+		return "params";
 	}
 
 	public CountSession getCountSession() {
@@ -162,14 +155,6 @@ public class DataFunctionAction  extends ActionSupport{
 
 	public void setActionName(String actionName) {
 		this.actionName = actionName;
-	}
-
-	public Boolean getListAll() {
-		return listAll;
-	}
-
-	public void setListAll(Boolean listAll) {
-		this.listAll = listAll;
 	}
 	
 	/*	public String edit() {

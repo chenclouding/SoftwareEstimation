@@ -49,7 +49,6 @@ margin-bottom:10px;
 			<tbody>
 				<s:iterator id="module" value="modules" status="index">			
 				  <s:iterator id="dataFunction" value="#module.dataFunctions">
-
 					<tr>
 						<td><s:property value="#module.name" /></td>
 						<td><s:property value="#dataFunction.name" /></td>
@@ -57,10 +56,14 @@ margin-bottom:10px;
 						<td><s:property value="#dataFunction.fpCount" /></td>
 					</tr>
 					</s:iterator>
-					<%--     <s:iterator id="transFunction" value="#module.transFunctions"> 
+				    <s:iterator id="transFunction" value="#module.transFunctions"> 
 					<tr>
+						<td><s:property value="#module.name" /></td>
+						<td><s:property value="#transFunction.name" /></td>
+						<td><s:property value="#transFunction.type" /></td>
+						<td><s:property value="#transFunction.fpCount" /></td>
 					</tr>
-					 	</s:iterator> --%>
+				 	</s:iterator>
 				</s:iterator>
 			</tbody>
 		</table>

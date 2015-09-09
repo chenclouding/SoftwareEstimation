@@ -26,7 +26,6 @@ public class TransFunctionAction  extends ActionSupport{
 	private Module module;
 	private Project project;
 	private Boolean isDetail;
-	private Boolean listAll;
 	private TransFunction transFunction;
 	private List<Module> modules;
 	private String actionName;
@@ -41,7 +40,6 @@ public class TransFunctionAction  extends ActionSupport{
 		transFunction.setCountSession(countSession);
 		transFunction.setModule(module);
 		tb.create(transFunction);
-		listAll=false;
 		return list();
 	}
 	
@@ -49,26 +47,17 @@ public class TransFunctionAction  extends ActionSupport{
 		countSession = sb.find(countSession);
 		project = countSession.getProject();
 		modules = mb.getModulesByProject(project);
-		int fpCountAll = 0;
 		for(Module m:modules){
 			transFunctions = tb.listAllByCountSessionFunctionModule(countSession, m);
 			m.setTransFunctions(transFunctions);
-			if(listAll==true){
-				for(TransFunction d:transFunctions){
-					fpCountAll += d.getFpCount();
-				}
-			}
 		}
-		if(listAll==true){
-			countSession.setUfpc(fpCountAll);
-			return SUCCESS;
-		}else{
 			return "list";
-		}
 	}
 	
 	public String edit() {
 		transFunction = tb.find(transFunction);
+		countSession = sb.find(transFunction.getCountSession());
+		module = mb.find(transFunction.getModule());
 		if(isDetail==true){
 			actionName = "transFunction!detail";
 		}else{
@@ -77,16 +66,20 @@ public class TransFunctionAction  extends ActionSupport{
 		return "edit";
 	}
 	
-/*	public String edited() {
+	public String edited() {
 		tb.update(transFunction);
-		listAll=false;
 		return list();
-	}*/
+	}
 	
 	public String delete() {
 		tb.delete(transFunction);
-		listAll=false;
 		return list();
+	}
+	
+	public String passParams(){
+		module = mb.find(module);
+		countSession = sb.find(countSession);
+		return "params";
 	}
 
 	public CountSession getCountSession() {
@@ -153,13 +146,6 @@ public class TransFunctionAction  extends ActionSupport{
 		this.actionName = actionName;
 	}
 
-	public Boolean getListAll() {
-		return listAll;
-	}
-
-	public void setListAll(Boolean listAll) {
-		this.listAll = listAll;
-	}
 	
 	/*	public String edit() {
 		countSession = sb.find(countSession);
