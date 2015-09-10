@@ -56,5 +56,10 @@
 			<result name="edit">/nesma/transFunction.jsp</result>	
 			<result name="params">/nesma/transFunction.jsp</result>
 		</action>
+		<action name="functionProcess" class="action.cosmic.FunctionProcessAction">
+			<result name="list">/cosmic/functionProcessList.jsp</result>
+			<result name="edit">/cosmic/functionProcess.jsp</result>	
+			<result name="params">/cosmic/functionProcess.jsp</result>
+		</action>
 	</package>
 </struts>

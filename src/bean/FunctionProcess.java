@@ -26,6 +26,7 @@ public class FunctionProcess {
 	private Integer id;
 	private String name;
 	private String description;
+	private Integer cfpCount;
 	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -89,6 +90,14 @@ public class FunctionProcess {
 
 	public void setDataMovements(List<DataMovement> dataMovements) {
 		this.dataMovements = dataMovements;
+	}
+
+	public Integer getCfpCount() {
+		return cfpCount;
+	}
+
+	public void setCfpCount(Integer cfpCount) {
+		this.cfpCount = cfpCount;
 	}
 }
 
