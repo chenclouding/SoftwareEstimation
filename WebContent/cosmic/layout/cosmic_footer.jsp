@@ -8,7 +8,7 @@
 		<li class="submenu"><a href="functionProcess!list?countSession.id=<%=session.getAttribute("countSessionId") %>">功能流程</a></li>
 		<li class="submenu"><a href="interestObject!list?countSession.id=<%=session.getAttribute("countSessionId") %>">兴趣对象与数据组</a></li>
 	<li class="category">识别数据移动</li>
-		<li class="submenu"><a href="dataMovement!list?countSession.id=<%=session.getAttribute("countSessionId") %>">添加数据移动</a></li>
+		<li class="submenu"><a href="module!listModulesForFunctionProcess?countSession.id=<%=session.getAttribute("countSessionId") %>">添加数据移动</a></li>
 		<li class="submenu"><a href="countSession!listDataMovements?countSession.id=<%=session.getAttribute("countSessionId") %>">度量结果查看</a></li>
 	</ul>
 </div>

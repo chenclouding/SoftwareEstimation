@@ -62,18 +62,6 @@ font-size:15px;
 	</div>
  <%@ include file="layout/cosmic_footer.jsp"%>
 <script>
-/* $( "#accordion" ).accordion(); */
-//新增module时，设置moduleId
-/* $.extend({
-	showModal : function(moduleId,countSessionName) {
-		$.get("nesma/functionProcess.jsp", function(data) {
-			var doms = $.parseHTML(data);
-			$("#functionProcessModal .modal-content").html(doms);
-			$('input[name="module.id"]').attr("value",moduleId);
-			$("#functionProcessModal").show();
-		});
-		}
-}); */
 
 $('#functionProcessModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();

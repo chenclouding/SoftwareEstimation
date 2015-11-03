@@ -26,26 +26,17 @@ public class DataMovement {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String name;
-	private String description;
+	private String type;
 	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "functionProcess_id")
 	private FunctionProcess functionProcess;
 	
-/*	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "dataGroup")
-	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
-	private List<DataGroup> dataGroups = new ArrayList<DataGroup>();*/
-	  @ManyToMany
-	  @Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
-	    @JoinTable(name="dataGroup",    
-	        joinColumns={    
-	            @JoinColumn(name="dataMovement_id",referencedColumnName="id")    
-	            },    
-	            inverseJoinColumns={    
-	             @JoinColumn(name="dataGroup_id",referencedColumnName="id")    
-	       }    
-	    ) 
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "dataGroup_id")
+	private DataGroup dataGroup;
 
 	public Integer getId() {
 		return id;
@@ -63,20 +54,20 @@ public class DataMovement {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public FunctionProcess getFunctionProcess() {
 		return functionProcess;
 	}
 
 	public void setFunctionProcess(FunctionProcess functionProcess) {
 		this.functionProcess = functionProcess;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

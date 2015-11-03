@@ -26,7 +26,7 @@ public class DataGroup {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String name;
-	private String description;
+/*	private String description;*/
 	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -63,13 +63,13 @@ public class DataGroup {
 		this.name = name;
 	}
 
-	public String getDescription() {
+/*	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
+	}*/
 
 	public InterestObject getInterestObject() {
 		return interestObject;

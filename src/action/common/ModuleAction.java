@@ -9,8 +9,10 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import bean.CountSession;
 import bean.Module;
 import bean.Project;
+import business.CountSessionBusiness;
 import business.ModuleBusiness;
 import business.ProjectBusiness;
 
@@ -21,8 +23,10 @@ public class ModuleAction extends ActionSupport{
 	private List<Module> modules;
 	private String actionName;
 	private Boolean isDetail;
+	private CountSession countSession;
 	private ProjectBusiness pb = new ProjectBusiness();
 	private ModuleBusiness mb = new ModuleBusiness();
+	private CountSessionBusiness sb = new CountSessionBusiness();
 
 	public String add() {
 		project = pb.find(project);
@@ -47,6 +51,12 @@ public class ModuleAction extends ActionSupport{
 		}else{*/
 		return "list";
 /*		}*/
+	}
+	
+	public String listModulesForFunctionProcess() {
+		countSession=sb.find(countSession);
+		modules = mb.getModulesByProject(countSession.getProject());
+		return "listModulesForFP";
 	}
 	
 	public String edit() {
@@ -116,5 +126,13 @@ public class ModuleAction extends ActionSupport{
 
 	public void setIsDetail(Boolean isDetail) {
 		this.isDetail = isDetail;
+	}
+
+	public CountSession getCountSession() {
+		return countSession;
+	}
+
+	public void setCountSession(CountSession countSession) {
+		this.countSession = countSession;
 	}
 }

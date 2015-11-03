@@ -37,6 +37,7 @@
 		<action name="module" class="action.common.ModuleAction">
 			<result name="list">/common/moduleList.jsp</result>
 			<result name="edit">/common/module.jsp</result>	
+			<result name="listModulesForFP">/cosmic/dataMovementList.jsp</result>	
 		</action>
 		<action name="countSession" class="action.common.CountSessionAction">
 			<result name="list">/common/countSessionList.jsp</result>
@@ -60,6 +61,16 @@
 			<result name="list">/cosmic/functionProcessList.jsp</result>
 			<result name="edit">/cosmic/functionProcess.jsp</result>	
 			<result name="params">/cosmic/functionProcess.jsp</result>
+		</action>
+		<action name="interestObject" class="action.cosmic.InterestObjectAction">
+			<result name="list">/cosmic/interestObjectList.jsp</result>
+			<result name="edit">/cosmic/interestObject.jsp</result>	
+			<result name="params">/cosmic/interestObject.jsp</result>
+		</action>
+		<action name="dataMovement" class="action.cosmic.DataMovementAction">
+			<result name="list">/cosmic/dataMovementList.jsp</result>
+			<result name="edit">/cosmic/interestObject.jsp</result>	
+			<result name="params">/cosmic/dataMovement.jsp</result> 
 		</action>
 	</package>
 </struts>

@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+#moduleSelectForm .btn-primary{
+	 font-size: 12px;
+	 padding: 6px 0px;
+	 width: 70px;
+}
+
+#moduleSelectForm .col-sm-7,#moduleSelectForm .col-sm-3,#moduleSelectForm .form-group{
+	float:left;
+}
+
+#moduleSelectForm .form-group{
+	width:60%;
+}
+
+#moduleSelectForm .col-sm-7{
+	width:70%;
+}
+
+#moduleSelectForm .col-sm-3{
+	margin-top:8px;
+}
+#dataMovementList{
+	clear:both;
+	font-size:12px;
+}
