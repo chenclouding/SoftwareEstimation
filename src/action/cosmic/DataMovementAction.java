@@ -24,18 +24,19 @@ import business.ProjectBusiness;
 public class DataMovementAction  extends ActionSupport{
 
 	private Module module;
-/*	private List<Module> modules;*/
-/*	
 	private Boolean isDetail;
-	private String actionName;*/
+	private String actionName;
 	private Project project;
 	private CountSession countSession;
+	private DataMovement dataMovement;
 	private List<FunctionProcess> functionProcesses;
 	private List<DataMovement> dataMovements;
 	private List<Module> modules;
 	private FunctionProcess functionProcess;
+	private InterestObject interestObject;
 	private List<InterestObject> interestObjects;
 	private String interestObjectStr;
+	private DataGroup dataGroup;
 	private List<DataGroup> dataGroups;
 	private ModuleBusiness mb = new ModuleBusiness();
 	private CountSessionBusiness sb = new CountSessionBusiness();
@@ -44,17 +45,17 @@ public class DataMovementAction  extends ActionSupport{
 	private InterestObjectBusiness iob = new InterestObjectBusiness();
 	private DataGroupBusiness dgb = new DataGroupBusiness();
 
-/*	public String add() {
-		module = mb.find(module);
-		countSession = sb.find(countSession);
-		interestObject.setCountSession(countSession);
-		interestObject.setModule(module);
-		for(DataGroup d:interestObject.getDataGroups()){
-			d.setInterestObject(interestObject);
-		}
-		iob.create(interestObject);
+	public String add() {
+		functionProcess=fb.find(functionProcess);
+		dataGroup=dgb.find(dataGroup);
+		interestObject=iob.find(interestObject);
+		module=mb.find(module);
+		dataMovement.setFunctionProcess(functionProcess);
+		dataMovement.setDataGroup(dataGroup);
+		dataMovement.setInterestObject(interestObject);
+		dmb.create(dataMovement);
 		return list();
-	}*/
+	}
 	
 	//列出模块中所有的functionProcess以及dataMovement
 	public String list() {
@@ -69,11 +70,18 @@ public class DataMovementAction  extends ActionSupport{
 	}
 	
 	public String passParams(){
+		module=mb.find(module);
 		functionProcess = fb.find(functionProcess);
 		countSession = sb.find(countSession);
 		project = countSession.getProject();
 		modules = mb.getModulesByProject(project);
 		interestObjects=new ArrayList<>();
+		StringBuilder strB=concatDataGroups(modules, interestObjects);
+		interestObjectStr=strB.toString();
+		return "params";
+	}
+	
+	public StringBuilder concatDataGroups(List<Module> modules,List<InterestObject> interestObjects){
 		for(Module m:modules){
 			//获取每个模块下的interestObject
 			List<InterestObject> interestObjectsInModule = 
@@ -99,43 +107,54 @@ public class DataMovementAction  extends ActionSupport{
 		}
 		sb.deleteCharAt(sb.length()-1);//删除最后一个多余逗号
 		sb.append("]");
-		interestObjectStr=sb.toString();
-		System.out.print(interestObjectStr);
-		return "params";
+		return sb;
 	}
 	
-/*	public String edit() {
-		interestObject = iob.find(interestObject);
-		countSession = sb.find(interestObject.getCountSession());
-		module = mb.find(interestObject.getModule());
-		dataGroups=dgb.getDataGroupsByInterestObject(interestObject);
+	public String edit() {
+		dataMovement=dmb.find(dataMovement);
+		functionProcess=dataMovement.getFunctionProcess();
+		//用于修改时显示
+		interestObject=dataMovement.getInterestObject();
+		dataGroup=dataMovement.getDataGroup();
+		countSession = sb.find(functionProcess.getCountSession());
+		project = countSession.getProject();
+		modules = mb.getModulesByProject(project);
+		module = mb.find(functionProcess.getModule());
+		interestObjects=new ArrayList<>();
+		StringBuilder strB=concatDataGroups(modules, interestObjects);
+		interestObjectStr=strB.toString();
 		if(isDetail==true){
-			actionName = "interestObject!detail";
+			setActionName("dataMovement!detail");
 		}else{
-			actionName = "interestObject!edited";
+			setActionName("dataMovement!edited");
 		}
 		return "edit";
 	}
 	
 	public String edited() {
-		//若修改，先删除原来包含的DataGroup
-		dataGroups=dgb.getDataGroupsByInterestObject(interestObject);
-		for(DataGroup d:dataGroups){
-			dgb.delete(d);
-		}
-		for(DataGroup d:interestObject.getDataGroups()){
-			if(d!=null){
-				d.setInterestObject(interestObject);
-			}
-		}
-		iob.update(interestObject);
+		dataGroup=dgb.find(dataGroup);
+		interestObject=iob.find(interestObject);
+		module=mb.find(module);
+		dataMovement.setDataGroup(dataGroup);
+		dataMovement.setInterestObject(interestObject);
+		dmb.update(dataMovement);
 		return list();
 	}
 	
 	public String delete() {
-		iob.delete(interestObject);
+		module=mb.find(module);
+		dmb.delete(dataMovement);
 		return list();
-	}*/
+	}
+	
+	public Boolean getIsDetail() {
+		return isDetail;
+	}
+
+	public void setIsDetail(Boolean isDetail) {
+		this.isDetail = isDetail;
+	}
+	
 	public Module getModule() {
 		return module;
 	}
@@ -206,5 +225,37 @@ public class DataMovementAction  extends ActionSupport{
 
 	public void setInterestObjectStr(String interestObjectStr) {
 		this.interestObjectStr = interestObjectStr;
+	}
+
+	public DataMovement getDataMovement() {
+		return dataMovement;
+	}
+
+	public void setDataMovement(DataMovement dataMovement) {
+		this.dataMovement = dataMovement;
+	}
+
+	public DataGroup getDataGroup() {
+		return dataGroup;
+	}
+
+	public void setDataGroup(DataGroup dataGroup) {
+		this.dataGroup = dataGroup;
+	}
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
+	}
+
+	public InterestObject getInterestObject() {
+		return interestObject;
+	}
+
+	public void setInterestObject(InterestObject interestObject) {
+		this.interestObject = interestObject;
 	}
 }

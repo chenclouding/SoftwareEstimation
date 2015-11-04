@@ -38,6 +38,11 @@ public class DataMovement {
 	@JoinColumn(name = "dataGroup_id")
 	private DataGroup dataGroup;
 
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "interestObject_id")
+	private InterestObject interestObject;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -68,6 +73,22 @@ public class DataMovement {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public DataGroup getDataGroup() {
+		return dataGroup;
+	}
+
+	public void setDataGroup(DataGroup dataGroup) {
+		this.dataGroup = dataGroup;
+	}
+
+	public InterestObject getInterestObject() {
+		return interestObject;
+	}
+
+	public void setInterestObject(InterestObject interestObject) {
+		this.interestObject = interestObject;
 	}
 
 }

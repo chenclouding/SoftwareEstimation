@@ -37,7 +37,7 @@ public class InterestObject {
 	@JoinColumn(name = "module_id")
 	private Module module;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "interestObject")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "interestObject")
 	@Cascade(value = { CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.ALL })
 	private List<DataGroup> dataGroups = new ArrayList<DataGroup>();
 	

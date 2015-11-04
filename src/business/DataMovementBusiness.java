@@ -6,7 +6,6 @@ import action.cosmic.FunctionProcessAction;
 import bean.CountSession;
 import bean.DataMovement;
 import bean.FunctionProcess;
-import bean.InterestObject;
 import bean.Module;
 import dao.BaseDAO;
 
@@ -17,23 +16,24 @@ public class DataMovementBusiness {
 		return dao.list("select c from DataMovement c where c.functionProcess.id=" + functionProcess.getId());
 	}
 	
-/*	public void create(InterestObject p) {
+	public void create(DataMovement p) {
 		dao.create(p);
 	}
 	
-	public InterestObject find(InterestObject p) {
-		return dao.find(InterestObject.class, p.getId());
+		public DataMovement find(DataMovement p) {
+		return dao.find(DataMovement.class, p.getId());
 	}
 	
-	public void update(InterestObject p) {
-		InterestObject interestObject = dao.find(InterestObject.class, p.getId());
-		interestObject.setDescription(p.getDescription());
-		interestObject.setName(p.getName());
-		interestObject.setDataGroups(p.getDataGroups());
-		dao.update(interestObject);
+	public void update(DataMovement p) {
+		DataMovement dataMovement = dao.find(DataMovement.class, p.getId());
+		dataMovement.setName(p.getName());
+		dataMovement.setType(p.getType());
+		dataMovement.setInterestObject(p.getInterestObject());
+		dataMovement.setDataGroup(p.getDataGroup());
+		dao.update(dataMovement);
 	}
 	
-	public void delete(InterestObject p) {
-		dao.delete(dao.find(InterestObject.class, p.getId()));
-	}*/
+	public void delete(DataMovement p) {
+		dao.delete(dao.find(DataMovement.class, p.getId()));
+	}
 }

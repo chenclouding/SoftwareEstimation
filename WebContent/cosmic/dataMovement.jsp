@@ -45,10 +45,19 @@
 	<div class="form-group">
 		<label for="dataGroupSelect" class="col-sm-3 control-label">数据组</label>
 		<div class="col-sm-7">
-			<select id="dataGroupSelect">
-			</select>
+		<s:if test="actionName==null">
+			<s:select id="dataGroupSelect" list="interestObjects[0].dataGroups" class="form-control"
+				listValue="name" listKey="id" name="dataGroup.id"
+				value="%{dataGroup.id}" ></s:select>
+		</s:if>
+		<s:else>
+			<s:select id="dataGroupSelect" list="interestObject.dataGroups" class="form-control"
+				listValue="name" listKey="id" name="dataGroup.id"
+				value="%{dataGroup.id}" ></s:select>
+		</s:else>
 		</div>
 	</div>
+	<input type="hidden" name="functionProcess.id" value="<s:property value="functionProcess.id" />" />
 	<input type="hidden" name="countSession.id" value="<s:property value="countSession.id" />" />
 	<input type="hidden" name="module.id" value="<s:property value="module.id" />" />
 	<input type="hidden" name="dataMovement.id" value="<s:property value="dataMovement.id" />" /> 

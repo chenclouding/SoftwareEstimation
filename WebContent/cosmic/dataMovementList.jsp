@@ -5,7 +5,7 @@
 <style>
 .col-md-4{
 	padding:5px;
- 	width:31%; 
+ 	width:45%; 
 	margin:0px 10px 10px 0px;
 }
 .panel-default,.panel-default .panel-heading{
@@ -38,12 +38,12 @@ font-size:13px;
   <s:property value="#functionProcess.name" />
   </div>
 	<a id="dataMovementAdd" href="dataMovement!passParams?functionProcess.id=<s:property value="#functionProcess.id" />&
-		countSession.id=<%=session.getAttribute("countSessionId") %>" role="button" data-toggle="modal" data-target="#dataMovementModal">
+		countSession.id=<%=session.getAttribute("countSessionId") %>&module.id=<s:property value="module.id" />" role="button" data-toggle="modal" data-target="#dataMovementModal">
 	<span class="glyphicon glyphicon-plus-sign"></span></a></div>
   <div class="panel-body">
   <s:iterator id="dataMovement" value="#functionProcess.dataMovements">
     <div class="col-md-4" style="background-color:lightcyan;">
-	    <div class="col-md-5"><a href="dataMovement!edit?dataMovement.id=<s:property value='#dataMovement.id' />&isDetail=true" role="button"  
+	    <div class="col-md-8"><a href="dataMovement!edit?dataMovement.id=<s:property value='#dataMovement.id' />&isDetail=true" role="button"  
 	data-toggle="modal" data-target="#dataMovementModal">
 	    <s:property value="#dataMovement.name" /></a>
 	    </div>
@@ -54,7 +54,7 @@ font-size:13px;
 		</div>
 		<div class="col-md-1">
 		<a id="dataMovementDelete" href="dataMovement!delete?dataMovement.id=<s:property value='#dataMovement.id' />&
-		countSession.id=<%=session.getAttribute("countSessionId") %>" >
+		countSession.id=<%=session.getAttribute("countSessionId") %>&module.id=<s:property value="module.id" />" >
 		<span class="glyphicon glyphicon-trash"></span></a>
 		</div>
     </div>
@@ -78,6 +78,8 @@ font-size:13px;
 $('#dataMovementModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();
 });
+
+//修改兴趣对象时，改变对应的数据组
 function change(element){
 	var index=element.selectedIndex ;             // selectedIndex代表的是你所选中项的index
 	var selectedItem = element.options[index].value;

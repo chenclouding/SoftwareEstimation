@@ -11,6 +11,10 @@ import dao.BaseDAO;
 public class DataGroupBusiness {
 	private BaseDAO<DataGroup> dao = new BaseDAO<DataGroup>();
 	
+	public DataGroup find(DataGroup p) {
+		return dao.find(DataGroup.class, p.getId());
+	}
+	
 	public void create(DataGroup p) {
 		dao.create(p);
 	}
