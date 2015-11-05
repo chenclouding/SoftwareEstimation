@@ -12,6 +12,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.CountSession;
 import bean.DataFunction;
+import bean.DataMovement;
+import bean.FunctionProcess;
 import bean.Module;
 import bean.Organization;
 import bean.Project;
@@ -33,6 +35,8 @@ public class CountSessionAction  extends ActionSupport{
 	private List<CountSession> countSessions;
 	private List<DataFunction> dataFunctions;
 	private List<TransFunction> transFunctions;
+	private List<FunctionProcess> functionProcesses;
+	private List<DataMovement> dataMovements;
 	private String actionName;
 	private Boolean isDetail;
 	private ProjectBusiness pb = new ProjectBusiness();
@@ -129,6 +133,22 @@ public class CountSessionAction  extends ActionSupport{
 		}
 		countSession.setUfpc(fpCountAll);
 		return "functions";
+	}
+	
+	public String listDataMovements(){
+		countSession = sb.find(countSession);
+		project = countSession.getProject();
+		modules = mb.getModulesByProject(project);
+		int fpCountAll = 0;
+		for(Module m:modules){
+			functionProcesses=m.getFunctionProcesses();
+			for(FunctionProcess f:functionProcesses){
+				dataMovements=f.getDataMovements();
+				fpCountAll+=dataMovements.size();
+			}
+		}
+		countSession.setUfpc(fpCountAll);
+		return "dataMovements";
 	}
 
 	public Project getProject() {
