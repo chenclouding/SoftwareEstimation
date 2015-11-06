@@ -34,7 +34,7 @@ margin-bottom:10px;
 			<div class="col-md-6">
 				<div class="col-md-5">功能点总数：</div>
 				<s:property value="countSession.ufpc" />
-				FP
+				CFP
 			</div>
 		</div>
 		<table class="table table-bordered" id="estimateResult_table">

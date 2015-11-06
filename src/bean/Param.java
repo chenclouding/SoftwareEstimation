@@ -1,10 +1,12 @@
 package bean;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,16 +41,17 @@ public class Param {
 	private String cd_TOOL;
 	private String cd_SITE;
 	private String cd_SCED; 
-	private String monthlyAvg;
+	private Double monthlyAvg;
 	
 	@OneToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "organization_id")
 	private Organization organization;
-/*	
-	@OneToOne(fetch = FetchType.LAZY,mappedBy = "organization")
-	@JoinColumn(name = "organization_id")
-	private Organization organization;*/
+	
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "countSession_id")
+	private CountSession countSession;
 	
 	public Organization getOrganization() {
 		return organization;
@@ -194,10 +197,10 @@ public class Param {
 	public void setCd_SCED(String cd_SCED) {
 		this.cd_SCED = cd_SCED;
 	}
-	public String getMonthlyAvg() {
+	public Double getMonthlyAvg() {
 		return monthlyAvg;
 	}
-	public void setMonthlyAvg(String monthlyAvg) {
+	public void setMonthlyAvg(Double monthlyAvg) {
 		this.monthlyAvg = monthlyAvg;
 	}
 	

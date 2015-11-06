@@ -104,6 +104,16 @@ public class CountSessionAction  extends ActionSupport{
 		}
 	}
 	
+	public String cocomo(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		session.setAttribute("countSessionId", countSession.getId());
+		countSession = new CountSessionBusiness().find(countSession);
+		session.setAttribute("countSessionName", countSession.getName());
+		session.setAttribute("projectName", countSession.getProject().getName());
+		return "cocomo";
+	}
+	
 	public String edited() {
 		sb.update(countSession);
 		return list();
@@ -132,6 +142,7 @@ public class CountSessionAction  extends ActionSupport{
 			}
 		}
 		countSession.setUfpc(fpCountAll);
+		sb.update(countSession);
 		return "functions";
 	}
 	
@@ -148,6 +159,7 @@ public class CountSessionAction  extends ActionSupport{
 			}
 		}
 		countSession.setUfpc(fpCountAll);
+		sb.update(countSession);
 		return "dataMovements";
 	}
 

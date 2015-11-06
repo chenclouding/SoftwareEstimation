@@ -68,18 +68,6 @@ font-size:15px;
 	</div>
  <%@ include file="layout/nesma_footer.jsp"%>
 <script>
-/* $( "#accordion" ).accordion(); */
-//新增module时，设置moduleId
-/* $.extend({
-	showModal : function(moduleId,countSessionName) {
-		$.get("nesma/dataFunction.jsp", function(data) {
-			var doms = $.parseHTML(data);
-			$("#dataFunctionModal .modal-content").html(doms);
-			$('input[name="module.id"]').attr("value",moduleId);
-			$("#dataFunctionModal").show();
-		});
-		}
-}); */
 
 $('#dataFunctionModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();

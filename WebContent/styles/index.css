@@ -58,6 +58,10 @@ form.search input.button {
 	width: 60px;
 }
 
+hr{
+	border-top:1px solid #B7B8BC;
+}
+
 /* -----------------------------------------
    LAYOUT
 -------------------------------------------- */

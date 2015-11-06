@@ -32,6 +32,7 @@ public class CountSessionBusiness extends ActionSupport{
 		countSession.setName(p.getName());
 		countSession.setPurpose(p.getPurpose());
 		countSession.setScope(p.getScope());
+		countSession.setUfpc(p.getUfpc());
 		dao.update(countSession);
 	}
 	

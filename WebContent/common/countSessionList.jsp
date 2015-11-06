@@ -30,7 +30,7 @@
 				<td>估算方法</td>
 				<td>新建时间</td>
 				<td>功能点数</td>
-				<td>工作量</td>						
+				<td colspan="2">工作量</td>						
 				<td>修改</td>
 				<td>删除</td>
 				<td>开始估算</td>
@@ -44,8 +44,14 @@
 					</td>
 					<td><s:property value="#countSession.methodType" /></td>
 					<td><s:date name="#countSession.time" format="yyyy-MM-dd"/></td>
-					<td>功能点数</td>
-					<td>工作量</td>
+					<td><a href="countSession!select?countSession.id=<s:property value='#countSession.id' />">
+					<s:if test="#countSession.ufpc==null">0
+					</s:if>
+					<s:else>
+						<s:property value="#countSession.ufpc" />
+					</s:else></a></td>
+					<td><a href="countSession!cocomo?countSession.id=<s:property value='#countSession.id' />">查看</a></td>
+					<td><a href="countSession!cocomo?countSession.id=<s:property value='#countSession.id' />">修改</a></td>
 					<td>
 					<a href="countSession!edit?countSession.id=<s:property value='#countSession.id' />&isDetail=false" role="button"  
 	data-toggle="modal" data-target="#countSessionModal"><span class="glyphicon glyphicon-edit"></span></a>

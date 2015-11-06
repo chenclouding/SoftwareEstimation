@@ -26,5 +26,7 @@
 		<mapping class="bean.DataMovement" />
 		<mapping class="bean.DataGroup" />
 		<mapping class="bean.InterestObject" />
+		<mapping class="bean.ApplicationComposition" />
+		<mapping class="bean.EarlyDesignAndPostArchitecture" />
 	</session-factory>
 </hibernate-configuration>

@@ -37,9 +37,6 @@ public class CountSession {
 	private String purpose;// 估算目的
 	private String scope;// 估算范围
 	private Integer ufpc;// 未调整功能点数
-	private Double effort;// 工作量
-	private Double duration;// 工期
-	private Double cost;// 成本
 	
 	@ManyToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -126,30 +123,6 @@ public class CountSession {
 
 	public void setScope(String scope) {
 		this.scope = scope;
-	}
-
-	public Double getEffort() {
-		return effort;
-	}
-
-	public void setEffort(Double effort) {
-		this.effort = effort;
-	}
-
-	public Double getDuration() {
-		return duration;
-	}
-
-	public void setDuration(Double duration) {
-		this.duration = duration;
-	}
-
-	public Double getCost() {
-		return cost;
-	}
-
-	public void setCost(Double cost) {
-		this.cost = cost;
 	}
 
 	public Integer getId() {

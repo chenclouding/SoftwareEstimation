@@ -47,6 +47,7 @@
 			<result name="functions">/nesma/sizeEstimateResult.jsp</result>
 			<result name="dataMovements">/cosmic/sizeEstimateResult.jsp</result>
 			<result name="cosmic">/cosmic/welcome.jsp</result>
+			<result name="cocomo">/cocomo/welcome.jsp</result>
 		</action>
 		<action name="dataFunction" class="action.nesma.DataFunctionAction">
 			<result name="list">/nesma/dataFunctionList.jsp</result>
@@ -72,6 +73,11 @@
 			<result name="list">/cosmic/dataMovementList.jsp</result>
 			<result name="edit">/cosmic/dataMovement.jsp</result>	
 			<result name="params">/cosmic/dataMovement.jsp</result> 
+		</action>
+		<action name="cocomo" class="action.cocomo.CocomoAction">
+			<result name="applicationComp">/cocomo/applicationComposition.jsp</result>
+<!-- 			<result name="edit">/cosmic/dataMovement.jsp</result>	
+			<result name="params">/cosmic/dataMovement.jsp</result>  -->
 		</action>
 	</package>
 </struts>

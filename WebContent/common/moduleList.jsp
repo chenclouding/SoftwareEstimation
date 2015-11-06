@@ -75,28 +75,4 @@
 $('#moduleModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();
 });
-/* $(document).ready(function(){ 
-	alert($("#moduleForm").attr("action"));
-}); */
-/* $('#moduleModal').on('show.bs.modal', function (e) {
-	$("#moduleForm").validate({
-		rules: {
-			"module.name":"required"
-		}
-	}); 
-	//若为show detail设置input为不可编辑
-	alert($(".form-horizontal").attr("action"));
- 	if($(".form-horizontal").attr("action")=="module!list"){
- 		console.log($("#moduleForm .form-control"));
-			$("#moduleForm .form-control").attr("disabled",true);
-	} 
-	}) */
-/* $.extend({
-	postModuleData : function(moduleData, actionName) {
-		$.post(actionName, moduleData, function(data) {
-			var doms = $.parseHTML(data);
-			$("#module").html(doms);
-		});
-	}
-}); */
 </script>
