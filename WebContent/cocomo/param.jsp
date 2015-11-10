@@ -307,6 +307,7 @@ action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method
 		<label for="monthlyAvg" class="col-sm-3 control-label">人员薪资水平</label>
 		<div class="col-sm-7">
 			<input class="form-control" id="monthlyAvg"	name="param.monthlyAvg" value="<s:property value="param.monthlyAvg"/>" />
+			万元/月
 		</div>
 	</div>
 </div>

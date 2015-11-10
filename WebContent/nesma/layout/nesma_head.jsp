@@ -42,12 +42,13 @@
 	<!-- menu -->
 	<div id="menu">
 			<ul>
-			<li><a href="#">数据功能</a></li>
+			<li><a href="nesma/welcome.jsp">使用帮助</a></li>
+			<li><a href="dataFunction!list?countSession.id=<%=session.getAttribute("countSessionId") %>">数据功能</a></li>
 			<s:if test="#session.methodType!='NESMA-预估型'" >
-			<li><a href="#">事务功能</a></li>
+			<li><a href="transFunction!list?countSession.id=<%=session.getAttribute("countSessionId") %>">事务功能</a></li>
 			</s:if>
-			<li><a href="#">度量结果查看</a></li>
-		</ul>
+			<li><a href="countSession!listFunctions?countSession.id=<%=session.getAttribute("countSessionId") %>">度量结果查看</a></li>
+	</ul>
 		<div id="login-info">
 			当前项目：<%=session.getAttribute("projectName") %>&nbsp;&nbsp;
 			当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;

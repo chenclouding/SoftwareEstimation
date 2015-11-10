@@ -4,6 +4,7 @@
 <div id="sidebar">
 	<h1>cosmic全功能点方法</h1>
 	<ul class="sidemenu">
+			<li class="submenu"><a href="cosmic/welcome.jsp">使用帮助</a></li>
 	<li class="category">识别功能过程</li>
 		<li class="submenu"><a href="functionProcess!list?countSession.id=<%=session.getAttribute("countSessionId") %>">功能流程</a></li>
 		<li class="submenu"><a href="interestObject!list?countSession.id=<%=session.getAttribute("countSessionId") %>">兴趣对象与数据组</a></li>

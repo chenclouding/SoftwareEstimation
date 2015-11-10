@@ -15,6 +15,7 @@
 	<h1>ifpug</h1> 
 	</s:if>
 	<ul class="sidemenu">
+			<li><a href="nesma/welcome.jsp">使用帮助</a></li>
 			<li><a href="dataFunction!list?countSession.id=<%=session.getAttribute("countSessionId") %>">数据功能</a></li>
 			<s:if test="#session.methodType!='NESMA-预估型'" >
 			<li><a href="transFunction!list?countSession.id=<%=session.getAttribute("countSessionId") %>">事务功能</a></li>

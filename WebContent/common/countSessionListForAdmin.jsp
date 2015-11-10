@@ -22,7 +22,6 @@
 				<td>新建时间</td>
 				<td>功能点数</td>
 				<td>工作量</td>						
-				<td>查看详情</td>
 			</tr>
 				<s:iterator id="project" value="projects">
 						<s:iterator id="countSession" value="#project.countSessions">
@@ -31,9 +30,9 @@
 					<td><s:property value="#countSession.name" /></td>
 					<td><s:property value="#countSession.methodType" /></td>
 					<td><s:date name="#countSession.time" format="yyyy-MM-dd"/></td>
-					<td>功能点数</td>
-					<td>工作量</td>
-					<td><a>查看详情</a></td>
+					<td><s:property value="#countSession.ufpc" /></td>
+					<td><a href="cocomo!getAllEstimations?countSession.id=<s:property value='#countSession.id' />" role="button"  
+	data-toggle="modal" data-target="#cocomoListModal">查看详情</a></td>
 				</tr>
 			</s:iterator>
 			</s:iterator>
@@ -47,9 +46,8 @@
 				<td>估算名称</td>
 				<td>估算方法</td>
 				<td>新建时间</td>
-				<td>功能点数</td>
-				<td>工作量</td>						
-				<td>查看详情</td>
+				<td>功能点数</td>					
+				<td>工作量</td>
 			</tr>
 			<s:iterator id="org" value="organizations">
 			<s:iterator id="user" value="#org.users">
@@ -61,9 +59,10 @@
 					<td><s:property value="#countSession.name" /></td>
 					<td><s:property value="#countSession.methodType" /></td>
 					<td><s:date name="#countSession.time" format="yyyy-MM-dd"/></td>
-					<td>功能点数</td>
-					<td>工作量</td>
-					<td><a>查看详情</a></td>
+					<td><s:property value="#countSession.ufpc" /></td>
+					<td><a href="cocomo!getAllEstimations?countSession.id=<s:property value='#countSession.id' />" role="button"  
+	data-toggle="modal" data-target="#cocomoListModal">查看详情</a></td>
+					
 				</tr>
 			</s:iterator>
 			</s:iterator>
@@ -81,10 +80,21 @@
 <s:else>
 <%@ include file="layout/orgAdmin_footer.jsp"%>
 </s:else>
+		<!-- Modal for list cocomo estimation results-->
+	<div id="cocomoListModal" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
 
 <script type="text/javascript">
 $(function() {
  	$("#countSession_table").rowspan(0);
 	$("#countSession_table").rowspan(1); 
+	$('#cocomoListModal').on('hide.bs.modal', function(e) {
+		$(this).removeData();
+	});
 });
 </script>

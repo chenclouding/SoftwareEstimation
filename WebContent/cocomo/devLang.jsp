@@ -36,6 +36,7 @@ action="devLang!add?organization.id=<%=session.getAttribute("orgId") %>" method=
 	<label for="devLangLines" class="col-sm-3 control-label">源代码行数/功能点</label>
 	<div class="col-sm-7">
 		<input type="text" class="form-control" id="devLangLines" name="devLang.linesPerFP" />
+		LOC/FP
 	</div>
 </div>
 <div class="footer">

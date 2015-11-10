@@ -42,6 +42,7 @@
 	<!-- menu -->
 	<div id="menu">
 		<ul>
+		<li class="submenu"><a href="cosmic/welcome.jsp">使用帮助</a></li>
 		<li class="submenu"><a href="functionProcess!list?countSession.id=<%=session.getAttribute("countSessionId") %>">功能流程</a></li>
 		<li class="submenu"><a href="interestObject!list?countSession.id=<%=session.getAttribute("countSessionId") %>">兴趣对象与数据组</a></li>
 		<li class="submenu"><a href="module!listModulesForFunctionProcess?countSession.id=<%=session.getAttribute("countSessionId") %>">添加数据移动</a></li>
