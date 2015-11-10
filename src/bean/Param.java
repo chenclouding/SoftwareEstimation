@@ -48,10 +48,10 @@ public class Param {
 	@JoinColumn(name = "organization_id")
 	private Organization organization;
 	
-	@ManyToOne
+	@OneToOne
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name = "countSession_id")
-	private CountSession countSession;
+	@JoinColumn(name = "earlyDesignAndPostArchitecture_id")
+	private EarlyDesignAndPostArchitecture earlyDesignAndPostArchitecture;
 	
 	public Organization getOrganization() {
 		return organization;
@@ -202,6 +202,13 @@ public class Param {
 	}
 	public void setMonthlyAvg(Double monthlyAvg) {
 		this.monthlyAvg = monthlyAvg;
+	}
+	public EarlyDesignAndPostArchitecture getEarlyDesignAndPostArchitecture() {
+		return earlyDesignAndPostArchitecture;
+	}
+	public void setEarlyDesignAndPostArchitecture(
+			EarlyDesignAndPostArchitecture earlyDesignAndPostArchitecture) {
+		this.earlyDesignAndPostArchitecture = earlyDesignAndPostArchitecture;
 	}
 	
 }

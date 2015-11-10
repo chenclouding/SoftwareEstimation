@@ -37,14 +37,11 @@
 			<s:iterator id="module" value="modules" status="index">
 				<tr>
 					<td><s:property value="#index.count" /></td>
-					<td><%-- <a
-						onclick="window.parent.$.showModuleModal(<s:property value='#module.id' />,'detail');">
-							<s:property value="#module.name" /> --%>
+					<td>
 		<a href="module!edit?module.id=<s:property value='#module.id' />&isDetail=true" role="button"  
 	data-toggle="modal" data-target="#moduleModal"><s:property value="#module.name" /> 
 					</a></td>
-					<td><%-- <a
-						onclick="window.parent.$.showModuleModal(<s:property value='#module.id' />,'edit');"> --%>
+					<td>
 			<a href="module!edit?module.id=<s:property value='#module.id' />&isDetail=false" role="button"  
 	data-toggle="modal" data-target="#moduleModal">
 							<span class="glyphicon glyphicon-edit"></span>

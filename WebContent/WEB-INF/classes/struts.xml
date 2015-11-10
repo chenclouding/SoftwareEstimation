@@ -76,8 +76,9 @@
 		</action>
 		<action name="cocomo" class="action.cocomo.CocomoAction">
 			<result name="applicationComp">/cocomo/applicationComposition.jsp</result>
-<!-- 			<result name="edit">/cosmic/dataMovement.jsp</result>	
-			<result name="params">/cosmic/dataMovement.jsp</result>  -->
+			<result name="earlyDesign">/cocomo/earlyDesign.jsp</result>	
+			<result name="postArchitecture">/cocomo/postArchitecture.jsp</result> 
+			<result name="list">/cocomo/cocomoList.jsp</result> 
 		</action>
 	</package>
 </struts>

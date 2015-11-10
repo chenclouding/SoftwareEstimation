@@ -50,7 +50,9 @@
 					<s:else>
 						<s:property value="#countSession.ufpc" />
 					</s:else></a></td>
-					<td><a href="countSession!cocomo?countSession.id=<s:property value='#countSession.id' />">查看</a></td>
+					
+					<td><a href="cocomo!getAllEstimations?countSession.id=<s:property value='#countSession.id' />" role="button"  
+	data-toggle="modal" data-target="#cocomoListModal">查看</a></td>
 					<td><a href="countSession!cocomo?countSession.id=<s:property value='#countSession.id' />">修改</a></td>
 					<td>
 					<a href="countSession!edit?countSession.id=<s:property value='#countSession.id' />&isDetail=false" role="button"  
@@ -77,9 +79,20 @@
 			</div>
 		</div>
 	</div>
+		<!-- Modal for list cocomo estimation results-->
+	<div id="cocomoListModal" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
 	<%@ include file="layout/commonUser_footer.jsp"%>
 <script>
 $('#countSessionModal').on('hide.bs.modal', function(e) {
+	$(this).removeData();
+});
+$('#cocomoListModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();
 });
 </script>

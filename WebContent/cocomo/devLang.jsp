@@ -47,7 +47,7 @@ action="devLang!add?organization.id=<%=session.getAttribute("orgId") %>" method=
 </div>
 <%@ include file="/common/layout/orgAdmin_footer.jsp"%>
 <script>
-$(document).ready(function(){ 
+/* $(document).ready(function(){ 
 	$("#devLangAddForm").validate({
 		rules: {
 			"devLang.name": {
@@ -60,5 +60,5 @@ $(document).ready(function(){
 			}
 		}
 	}); 
-}); 
+});  */
 </script>

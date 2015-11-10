@@ -12,17 +12,17 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import dao.BaseDAO;
 
-public class EarlyDesignBusiness extends ActionSupport{
+public class PostArchitectureBusiness extends ActionSupport{
 	private BaseDAO<EarlyDesignAndPostArchitecture> dao=new BaseDAO<EarlyDesignAndPostArchitecture>();
-	public List<EarlyDesignAndPostArchitecture> getEarlyDesignByCountSession(CountSession u) {
-		return dao.list("select c from EarlyDesignAndPostArchitecture c where c.countSession.id="+u.getId()+" and c.type='Early Design'");
+	public List<EarlyDesignAndPostArchitecture> getPostArchitectureByCountSession(CountSession u) {
+		return dao.list("select c from EarlyDesignAndPostArchitecture c where c.countSession.id="+u.getId()+" and c.type='Post Architecture'");
 	}
 	
 	public void create(EarlyDesignAndPostArchitecture p) {
 		dao.create(p);
 	}
 
-		public void update(EarlyDesignAndPostArchitecture p) {
+	public void update(EarlyDesignAndPostArchitecture p) {
 		EarlyDesignAndPostArchitecture e = dao.find(EarlyDesignAndPostArchitecture.class, p.getId());
 		e.setLanguage(p.getLanguage());
 		e.setLinesPerFP(p.getLinesPerFP());

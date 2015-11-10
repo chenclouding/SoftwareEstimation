@@ -2,6 +2,7 @@ package business;
 
 import java.util.List;
 
+import bean.EarlyDesignAndPostArchitecture;
 import bean.Organization;
 import bean.Param;
 import bean.User;
@@ -35,6 +36,8 @@ public class ParamBusiness {
 		param.setCd_STOR(p.getCd_STOR());
 		param.setCd_TIME(p.getCd_TIME());
 		param.setCd_TOOL(p.getCd_TOOL());
+		
+		param.setMonthlyAvg(p.getMonthlyAvg());
 		dao.update(param);
 
 	}
@@ -43,8 +46,20 @@ public class ParamBusiness {
 		dao.create(p);
 	}
 	
+	public Param find(Param p) {
+		return dao.find(Param.class, p.getId());
+	}
+	
 	public Param findParamByOrg(Organization o) {
 		List<Param> params = dao.list("select c from Param c where c.organization.id="+o.getId());
+		if(params==null||params.isEmpty())
+			return null;
+		else
+			return params.get(0);	
+	}
+	
+	public Param findParamByEarlyDesignAndPostArchitecture(EarlyDesignAndPostArchitecture o) {
+		List<Param> params = dao.list("select c from Param c where c.earlyDesignAndPostArchitecture.id="+o.getId());
 		if(params==null||params.isEmpty())
 			return null;
 		else

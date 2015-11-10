@@ -23,6 +23,13 @@
 <link rel="stylesheet" href="styles/common.css" />
 <link rel="stylesheet" href="styles/index.css" />
 </head>
+<style>
+a#backIndex{
+float:right;
+margin-right:60px;
+background:none;
+}
+</style>
 <!-- Wrap -->
 <div id="wrap">
 	<!-- Header -->
@@ -42,15 +49,15 @@
 	<!-- menu -->
 	<div id="menu">
 		<ul>
-		<li class="submenu"><a href="welcome.jsp">使用帮助</a></li>
-		<li class="submenu"><a href="">应用组装子模型</a></li>
-		<li class="submenu"><a href="">早期设计子模型</a></li>
-		<li class="submenu"><a href="">后体系架构子模型</a></li>
+		<li class="submenu"><a href="cocomo/welcome.jsp">使用帮助</a></li>
+		<li class="submenu"><a href="cocomo!editAppComp?countSession.id=<%=session.getAttribute("countSessionId") %>">应用组装子模型</a></li>
+		<li class="submenu"><a href="cocomo!editEarlyDesign?countSession.id=<%=session.getAttribute("countSessionId") %>">早期设计子模型</a></li>
+		<li class="submenu"><a href="cocomo!editPostArchitecture?countSession.id=<%=session.getAttribute("countSessionId") %>">后体系架构子模型</a></li>
 		</ul>
-		
+		<a id="backIndex" href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>">返回主页面</a>
 		<div id="login-info">
 			当前项目：<%=session.getAttribute("projectName") %>&nbsp;&nbsp;
 			估算场景：<%=session.getAttribute("countSessionName") %>&nbsp;&nbsp;
-			当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a href="common/login.jsp">退出</a>
+			当前用户：<%=session.getAttribute("userEmail") %>
 		</div>
 	</div>

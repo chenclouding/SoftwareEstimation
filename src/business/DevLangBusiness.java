@@ -1,6 +1,8 @@
 package business;
 
 import java.util.List;
+
+import bean.CountSession;
 import bean.DevLang;
 import bean.Organization;
 import bean.Param;
@@ -13,6 +15,7 @@ public class DevLangBusiness {
 	public void create(DevLang p) {
 		dao.create(p);
 	}
+	
 	
 	public void update(DevLang p) {
 		DevLang devLang = dao.find(DevLang.class, p.getId());
@@ -27,6 +30,14 @@ public class DevLangBusiness {
 		else
 			return devLangs;	
 	}
+/*	
+	public List<DevLang> findDevLangByCountSession(CountSession o) {
+		List<DevLang> devLangs = dao.list("select c from DevLang c where c.countSession.id="+o.getId());
+		if(devLangs==null||devLangs.isEmpty())
+			return null;
+		else
+			return devLangs;	
+	}*/
 	
 	public void delete(DevLang p) {
 		dao.delete(dao.find(DevLang.class, p.getId()));

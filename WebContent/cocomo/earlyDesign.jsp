@@ -4,12 +4,28 @@
 <%@ include file="layout/cocomo_head.jsp"%>
    <link rel="stylesheet"	href="styles/param.css" /> 
 <style>
-
+#linesPerFP,#monthlyAvg,#functionPoint{
+	display:inline;
+	width:60%;
+}
+.table>tbody>tr>td{
+border-top:0px;
+}
+p{
+padding:0px 12px 10px 12px;
+}
 </style>
 <div id="content-wrap">
 	<h3>早期设计子模型估算页面</h3>
-	<form class="form-horizontal" id="appForm" action="cocomo!editedAppCom"
+	<form class="form-horizontal" id="appForm" action="cocomo!editedEarlyDesign"
 		method="post">
+	<div class="form-group">
+		<label for="functionPoint" class="col-sm-3 control-label">功能点数</label>
+		<div class="col-sm-7">
+			<input class="form-control" id="functionPoint"	name="countSession.ufpc" 
+			value="<s:property value="countSession.ufpc" />" readonly />个
+		</div>
+	</div>
 <div id="scaleFactor">
 <label class="title control-label">规模因子</label>
 	<div class="form-group">
@@ -306,35 +322,78 @@
 		</div>
 	</div>
 </div>
-<div id="monthlyAvg">
+<div id="otherParams">
 <label class="title control-label" >其他参数</label>
-	<div class="form-group">
-		<label for="monthlyAvg" class="col-sm-3 control-label">人员薪资水平</label>
+	<div class="form-group"  style="width:100%;">
+		<label for="monthlyAvg" class="col-sm-3 control-label" style="width:21%;">人员薪资水平</label>
 		<div class="col-sm-7">
-			<input class="form-control" id="monthlyAvg"	name="param.monthlyAvg" value="<s:property value="param.monthlyAvg"/>" />
+			<input class="form-control" id="monthlyAvg"	name="param.monthlyAvg" 
+			value="<s:property value="param.monthlyAvg"/>" style="width:50%;" />
+		万元/月
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="devLangs" class="col-sm-3 control-label">开发语言</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="devLangs" list="devLangs" listKey="name"
+				listValue="name" name="earlyDesAndPostArch.language"
+				value="earlyDesAndPostArch.language"
+				onchange="change()"></s:select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="linesPerFP" class="col-sm-3 control-label">代码行/功能点</label>
+		<div class="col-sm-7">
+			<input class="form-control" id="linesPerFP"	name="earlyDesAndPostArch.linesPerFP" 
+			value="<s:property value="earlyDesAndPostArch.linesPerFP" />" />
+		LOC/FP
 		</div>
 	</div>
 </div>
+<input type="hidden" id="devLangsString" value="<s:property value="devLangsString" />" />
+<input type="hidden" name="countSession.id" value="<s:property value="countSession.id" />" />
+<input type="hidden" name="param.id" value="<s:property value="param.id" />" />
+<input type="hidden" name="earlyDesAndPostArch.id" value="<s:property value="earlyDesAndPostArch.id" />" />
 <div class="footer">
 	<input class="btn btn-primary"  type="submit" value="确定" />
 	<input class="btn btn-primary" type="reset" value="重置" />
 </div>
 	</form>
 	<hr />
+	<div id="sevenFactors">
+	<table class="table">
+	<tr>
+	<td>产品可靠性与复杂性(RCPX):<s:property value="RCPX" /></td>
+	<td>可复用性开发(RUSE):<s:property value="RUSE" /></td>
+	</tr>
+	<tr>
+	<td>平台难度(PDIF):<s:property value="PDIF" /></td>
+	<td>人员能力(PERS):<s:property value="PERS" /></td>
+	</tr>
+	<tr>
+	<td>人员经验(PREX):<s:property value="PREX" /></td>
+	<td>设施(FCIL):<s:property value="FCIL" /></td>
+	</tr>
+	<tr>
+	<td>要求的开发进度(SCED):<s:property value="SCED" /></td>
+	<td></td>
+	</tr>	
+	</table>
+	</div>
 	<div id="estimationResult">
 		<p>
 			工作量：
-			<s:property value="applicationComposition.effort" />
+			<s:property value="earlyDesAndPostArch.effort" />
 			人月
 		</p>
 				<p>
 			工期：
-			<s:property value="applicationComposition.effort" />
+			<s:property value="earlyDesAndPostArch.duration" />
 			月
 		</p>
-		<p>
+		<p style="margin-bottom:20px;">
 			成本：
-			<s:property value="applicationComposition.cost" />
+			<s:property value="earlyDesAndPostArch.cost" />
 			万元
 		</p>
 	</div>
@@ -343,15 +402,23 @@
 <%@ include file="layout/cocomo_footer.jsp"%>
 <script>
 	$(document).ready(function() {
-		$(".form-horizontal").validate({
-			rules : {
-				"applicationComposition.nop" : {
-					required : true,
-					digits : true
-				},
-				"applicationComposition.prod" : "required",
-				"applicationComposition.monthlyAvg" : "required"
-			}
-		});
+ 		//根据编程语言的不同，修改对应的LinesPerFP
+		var selectedItem = $("#devLangs  option:selected").text();
+	   	var devLangs=JSON.parse($("#devLangsString").val()); 
+	   	$.each(devLangs, function(idx, devLang) {
+ 		if(devLang.name==selectedItem){
+ 			$("#linesPerFP").val(devLang.linesPerFP); 
+ 			}
+ 		});   
 	});
+		//根据编程语言的不同，修改对应的LinesPerFP
+function change(){
+	var selectedItem = $("#devLangs  option:selected").text();
+   	var devLangs=JSON.parse($("#devLangsString").val()); 
+   	$.each(devLangs, function(idx, devLang) {
+		if(devLang.name==selectedItem){
+			$("#linesPerFP").val(devLang.linesPerFP); 
+			}
+		}); 
+}
 </script>

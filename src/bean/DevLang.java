@@ -28,6 +28,11 @@ public class DevLang {
 	@JoinColumn(name = "organization_id")
 	private Organization organization;
 
+/*	@OneToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "earlyDesignAndPostArchitecture_id")
+	private EarlyDesignAndPostArchitecture earlyDesignAndPostArchitecture;*/
+	
 	public int getLinesPerFP() {
 		return linesPerFP;
 	}

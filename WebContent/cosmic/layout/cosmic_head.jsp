@@ -50,6 +50,7 @@
 		
 		<div id="login-info">
 			当前项目：<%=session.getAttribute("projectName") %>&nbsp;&nbsp;
-			当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;<a href="common/login.jsp">退出</a>
+			当前用户：<%=session.getAttribute("userEmail") %>&nbsp;&nbsp;
+			<a href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>">返回主页面</a>
 		</div>
 	</div>
