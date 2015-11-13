@@ -61,6 +61,7 @@ margin:0px;
 					'NESMA-详细型',
 					'COSMIC',
 					'Pert',
+					'类比法',
 					'Delphi'}"
 				value="countSession.methodType" name="countSession.methodType" />
 		</div>
