@@ -50,15 +50,15 @@ public class TransFunctionBusiness{
 			}else{//EO或EQ
 				if((detCount>=1&&detCount<=5 && ftrCount>=0 && ftrCount<=1)||
 				   (detCount>=5&&detCount<=19 && ftrCount>=0 && ftrCount<=1)||
-				   (detCount>=1&&detCount<=5 && ftrCount==2)){
+				   (detCount>=1&&detCount<=5 && ftrCount>=2 &&ftrCount<=3)){
 					if(transFunction.getType().equals("EO")){//低复杂度
 						return 4;
 					}else{
 						return 3;
 					}			
 				}else if((detCount>=20 && ftrCount>=0 && ftrCount<=1)||
-						   (detCount>=6&&detCount<=19 && ftrCount==2)||
-						   (detCount>=1&&detCount<=5 && ftrCount>=3)){
+						   (detCount>=6&&detCount<=19 && ftrCount>=2 &&ftrCount<=3)||
+						   (detCount>=1&&detCount<=5 && ftrCount>=4)){
 					if(transFunction.getType().equals("EO")){
 						return 5;
 					}else{

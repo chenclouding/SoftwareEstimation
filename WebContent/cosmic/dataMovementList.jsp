@@ -34,7 +34,7 @@ font-size:13px;
 <s:iterator id="functionProcess" value="functionProcesses" status="index">
 <div class="panel panel-default">
   <div class="panel-heading">
-   <div class="col-md-2">
+   <div class="col-md-6">
   <s:property value="#functionProcess.name" />
   </div>
 	<a id="dataMovementAdd" href="dataMovement!passParams?functionProcess.id=<s:property value="#functionProcess.id" />&

@@ -21,7 +21,7 @@ font-size:15px;
 <s:iterator id="module" value="modules" status="index">
 <div class="panel panel-default">
   <div class="panel-heading">
-   <div class="col-md-2">
+   <div class="col-md-6">
   <s:property value="#module.name" />
   </div>
 	<a id="functionProcessAdd" href="functionProcess!passParams?module.id=<s:property value="#module.id" />&

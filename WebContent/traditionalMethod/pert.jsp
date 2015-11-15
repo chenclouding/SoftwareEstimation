@@ -45,15 +45,15 @@
 	<div id="estimationResult">
 		<p>
 			点估计值：
-			<s:property value="pert.effort" />
+			<s:property value="pert.pointEstimate" />
 		</p>
 		<p>
 			区间估计值（最小）：
-			<s:property value="pert.intervalMin" />
+			<s:property value="pert.intervalEstimateMin" />
 		</p>
 		<p>
 			区间估计值（最大）：
-			<s:property value="pert.intervalMax" />
+			<s:property value="pert.intervalEstimateMax" />
 		</p>
 	</div>
 </div>

@@ -28,5 +28,6 @@
 		<mapping class="bean.InterestObject" />
 		<mapping class="bean.ApplicationComposition" />
 		<mapping class="bean.EarlyDesignAndPostArchitecture" />
+		<mapping class="bean.Pert" />
 	</session-factory>
 </hibernate-configuration>

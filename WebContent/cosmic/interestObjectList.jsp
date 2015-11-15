@@ -29,7 +29,7 @@ padding:0px 0px 15px 0px;
 <s:iterator id="module" value="modules" status="index">
 <div class="panel panel-default">
   <div class="panel-heading">
-   <div class="col-md-2">
+   <div class="col-md-6">
   <s:property value="#module.name" />
   </div>
 	<a id="interestObjectAdd" href="interestObject!passParams?module.id=<s:property value="#module.id" />&
