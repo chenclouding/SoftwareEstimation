@@ -40,7 +40,7 @@ select{
 }
 .signup {
   background: #fff;
-  width: 20%;
+  width: 400px;
   margin: 3em auto 0;
   padding: 4em 2em 2em 2em;
   position: relative;
@@ -90,7 +90,7 @@ span.ribben {
   border: 1px solid;
   border-style: ridge;
   box-shadow: 0px 0px 1px #6D6A6A;
-  width: 93%;
+  width: 94%;
   display: inline-block;
 }
 .signup p {
@@ -112,107 +112,3 @@ span.ribben {
   font-weight: 400;
   color: #000;
 }
-/*--sign up page end here--*/
-/*--meadia quiries start here--*/
-@media(max-width:1440px){
-.signup {
-  width: 28%;	
-}
-.title h2 {
-  margin: 3em 0em 0em 0em;
-}
-body {
-  min-height: 700px;
-}
-}
-@media(max-width:1366px){
-	
-}
-@media(max-width:1280px){
-.signup {
-  width: 25%;
-}	
-}
-@media(max-width:1024px){
-.signup {
-  width: 30%;
-   margin: 3em auto 0;	
-}
-body {
-  min-height: 600px;
-}
-.copyright {
-  padding: 30px 0px 0px 0px;
-}
-h2 {
-  margin: 2em 0em 0em 0em;
-}
-}
-@media(max-width:768px){
-.signup {
-  width: 40%;
-}	
-h2 {
-  margin: 6em 0em 0em 0em;
-}
-}
-@media(max-width:640px){
-.signup {
-  width: 47%;
-}	
-}
-@media(max-width:480px){
-.signup {
-  width: 65%;
-   margin: 4em auto 0;
-}	
-.copyright {
-  padding: 70px 0px 0px 0px;
-}
-body {
-  min-height: 550px;
-}
-h2 {
-  margin: 3em 0em 0em 0em;
-    font-size: 1.3em;
-}
-}
-@media(max-width:320px){
-.signup input[type="text"] {
-  width: 89%;	
-  font-size: 13px;
-  padding: 6px 10px 6px 10px;
-}
-.signup input[type="password"] {
-  width: 89%;	
-  font-size: 13px;
-  padding: 6px 10px 6px 10px;
-}
-.signup p {
-  font-size: 14px;
-  margin: 5px 0px;
-}
-.signup input[type="submit"] {
-  font-size: 12px;
-  padding: 10px 0px;
-  margin: 20px 0px 0px 0px;
-}
-.signup {
-  width: 65%;
-  margin: 2em auto 0;
-}
-body {
-  min-height: 460px;
-}
-.copyright p {
-  font-size: 13px;
-}
-h2 {
-  margin: 2em 0em 0em 0em;
-  font-size: 1.05em;
-}
-.copyright {
-  padding: 40px 0px 0px 0px;
-}
-}
-/*--meadia quiries end here--*/

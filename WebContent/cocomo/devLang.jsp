@@ -1,6 +1,9 @@
-<%@ include file="/common/layout/orgAdmin_head.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
  <link rel="stylesheet"	href="styles/param.css" /> 
+ <%@ include file="/common/layout/commonInclude.jsp"%>
+<div id="wrap">
+<%@ include file="/common/layout/orgAdmin_head.jsp"%>
+<%@ include file="/common/layout/orgAdmin_sidebar.jsp"%>
 <div id="content-wrap">
 <h3>已有编程语言</h3>	
  <form class="form-horizontal" id="devLangEditForm" 
@@ -46,20 +49,4 @@ action="devLang!add?organization.id=<%=session.getAttribute("orgId") %>" method=
 </form>
 </div>
 </div>
-<%@ include file="/common/layout/orgAdmin_footer.jsp"%>
-<script>
-/* $(document).ready(function(){ 
-	$("#devLangAddForm").validate({
-		rules: {
-			"devLang.name": {
-				required: true
-			},
-			"devLang.linesPerFP":{
-				required: true,
-				digits:true,
-				min:0
-			}
-		}
-	}); 
-});  */
-</script>
+ <%@ include file="/common/layout/footer.jsp"%>

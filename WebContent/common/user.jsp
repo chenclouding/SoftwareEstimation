@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<s:if test="#session.userRole==2">	
+<s:if test="#session.userRole==2">
+<%@ include file="/common/layout/commonInclude.jsp"%>	
+<div id="wrap">
 <%@ include file="layout/commonUser_head.jsp"%>
+<%@ include file="layout/commonUser_sidebar.jsp"%>
 <div id="content-wrap">
 </s:if>
 <div class="modal-header">
@@ -69,7 +72,7 @@
 <s:if test="#session.userRole==2">
 </div>
 </div>
-<%@ include file="layout/commonUser_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 </s:if>
 <script>
 $(document).ready(function(){ 

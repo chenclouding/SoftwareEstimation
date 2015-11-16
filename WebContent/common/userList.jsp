@@ -1,9 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
+<div id="wrap">
 <s:if test="organization==null">	
 <%@ include file="layout/sysAdmin_head.jsp"%>
+<%@ include file="layout/sysAdmin_sidebar.jsp"%>
 </s:if>
 <s:else>
 <%@ include file="layout/orgAdmin_head.jsp"%>
+<%@ include file="layout/orgAdmin_sidebar.jsp"%>
 </s:else>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="styles/bootstrap-switch.min.css" />
@@ -78,12 +82,7 @@
 	</div>
 </div>
 </div>
-<s:if test="organization==null">	
-<%@ include file="layout/sysAdmin_footer.jsp"%>
-</s:if>
-<s:else>
-<%@ include file="layout/orgAdmin_footer.jsp"%>
-</s:else>
+ <%@ include file="/common/layout/footer.jsp"%>
 
 <script type="text/javascript">
 $(function() {

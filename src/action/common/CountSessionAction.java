@@ -99,7 +99,11 @@ public class CountSessionAction  extends ActionSupport{
 		session.setAttribute("projectName", countSession.getProject().getName());
 		if (countSession.getMethodType().equals("COSMIC")){
 			return "cosmic";
-		}else{
+		}else if (countSession.getMethodType().equals("Pert")||
+				  countSession.getMethodType().equals("Delphi")||
+				  countSession.getMethodType().equals("类比法")){
+			return "tradition";
+		}else {
 			return SUCCESS;
 		}
 	}

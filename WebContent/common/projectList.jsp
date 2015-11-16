@@ -1,6 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ include file="layout/commonUser_head.jsp"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<div id="wrap">
+<%@ include file="layout/commonUser_head.jsp"%>
+<%@ include file="layout/commonUser_sidebar.jsp"%>
 <div id="content-wrap">
 	<div id="projectList">
 		<h3>项目列表</h3>
@@ -52,17 +55,9 @@
 			</div>
 		</div>
 	</div>
-<%@ include file="layout/commonUser_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 $('#projectModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();
 });
-/* $.extend({
-	postProjectData : function(projectData,actionName) {
-			$.post(actionName, projectData, function(data){
-				var doms = $.parseHTML(data);
-				$("#projectList").html(doms);
-			});			
-	}
-}); */
 </script>

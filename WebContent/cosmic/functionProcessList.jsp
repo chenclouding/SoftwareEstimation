@@ -1,6 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ include file="layout/cosmic_head.jsp"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<div id="wrap">
+<%@ include file="layout/cosmic_head.jsp"%>
+<%@ include file="layout/cosmic_sidebar.jsp"%>
 <style>
 .col-md-4{
 	padding:5px;
@@ -60,7 +63,7 @@ font-size:15px;
 			</div>
 		</div>
 	</div>
- <%@ include file="layout/cosmic_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 
 $('#functionProcessModal').on('hide.bs.modal', function(e) {

@@ -1,10 +1,14 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<div id="wrap">
 <s:if test="organizations!=null">	
 <%@ include file="layout/sysAdmin_head.jsp"%>
+<%@ include file="layout/sysAdmin_sidebar.jsp"%>
 </s:if>
 <s:else>
 <%@ include file="layout/orgAdmin_head.jsp"%>
+<%@ include file="layout/orgAdmin_sidebar.jsp"%>
 </s:else>
 <link href="styles/moduleList.css" rel="stylesheet" media="all" />
 <script src="scripts/rowspan.js"></script>
@@ -74,12 +78,8 @@
 </div>
 </div>
 </div>
-<s:if test="organizations!=null">	
-<%@ include file="layout/sysAdmin_footer.jsp"%>
-</s:if>
-<s:else>
-<%@ include file="layout/orgAdmin_footer.jsp"%>
-</s:else>
+<%@ include file="/common/layout/footer.jsp"%>
+
 		<!-- Modal for list cocomo estimation results-->
 	<div id="cocomoListModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">

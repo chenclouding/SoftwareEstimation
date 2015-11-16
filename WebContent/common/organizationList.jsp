@@ -1,6 +1,9 @@
-<%@ include file="layout/sysAdmin_head.jsp"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<div id="wrap">
+<%@ include file="layout/sysAdmin_head.jsp"%>
+<%@ include file="layout/sysAdmin_sidebar.jsp"%>
 <div id="content-wrap">
 	<div id="orgList">
 		<h3>组织列表</h3>
@@ -53,7 +56,7 @@
 		</div>
 	</div>
 </div>
-<%@ include file="layout/sysAdmin_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 $('#organizationModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();

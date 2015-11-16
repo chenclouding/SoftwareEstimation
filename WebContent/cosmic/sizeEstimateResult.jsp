@@ -1,8 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ include file="layout/cosmic_head.jsp"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="scripts/rowspan.js"></script>
+<div id="wrap">
+<%@ include file="layout/cosmic_head.jsp"%>
+<%@ include file="layout/cosmic_sidebar.jsp"%>
 <style>
 .col-md-6, .col-md-5{
 padding-left:0px;
@@ -66,7 +69,7 @@ margin-bottom:10px;
 	</div>
 </div>
 </div>
-<%@ include file="layout/cosmic_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script type="text/javascript">
 $(function() {
  	$("#estimateResult_table").rowspan(0); 

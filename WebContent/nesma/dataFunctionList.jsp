@@ -1,6 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ include file="layout/nesma_head.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
+<div id="wrap">
+<%@ include file="layout/nesma_head.jsp"%>
+<%@ include file="layout/nesma_sidebar.jsp"%>
 <style>
 .col-md-6{
 	padding:5px;
@@ -57,7 +60,7 @@ font-size:15px;
 </s:iterator>
 </div>
  </div>
- </div>
+</div>
  	<!-- Modal for create dataFunction-->
 	<div id="dataFunctionModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -66,7 +69,7 @@ font-size:15px;
 			</div>
 		</div>
 	</div>
- <%@ include file="layout/nesma_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 
 $('#dataFunctionModal').on('hide.bs.modal', function(e) {

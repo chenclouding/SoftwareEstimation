@@ -1,21 +1,25 @@
 package bean;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+@Entity
+@Table(name="pertItem")
 public class PertItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private String optimistic;// 乐观值
-	private String pessimistic;// 悲观值
-	private String mostLikely;// 最可能值
+	private double optimistic;// 乐观值
+	private double pessimistic;// 悲观值
+	private double mostLikely;// 最可能值
 	private double weight;// 权重
 	
 	@ManyToOne
@@ -31,27 +35,27 @@ public class PertItem {
 		this.id = id;
 	}
 
-	public String getOptimistic() {
+	public double getOptimistic() {
 		return optimistic;
 	}
 
-	public void setOptimistic(String optimistic) {
+	public void setOptimistic(double optimistic) {
 		this.optimistic = optimistic;
 	}
 
-	public String getPessimistic() {
+	public double getPessimistic() {
 		return pessimistic;
 	}
 
-	public void setPessimistic(String pessimistic) {
+	public void setPessimistic(double pessimistic) {
 		this.pessimistic = pessimistic;
 	}
 
-	public String getMostLikely() {
+	public double getMostLikely() {
 		return mostLikely;
 	}
 
-	public void setMostLikely(String mostLikely) {
+	public void setMostLikely(double mostLikely) {
 		this.mostLikely = mostLikely;
 	}
 

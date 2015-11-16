@@ -1,6 +1,9 @@
-<%@ include file="/common/layout/orgAdmin_head.jsp"%>
+ <%@ include file="/common/layout/commonInclude.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-    <link rel="stylesheet"	href="styles/param.css" /> 
+<link rel="stylesheet"	href="styles/param.css" /> 
+ <div id="wrap">
+<%@ include file="/common/layout/orgAdmin_head.jsp"%>
+<%@ include file="/common/layout/orgAdmin_sidebar.jsp"%>
 <div id="content-wrap">
 <form class="form-horizontal paramForm" id="paramForm" 
 action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method="post">
@@ -318,7 +321,7 @@ action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method
 </form>
 </div>
 </div>
-<%@ include file="/common/layout/orgAdmin_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 $(document).ready(function(){ 
 	$("#paramForm").validate({

@@ -1,6 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <s:if test="#session.userRole==1">	
+<%@ include file="/common/layout/commonInclude.jsp"%>
+<div id="wrap">
 <%@ include file="layout/orgAdmin_head.jsp"%>
+<%@ include file="layout/orgAdmin_sidebar.jsp"%>
 <div id="content-wrap">
 </s:if>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
@@ -133,7 +136,7 @@
 </form>
 <s:if test="#session.userRole==1">
 </div>
-<%@ include file="layout/orgAdmin_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 </s:if>
 <script>
 $(document).ready(function(){ 

@@ -1,13 +1,14 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
+<div id="wrap">
 <%@ include file="layout/traditional_head.jsp"%>
-<link rel="stylesheet"	href="styles/pert.css" /> 
-
+<%@ include file="layout/traditional_sidebar.jsp"%>
 
 <div id="content-wrap">
 	<h3>PERT估算页面</h3>
-	<form class="form-horizontal" id="appForm" action="tradition!editedPert"
+	<form class="form-horizontal" id="appForm" action="pert!editedPert"
 		method="post">
 		<div class="form-group">
 			<label class="col-sm-2 control-label" for="estimateObject" >估算内容</label>
@@ -23,15 +24,42 @@
 		<label class="valueTitle">悲观值</label>
 		<label class="valueTitle">权重</label>
 		</div>
+		<s:if test="pertItems==null">
 		<div id="addPertItem">
 		<p>
-			<input type="text" class="pertItem" name="pert.pertItems[0].optimistic" 
-			value="<s:property value="pert.pertItems[0].optimistic"/>" /><input type="text" class="pertItem" name="pert.pertItems[0].pessimistic" 
-			value="<s:property value="pert.pertItems[0].pessimistic"/>" /><input type="text" class="pertItem" name="pert.pertItems[0].mostLikely" 
-			value="<s:property value="pert.pertItems[0].mostLikely"/>" /><input type="text" class="pertItem" name="pert.pertItems[0].weight" 
-			value="<s:property value="pert.pertItems[0].weight"/>" /><a onclick=" $.addNewPertItem();" id="addNew">新增</a>
+			<input type="text" class="pertItem" name="pertItems[0].optimistic" 
+			value="<s:property value="pertItems[0].optimistic"/>" /><input type="text" class="pertItem" name="pertItems[0].mostLikely"
+			value="<s:property value="pertItems[0].mostLikely"/>" /><input type="text" class="pertItem" name="pertItems[0].pessimistic" 
+			value="<s:property value="pertItems[0].pessimistic"/>" /><input type="text" class="pertItem" name="pertItems[0].weight" 
+			value="<s:property value="pertItems[0].weight"/>" /><a onclick=" $.addNewPertItem();" id="addNew">新增</a>
 		</p>
 		</div>
+		</s:if>
+		<s:else>
+		<div id="addPertItem">
+				<s:iterator id="pertItem" value="pertItems" status="index">
+			<s:if test="#index.index==0" >
+				<p>
+			<input type="text" class="pertItem" name="pertItems[0].optimistic" 
+			value="<s:property value="#pertItem.optimistic"/>" /><input type="text" class="pertItem" name="pertItems[0].mostLikely"
+			value="<s:property value="#pertItem.mostLikely"/>" /><input type="text" class="pertItem" name="pertItems[0].pessimistic" 
+			value="<s:property value="#pertItem.pessimistic"/>" /><input type="text" class="pertItem" name="pertItems[0].weight" 
+			value="<s:property value="#pertItem.weight"/>" /><a onclick=" $.addNewPertItem();" id="addNew">新增</a>
+				</p>
+			</s:if>
+			<s:else>
+			<p>
+			<input type="text" class="pertItem" name="pertItems[<s:property value="#index.index" />].optimistic" 
+			value="<s:property value="#pertItem.optimistic"/>" /><input type="text" class="pertItem" name="pertItems[<s:property value="#index.index" />].mostLikely"
+			value="<s:property value="#pertItem.mostLikely"/>" /><input type="text" class="pertItem" name="pertItems[<s:property value="#index.index" />].pessimistic" 
+			value="<s:property value="#pertItem.pessimistic"/>" /><input type="text" class="pertItem" name="pertItems[<s:property value="#index.index" />].weight" 
+			value="<s:property value="#pertItem.weight"/>" />
+					<a onclick="removePertItem(this)" >删除</a>
+				</p>
+			</s:else>	
+		</s:iterator>
+		</div>
+		</s:else>
 		<input type="hidden" name="pert.id"
 			value="<s:property value="pert.id"/>" /> 
 		<input type="hidden" name="countSession.id"
@@ -58,29 +86,24 @@
 	</div>
 </div>
 </div>
-<%@ include file="layout/traditional_footer.jsp"%>
+<%@ include file="/common/layout/footer.jsp"%>
 <script>
 	$(document).ready(function() {
 		$(".form-horizontal").validate({
 			rules : {
-				"applicationComposition.nop" : {
-					required : true,
-					digits : true
-				},
-				"applicationComposition.prod" : "required",
-				"applicationComposition.monthlyAvg" : "required"
+				"pert.estimateObject" :  "required",
 			}
 		});
 	});
 	$.extend({
 		addNewPertItem : function() {
 			var addDiv = $('#addPertItem');
-		 	var i = $('#addPertItem input').size();  
+		 	var i = $('#addPertItem input').size()/4;  
 			$(
-				'<p><input type="text" class="pertItem" name="pert.pertItems['+i+'].optimistic" />'+ 
-				'<input type="text" class="pertItem" name="pert.pertItems['+i+'].pessimistic" />'+
-				'<input type="text" class="pertItem" name="pert.pertItems['+i+'].mostLikely" />'+
-				'<input type="text" class="pertItem" name="pert.pertItems['+i+'].weight" />'+
+				'<p><input type="text" class="pertItem" name="pertItems['+i+'].optimistic" />'+ 
+				'<input type="text" class="pertItem" name="pertItems['+i+'].mostLikely" />'+
+				'<input type="text" class="pertItem" name="pertItems['+i+'].pessimistic" />'+
+				'<input type="text" class="pertItem" name="pertItems['+i+'].weight" />'+
 				'<a onclick="removePertItem(this)" >删除</a></p>')				
 				.appendTo(addDiv);
 			return false;

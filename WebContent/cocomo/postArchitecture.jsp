@@ -1,8 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="layout/cocomo_head.jsp"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
    <link rel="stylesheet"	href="styles/param.css" /> 
+
+<div id="wrap">
+<%@ include file="layout/cocomo_head.jsp"%>
+<%@ include file="layout/cocomo_sidebar.jsp"%>
 <style>
 #linesPerFP,#monthlyAvg,#functionPoint{
 	display:inline;
@@ -384,7 +388,7 @@ padding:0px 12px 10px 12px;
 	</div>
 </div>
 </div>
-<%@ include file="layout/cocomo_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 	$(document).ready(function() {
 

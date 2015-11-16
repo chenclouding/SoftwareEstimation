@@ -1,7 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ include file="layout/commonUser_head.jsp"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
 <link href="styles/moduleList.css" rel="stylesheet" media="all" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<div id="wrap">
+<%@ include file="layout/commonUser_head.jsp"%>
+<%@ include file="layout/commonUser_sidebar.jsp"%>
 <div id="content-wrap">
 <div id="countSession">
 	<h3>估算会话列表</h3>
@@ -87,7 +90,7 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="layout/commonUser_footer.jsp"%>
+ <%@ include file="/common/layout/footer.jsp"%>
 <script>
 $('#countSessionModal').on('hide.bs.modal', function(e) {
 	$(this).removeData();

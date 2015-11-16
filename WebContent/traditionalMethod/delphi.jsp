@@ -1,9 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/common/layout/commonInclude.jsp"%>
+<div id="wrap">
 <%@ include file="layout/traditional_head.jsp"%>
-<link rel="stylesheet" href="styles/pert.css" />
-
+<%@ include file="layout/traditional_sidebar.jsp"%>
 <div id="content-wrap">
 	<h3>Delphi估算流程指导页面</h3>
 	<div id="delphi">
@@ -32,4 +33,4 @@
 	</div>
 </div>
 </div>
-<%@ include file="layout/traditional_footer.jsp"%>
+<%@ include file="/common/layout/footer.jsp"%>
