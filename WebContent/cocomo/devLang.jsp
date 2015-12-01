@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
- <link rel="stylesheet"	href="styles/param.css" /> 
  <%@ include file="/common/layout/commonInclude.jsp"%>
+  <link rel="stylesheet"	href="styles/param.css" /> 
 <div id="wrap">
 <%@ include file="/common/layout/orgAdmin_head.jsp"%>
 <%@ include file="/common/layout/orgAdmin_sidebar.jsp"%>

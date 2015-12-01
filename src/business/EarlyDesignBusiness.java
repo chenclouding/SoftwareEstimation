@@ -29,6 +29,7 @@ public class EarlyDesignBusiness extends ActionSupport{
 		e.setDuration(p.getDuration());
 		e.setEffort(p.getEffort());
 		e.setCost(p.getCost());
+		e.setKSLOC(p.getKSLOC());
 		dao.update(e);
 	}
 }

@@ -19,6 +19,7 @@ public class Param {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	//后体系架构成本驱动因子
 	private String sf_PREC;
 	private String sf_FLEX;
 	private String sf_RESL;
@@ -41,6 +42,14 @@ public class Param {
 	private String cd_TOOL;
 	private String cd_SITE;
 	private String cd_SCED; 
+	//早期设计的成本驱动因子
+	private String ed_RCPX;
+	private String ed_RUSE;
+	private String ed_PDIF;
+	private String ed_PREX;
+	private String ed_FCIL;
+	private String ed_SCED;
+	private String ed_PERS;
 	private Double monthlyAvg;
 	
 	@OneToOne
@@ -209,6 +218,48 @@ public class Param {
 	public void setEarlyDesignAndPostArchitecture(
 			EarlyDesignAndPostArchitecture earlyDesignAndPostArchitecture) {
 		this.earlyDesignAndPostArchitecture = earlyDesignAndPostArchitecture;
+	}
+	public String getEd_RCPX() {
+		return ed_RCPX;
+	}
+	public void setEd_RCPX(String ed_RCPX) {
+		this.ed_RCPX = ed_RCPX;
+	}
+	public String getEd_RUSE() {
+		return ed_RUSE;
+	}
+	public void setEd_RUSE(String ed_RUSE) {
+		this.ed_RUSE = ed_RUSE;
+	}
+	public String getEd_PDIF() {
+		return ed_PDIF;
+	}
+	public void setEd_PDIF(String ed_PDIF) {
+		this.ed_PDIF = ed_PDIF;
+	}
+	public String getEd_PREX() {
+		return ed_PREX;
+	}
+	public void setEd_PREX(String ed_PREX) {
+		this.ed_PREX = ed_PREX;
+	}
+	public String getEd_FCIL() {
+		return ed_FCIL;
+	}
+	public void setEd_FCIL(String ed_FCIL) {
+		this.ed_FCIL = ed_FCIL;
+	}
+	public String getEd_SCED() {
+		return ed_SCED;
+	}
+	public void setEd_SCED(String ed_SCED) {
+		this.ed_SCED = ed_SCED;
+	}
+	public String getEd_PERS() {
+		return ed_PERS;
+	}
+	public void setEd_PERS(String ed_PERS) {
+		this.ed_PERS = ed_PERS;
 	}
 	
 }

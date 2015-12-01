@@ -27,7 +27,7 @@
 	font-size: 13px;
 	padding: 8px 0 8px 0px;
 }
-#costDriver .title, #monthlyAvg .title{
+#costDriver .title, #monthlyAvg .title,#ed_costDriver .title{
 	border-top:1px solid #CCCCCC;
 }
 #paramForm .btn-primary{

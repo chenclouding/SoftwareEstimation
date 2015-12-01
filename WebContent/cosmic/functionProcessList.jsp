@@ -7,7 +7,7 @@
 <style>
 .col-md-4{
 	padding:5px;
- 	width:31%; 
+ 	width:48%; 
 	margin:0px 10px 10px 0px;
 }
 .panel-default,.panel-default .panel-heading{
@@ -33,7 +33,7 @@ font-size:15px;
   <div class="panel-body">
   <s:iterator id="functionProcess" value="#module.functionProcesses">
     <div class="col-md-4" style="background-color:lightcyan;">
-	    <div class="col-md-5"><a href="functionProcess!edit?functionProcess.id=<s:property value='#functionProcess.id' />&isDetail=true" role="button"  
+	    <div class="col-md-9"><a href="functionProcess!edit?functionProcess.id=<s:property value='#functionProcess.id' />&isDetail=true" role="button"  
 	data-toggle="modal" data-target="#functionProcessModal">
 	    <s:property value="#functionProcess.name" /></a>
 	    </div>

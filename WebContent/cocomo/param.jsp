@@ -83,7 +83,7 @@ action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method
 </div>
 
 <div id="costDriver">
-<label class="title control-label" >成本驱动因子</label>
+<label class="title control-label" >后体系架构成本驱动因子</label>
 	<div class="form-group">
 		<label for="cd_RELY" class="col-sm-3 control-label">软件可靠性需求</label>
 		<div class="col-sm-7">
@@ -304,6 +304,108 @@ action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method
 		</div>
 	</div>
 </div>
+<div id="ed_costDriver">
+<label class="title control-label" >早期设计成本驱动因子</label>
+	<div class="form-group">
+		<label for="ed_RCPX" class="col-sm-3 control-label">产品可靠性和复杂性</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_RCPX"
+				list="{
+				'极其低',
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_RCPX" name="param.ed_RCPX" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_RUSE" class="col-sm-3 control-label">可重用性需求</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_RUSE"
+				list="{
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_RUSE" name="param.ed_RUSE" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_PDIF" class="col-sm-3 control-label">平台难度</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_PDIF"
+				list="{
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_PDIF" name="param.ed_PDIF" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_PREX" class="col-sm-3 control-label">个人经验</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_PREX"
+				list="{
+				'极其低',
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_PREX" name="param.ed_PREX" />
+		</div>	
+	</div>
+	<div class="form-group">
+		<label for="ed_FCIL" class="col-sm-3 control-label">设施</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_FCIL"
+				list="{
+				'极其低',
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_FCIL" name="param.ed_FCIL" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_SCED" class="col-sm-3 control-label">要求的开发进度</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_SCED"
+				list="{
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高'}"
+				value="param.ed_SCED" name="param.ed_SCED" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_FCIL" class="col-sm-3 control-label">人员能力</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_PERS"
+				list="{
+				'极其低',
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_PERS" name="param.ed_PERS" />
+		</div>
+	</div>
+</div>
 <div id="monthlyAvg">
 <label class="title control-label" >其他参数</label>
 	<div class="form-group">
@@ -314,6 +416,7 @@ action="param!edited?organization.id=<%=session.getAttribute("orgId") %>" method
 		</div>
 	</div>
 </div>
+<input type="hidden" name="param.id" value="<s:property value="param.id"/>"/>
 <div class="footer">
 	<input class="btn btn-primary"  type="submit" value="确定" />
 	<input class="btn btn-primary" type="reset" value="重置" />

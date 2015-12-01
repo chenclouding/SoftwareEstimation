@@ -8,7 +8,7 @@
 <%@ include file="layout/cocomo_head.jsp"%>
 <%@ include file="layout/cocomo_sidebar.jsp"%>
 <style>
-#linesPerFP,#monthlyAvg,#functionPoint{
+#linesPerFP,#monthlyAvg,#functionPoint,#KSLOC{
 	display:inline;
 	width:60%;
 }
@@ -21,10 +21,25 @@ padding:0px 12px 10px 12px;
 	<form class="form-horizontal" id="appForm" action="cocomo!editedPostArchitecture"
 		method="post">
 	<div class="form-group">
-		<label for="functionPoint" class="col-sm-3 control-label">功能点数</label>
+		<label for="functionPoint" class="col-sm-3 control-label">功能点数(FP)</label>
 		<div class="col-sm-7">
+				<s:if test="countSession.methodType!='COSMIC'">
 			<input class="form-control" id="functionPoint"	name="countSession.ufpc" 
 			value="<s:property value="countSession.ufpc" />" readonly />个
+						</s:if>
+			<!-- COSMIC要先转换成FP -->
+			<s:else>
+				<input class="form-control" id="functionPoint"	name="CFP_to_FP" 
+				value="<s:property value="CFP_to_FP" />" readonly />个
+			</s:else>
+		</div>
+		
+	</div>
+	<div class="form-group">
+		<label for="functionPoint" class="col-sm-3 control-label">千行源代码数</label>
+		<div class="col-sm-7">
+			<input class="form-control" id="KSLOC"	name="earlyDesAndPostArch.KSLOC" 
+			value="<s:property value="earlyDesAndPostArch.KSLOC" />" />千行
 		</div>
 	</div>
 <div id="scaleFactor">
@@ -391,7 +406,11 @@ padding:0px 12px 10px 12px;
  <%@ include file="/common/layout/footer.jsp"%>
 <script>
 	$(document).ready(function() {
-
+		$(".form-horizontal").validate({
+			rules: {
+				"earlyDesAndPostArch.KSLOC":"required"
+			}
+		}); 
  		//根据编程语言的不同，修改对应的LinesPerFP
 		var selectedItem = $("#devLangs  option:selected").text();
 	   	var devLangs=JSON.parse($("#devLangsString").val()); 
@@ -399,7 +418,14 @@ padding:0px 12px 10px 12px;
  		if(devLang.name==selectedItem){
  			$("#linesPerFP").val(devLang.linesPerFP); 
  			}
- 		});   
+ 		}); 
+	   	//根据选择的编程语言和未调整功能点数，填充千行源代码输入框
+	   	//若不使用功能点，直接输入代码行，不执行该步
+	   	if($("#functionPoint").val()!=""){
+		   	var KSLOC=$("#functionPoint").val()*$("#linesPerFP").val();
+		   	$("#KSLOC").val(KSLOC/1000);
+		   	$("#KSLOC").attr("readonly","readonly");
+	   	}
 	});
 		//根据编程语言的不同，修改对应的LinesPerFP
 function change(){
@@ -410,5 +436,11 @@ function change(){
 			$("#linesPerFP").val(devLang.linesPerFP); 
 			}
 		}); 
+   	//根据选择的编程语言和未调整功能点数，填充千行源代码输入框
+   	//若不使用功能点，直接输入代码行，不执行该步
+   	if($("#functionPoint").val()!=""){
+	   	var KSLOC=$("#functionPoint").val()*$("#linesPerFP").val();
+	   	$("#KSLOC").val(KSLOC/1000);
+   	}
 }
 </script>

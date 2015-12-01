@@ -7,7 +7,7 @@
 <%@ include file="layout/cocomo_head.jsp"%>
 <%@ include file="layout/cocomo_sidebar.jsp"%>
 <style>
-#linesPerFP,#monthlyAvg,#functionPoint{
+#linesPerFP,#monthlyAvg,#functionPoint,#KSLOC{
 	display:inline;
 	width:60%;
 }
@@ -23,10 +23,24 @@ padding:0px 12px 10px 12px;
 	<form class="form-horizontal" id="appForm" action="cocomo!editedEarlyDesign"
 		method="post">
 	<div class="form-group">
-		<label for="functionPoint" class="col-sm-3 control-label">功能点数</label>
+		<label for="functionPoint" class="col-sm-3 control-label">功能点数(FP)</label>
 		<div class="col-sm-7">
-			<input class="form-control" id="functionPoint"	name="countSession.ufpc" 
-			value="<s:property value="countSession.ufpc" />" readonly />个
+			<s:if test="countSession.methodType!='COSMIC'">
+				<input class="form-control" id="functionPoint"	name="countSession.ufpc" 
+				value="<s:property value="countSession.ufpc" />" readonly />个
+			</s:if>
+			<!--COSMIC要先转换成FP -->
+			<s:else>
+				<input class="form-control" id="functionPoint"	name="CFP_to_FP" 
+				value="<s:property value="CFP_to_FP" />" readonly />个
+			</s:else>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="functionPoint" class="col-sm-3 control-label">千行源代码数</label>
+		<div class="col-sm-7">
+			<input class="form-control" id="KSLOC"	name="earlyDesAndPostArch.KSLOC" 
+			value="<s:property value="earlyDesAndPostArch.KSLOC" />" />千行
 		</div>
 	</div>
 <div id="scaleFactor">
@@ -106,222 +120,102 @@ padding:0px 12px 10px 12px;
 <div id="costDriver">
 <label class="title control-label" >成本驱动因子</label>
 	<div class="form-group">
-		<label for="cd_RELY" class="col-sm-3 control-label">软件可靠性需求</label>
+		<label for="ed_RCPX" class="col-sm-3 control-label">产品可靠性和复杂性</label>
 		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_RELY"
+			<s:select class="form-control" id="ed_RCPX"
 				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_RELY" name="param.cd_RELY" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_DATA" class="col-sm-3 control-label">应用数据库的大小</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_DATA"
-				list="{
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_DATA" name="param.cd_DATA" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_CPLX" class="col-sm-3 control-label">产品复杂度</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_CPLX"
-				list="{
+				'极其低',
 	 				'非常低',
 	 				'低',
 	 				'一般',
 	 				'高',
 	 				'非常高',
 	 				'极其高'}"
-				value="param.cd_CPLX" name="param.cd_CPLX" />
+				value="param.ed_RCPX" name="param.ed_RCPX" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_RUSE" class="col-sm-3 control-label">可重用性需求</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_RUSE"
+				list="{
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_RUSE" name="param.ed_RUSE" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_PDIF" class="col-sm-3 control-label">平台难度</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_PDIF"
+				list="{
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_PDIF" name="param.ed_PDIF" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_PREX" class="col-sm-3 control-label">个人经验</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_PREX"
+				list="{
+				'极其低',
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_PREX" name="param.ed_PREX" />
 		</div>	
 	</div>
 	<div class="form-group">
-		<label for="cd_RUSE" class="col-sm-3 control-label">可重用性需求</label>
+		<label for="ed_FCIL" class="col-sm-3 control-label">设施</label>
 		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_RUSE"
+			<s:select class="form-control" id="ed_FCIL"
 				list="{
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高',
-	 				'极其高'}"
-				value="param.cd_RUSE" name="param.cd_RUSE" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_DOCU" class="col-sm-3 control-label">文档与生命周期匹配度</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_DOCU"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_DOCU" name="param.cd_DOCU" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_TIME" class="col-sm-3 control-label">运行时间约束</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_TIME"
-				list="{
-	 				'一般',
-	 				'高',
-	 				'非常高',
-	 				'极其高'}"
-				value="param.cd_TIME" name="param.cd_TIME" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_STOR" class="col-sm-3 control-label">内存约束</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_STOR"
-				list="{
-	 				'一般',
-	 				'高',
-	 				'非常高',
-	 				'极其高'}"
-				value="param.cd_STOR" name="param.cd_STOR" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_PVOL" class="col-sm-3 control-label">平台稳定性</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_PVOL"
-				list="{
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_PVOL" name="param.cd_PVOL" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_ACAP" class="col-sm-3 control-label">分析能力</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_ACAP"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_ACAP" name="param.cd_ACAP" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_PCAP" class="col-sm-3 control-label">编程人员能力</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_PCAP"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_PCAP" name="param.cd_PCAP" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_AEXP" class="col-sm-3 control-label">应用经验</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_AEXP"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_AEXP" name="param.cd_AEXP" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_PLEX" class="col-sm-3 control-label">平台经验</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_PLEX"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_PLEX" name="param.cd_PLEX" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_LTEX" class="col-sm-3 control-label">编程语言和工具经验</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_LTEX"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_LTEX" name="param.cd_LTEX" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_PCON" class="col-sm-3 control-label">人员连续性</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_PCON"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_PCON" name="param.cd_PCON" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_TOOL" class="col-sm-3 control-label">采用的软件工具</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_TOOL"
-				list="{
-	 				'非常低',
-	 				'低',
-	 				'一般',
-	 				'高',
-	 				'非常高'}"
-				value="param.cd_TOOL" name="param.cd_TOOL" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="cd_SITE" class="col-sm-3 control-label">多站点开发</label>
-		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_SITE"
-				list="{
+				'极其低',
 	 				'非常低',
 	 				'低',
 	 				'一般',
 	 				'高',
 	 				'非常高',
 	 				'极其高'}"
-				value="param.cd_SITE" name="param.cd_SITE" />
+				value="param.ed_FCIL" name="param.ed_FCIL" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="cd_SCED" class="col-sm-3 control-label">对开发时间的要求</label>
+		<label for="ed_SCED" class="col-sm-3 control-label">要求的开发进度</label>
 		<div class="col-sm-7">
-			<s:select class="form-control" id="cd_SCED"
+			<s:select class="form-control" id="ed_SCED"
 				list="{
 	 				'非常低',
 	 				'低',
 	 				'一般',
 	 				'高',
 	 				'非常高'}"
-				value="param.cd_SCED" name="param.cd_SCED" />
+				value="param.ed_SCED" name="param.ed_SCED" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ed_FCIL" class="col-sm-3 control-label">人员能力</label>
+		<div class="col-sm-7">
+			<s:select class="form-control" id="ed_PERS"
+				list="{
+				'极其低',
+	 				'非常低',
+	 				'低',
+	 				'一般',
+	 				'高',
+	 				'非常高',
+	 				'极其高'}"
+				value="param.ed_PERS" name="param.ed_PERS" />
 		</div>
 	</div>
 </div>
@@ -363,26 +257,6 @@ padding:0px 12px 10px 12px;
 </div>
 	</form>
 	<hr />
-	<div id="sevenFactors">
-	<table class="table">
-	<tr>
-	<td>产品可靠性与复杂性(RCPX):<s:property value="RCPX" /></td>
-	<td>可复用性开发(RUSE):<s:property value="RUSE" /></td>
-	</tr>
-	<tr>
-	<td>平台难度(PDIF):<s:property value="PDIF" /></td>
-	<td>人员能力(PERS):<s:property value="PERS" /></td>
-	</tr>
-	<tr>
-	<td>人员经验(PREX):<s:property value="PREX" /></td>
-	<td>设施(FCIL):<s:property value="FCIL" /></td>
-	</tr>
-	<tr>
-	<td>要求的开发进度(SCED):<s:property value="SCED" /></td>
-	<td></td>
-	</tr>	
-	</table>
-	</div>
 	<div id="estimationResult">
 		<p>
 			工作量：
@@ -405,6 +279,11 @@ padding:0px 12px 10px 12px;
  <%@ include file="/common/layout/footer.jsp"%>
 <script>
 	$(document).ready(function() {
+		$(".form-horizontal").validate({
+			rules: {
+				"earlyDesAndPostArch.KSLOC":"required"
+			}
+		}); 
  		//根据编程语言的不同，修改对应的LinesPerFP
 		var selectedItem = $("#devLangs  option:selected").text();
 	   	var devLangs=JSON.parse($("#devLangsString").val()); 
@@ -412,7 +291,15 @@ padding:0px 12px 10px 12px;
  		if(devLang.name==selectedItem){
  			$("#linesPerFP").val(devLang.linesPerFP); 
  			}
- 		});   
+ 		});  
+	   	
+	   	//根据选择的编程语言和未调整功能点数，填充千行源代码输入框
+	   	//若不使用功能点，直接输入代码行，不执行该步
+	   	if($("#functionPoint").val()!=""){
+		   	var KSLOC=$("#functionPoint").val()*$("#linesPerFP").val();
+		   	$("#KSLOC").val(KSLOC/1000);
+		   	$("#KSLOC").attr("readonly","readonly");
+	   	}
 	});
 		//根据编程语言的不同，修改对应的LinesPerFP
 function change(){
@@ -423,5 +310,11 @@ function change(){
 			$("#linesPerFP").val(devLang.linesPerFP); 
 			}
 		}); 
+   	//根据选择的编程语言和未调整功能点数，填充千行源代码输入框
+   	//若不使用功能点，直接输入代码行，不执行该步
+   	if($("#functionPoint").val()!=""){
+	   	var KSLOC=$("#functionPoint").val()*$("#linesPerFP").val();
+	   	$("#KSLOC").val(KSLOC/1000);
+   	}
 }
 </script>

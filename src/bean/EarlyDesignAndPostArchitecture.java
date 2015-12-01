@@ -25,6 +25,7 @@ public class EarlyDesignAndPostArchitecture {
 		private Double effort;// 软件生命周期阶段
 		private Double duration;// 估算目的
 		private Double cost;
+		private Double KSLOC;
 		
 		@ManyToOne
 		@LazyCollection(LazyCollectionOption.FALSE)
@@ -93,5 +94,13 @@ public class EarlyDesignAndPostArchitecture {
 
 		public void setLinesPerFP(Integer linesPerFP) {
 			this.linesPerFP = linesPerFP;
+		}
+
+		public Double getKSLOC() {
+			return KSLOC;
+		}
+
+		public void setKSLOC(Double kSLOC) {
+			KSLOC = kSLOC;
 		}
 }

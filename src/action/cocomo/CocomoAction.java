@@ -31,6 +31,7 @@ public class CocomoAction {
 	private List<ApplicationComposition> applicationCompositions;
 	private CountSession countSession;
 	private Param param;
+	private Double CFP_to_FP;
 	private List<DevLang> devLangs;
 	private String devLangsString;
 	private EarlyDesignAndPostArchitecture earlyDesAndPostArch;
@@ -45,8 +46,8 @@ public class CocomoAction {
 	private DevLangBusiness db = new DevLangBusiness();
 	double scaleFactors[]=new double[5];
 	double costDrivers[]=new double[17];
-	double RCPX,RUSE,PDIF,PERS,PREX,FCIL,SCED;
-
+	double ed_costDrivers[]=new double[7];
+	
 	public String getAllEstimations(){
 		applicationCompositions=ab
 				.getApplicationCompositionByCountSession(countSession);
@@ -111,6 +112,15 @@ public class CocomoAction {
 		Project project = countSession.getProject();
 		User user = project.getUser();
 		Organization organization = user.getOrganization();
+		//判断是否为COSMIC，若是则先转换为FP
+		if(countSession.getMethodType().equals("COSMIC")){
+			if(countSession.getUfpc()<=305){
+				CFP_to_FP=-8.2 + 0.847*countSession.getUfpc();
+			}else{
+				CFP_to_FP=-197 + 1.30*countSession.getUfpc();
+			}
+			CFP_to_FP=new BigDecimal(CFP_to_FP).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		}
 		// 第一次估算,使用默认组织的薪资水平
 		if (earlyDesAndPostArchs.size() == 0) {
 			setParam(pb.findParamByOrg(organization));
@@ -133,7 +143,6 @@ public class CocomoAction {
 		// 拼接json用于jquery动态改变语言对应的千行代码行数
 		StringBuilder strBuilder = concatDevLangs(devLangs);
 		devLangsString = strBuilder.toString();
-		System.out.print(devLangsString);
 		return "earlyDesign";
 	}
 	
@@ -146,28 +155,20 @@ public class CocomoAction {
 		Project project = countSession.getProject();
 		User user = project.getUser();
 		Organization organization = user.getOrganization();
+		//判断是否为COSMIC，若是则先转换为FP
+		if(countSession.getMethodType().equals("COSMIC")){
+			if(countSession.getUfpc()<=305){
+				CFP_to_FP=-8.2 + 0.847*countSession.getUfpc();
+			}else{
+				CFP_to_FP=-197 + 1.30*countSession.getUfpc();
+			}
+			CFP_to_FP=new BigDecimal(CFP_to_FP).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		}
 		// 第一次估算,若有后体系架构的参数，则使用；
-		// 否则，若有早期设计的参数，则使用；
-		// 否则，若没有使用组织级参数
+		// 否则，使用组织级参数
 		if (earlyDesAndPostArchs.size() == 0) {
-			if(earlyDesigns.size()==0){
 				param=pb.findParamByOrg(organization);
 				devLangs=db.findDevLangByOrg(organization);
-			}
-			else{
-				earlyDesign=earlyDesigns.get(0);
-				param=pb.findParamByEarlyDesignAndPostArchitecture(earlyDesign);
-				devLangs=db.findDevLangByOrg(organization);
-				for (int i = 0; i < devLangs.size(); i++) {
-					if ((devLangs.get(i).getName()).equals(earlyDesigns.get(0).getLanguage())) {
-						// 只替换上次被改过的编程语言
-						DevLang devLang=devLangs.get(i);
-						devLang.setLinesPerFP(earlyDesigns.get(0).getLinesPerFP());
-						devLangs.set(i, devLang);
-						break;
-					}
-				}
-			}
 		} else {
 			earlyDesAndPostArch = earlyDesAndPostArchs.get(0);
 			param = pb.findParamByEarlyDesignAndPostArchitecture(earlyDesAndPostArch);
@@ -226,7 +227,7 @@ public class CocomoAction {
 			pb.create(param);
 		} else {
 			eb.update(earlyDesAndPostArch);
-			pb.update(param);
+			pb.updateEarlyDesign(param);
 		}
 				
 		return editEarlyDesign();
@@ -255,7 +256,7 @@ public class CocomoAction {
 			pb.create(param);
 		} else {
 			eb.update(earlyDesAndPostArch);
-			pb.update(param);
+			pb.updatePostArchitecture(param);
 		}
 				
 		return editPostArchitecture();
@@ -283,180 +284,124 @@ public class CocomoAction {
 			costDriversProduct = getCostDriverForPostArch();
 		}
 		double E=(0.91+0.01*scaleFactorsSum);
-		double temp=countSession.getUfpc()*earlyDesAndPostArch.getLinesPerFP();
-		double pm=2.94*Math.pow(temp/1000, E)*costDriversProduct;
+		double pm=2.94*Math.pow(earlyDesAndPostArch.getKSLOC(), E)*costDriversProduct;
 		return pm;
 	}
 	
 	private double getCostDriverForEarlyDesign(){
-		//非常低-1，低-2，一般-3，高-4，非常高-5
-		//RELY
-		getValueForCostDriver(param.getCd_RELY(), 0); 
-		//DATA
-		getValueForCostDriver(param.getCd_DATA(), 1);
-		//CPLX
-		getValueForCostDriver(param.getCd_CPLX(), 2);
-		//RUSE
-		getValueForCostDriver(param.getCd_RUSE(), 3);
-		//DOCU
-		getValueForCostDriver(param.getCd_DOCU(), 4);
-		//TIME
-		getValueForCostDriver(param.getCd_TIME(), 5);
-		//STOR
-		getValueForCostDriver(param.getCd_STOR(), 6);
-		//PVOL
-		getValueForCostDriver(param.getCd_PVOL(), 7);
-		//ACAP
-		getValueForCostDriver(param.getCd_ACAP(), 8);
-		//PCAP
-		getValueForCostDriver(param.getCd_PCAP(), 9);
-		//AEXP
-		getValueForCostDriver(param.getCd_AEXP(), 10);
-		//PLEX
-		getValueForCostDriver(param.getCd_PLEX(), 11);
-		//LTEX
-		getValueForCostDriver(param.getCd_LTEX(), 12);
-		//PCON
-		getValueForCostDriver(param.getCd_PCON(), 13);
-		//TOOL
-		getValueForCostDriver(param.getCd_TOOL(), 14);
-		//SITE
-		getValueForCostDriver(param.getCd_SITE(), 15);
-		//SCED
-		getValueForCostDriver(param.getCd_SCED(), 16);
 		
 		//RCPX
-		double RCPX_sum=costDrivers[0]+costDrivers[1]+costDrivers[2]+costDrivers[4];
-		if(RCPX_sum>=5.0&&RCPX_sum<=6.0){
-			RCPX=0.49;
-		}else if(RCPX_sum>=7.0&&RCPX_sum<=8.0){
-			RCPX=0.60;
-		}else if(RCPX_sum>=9.0&&RCPX_sum<=11.0){
-			RCPX=0.83;
-		}else if(RCPX_sum==12.0){
-			RCPX=1.00;
-		}else if(RCPX_sum>=13.0&&RCPX_sum<=15.0){
-			RCPX=1.33;
-		}else if(RCPX_sum>=16.0&&RCPX_sum<=18.0){
-			RCPX=1.91;
+		if(param.getEd_RCPX().equals("极其低")){
+			ed_costDrivers[0]=0.49;
+		}else if(param.getEd_RCPX().equals("非常低")){
+			ed_costDrivers[0]=0.60;
+		}else if(param.getEd_RCPX().equals("低")){
+			ed_costDrivers[0]=0.83;
+		}else if(param.getEd_RCPX().equals("一般")){
+			ed_costDrivers[0]=1.00;
+		}else if(param.getEd_RCPX().equals("高")){
+			ed_costDrivers[0]=1.33;
+		}else if(param.getEd_RCPX().equals("非常高")){
+			ed_costDrivers[0]=1.91;
 		}else {
-			RCPX=2.72;
+			ed_costDrivers[0]=2.72;
 		}
 
 		//RUSE
-		double RUSE_sum=costDrivers[3];
-		if(RUSE_sum==2.0){
-			RUSE=0.95;
-		}else if(RUSE_sum==3.0){
-			RUSE=1.00;
-		}else if(RUSE_sum==4.0){
-			RUSE=1.07;
-		}else if(RUSE_sum==5.0){
-			RUSE=1.15;
+		if(param.getEd_RUSE().equals("低")){
+			ed_costDrivers[1]=0.95;
+		}else if(param.getEd_RUSE().equals("一般")){
+			ed_costDrivers[1]=1.00;
+		}else if(param.getEd_RUSE().equals("高")){
+			ed_costDrivers[1]=1.07;
+		}else if(param.getEd_RUSE().equals("非常高")){
+			ed_costDrivers[1]=1.15;
 		}else{
-			RUSE=1.24;
+			ed_costDrivers[1]=1.24;
 		}
 		
 		//SCED
-		double SCED_sum=costDrivers[16];
-		if(SCED_sum==1.0){
-			SCED=1.43;
-		}else if(SCED_sum==2.0){
-			SCED=1.14;
-		}else if(SCED_sum==3.0){
-			SCED=1.00;
-		}else if(SCED_sum==4.0){
-			SCED=1.00;
+		if(param.getEd_SCED().equals("低")){
+			ed_costDrivers[2]=1.43;
+		}else if(param.getEd_SCED().equals("一般")){
+			ed_costDrivers[2]=1.14;
+		}else if(param.getEd_SCED().equals("高")){
+			ed_costDrivers[2]=1.00;
+		}else if(param.getEd_SCED().equals("非常高")){
+			ed_costDrivers[2]=1.00;
 		}else{
-			SCED=1.00;
+			ed_costDrivers[2]=1.00;
 		}
 		
 		//PDIF
-		double PDIF_sum=costDrivers[5]+costDrivers[6]+costDrivers[7];
-		if(PDIF_sum==8.0){
-			PDIF=0.87;
-		}else if(PDIF_sum==9.0){
-			PDIF=1.00;
-		}else if(PDIF_sum>=10.0&&PDIF_sum<=12.0){
-			PDIF=1.29;
-		}else if(PDIF_sum>=13.0&&PDIF_sum<=15.0){
-			PDIF=1.81;
+		if(param.getEd_PDIF().equals("低")){
+			ed_costDrivers[3]=0.87;
+		}else if(param.getEd_PDIF().equals("一般")){
+			ed_costDrivers[3]=1.00;
+		}else if(param.getEd_PDIF().equals("高")){
+			ed_costDrivers[3]=1.29;
+		}else if(param.getEd_PDIF().equals("非常高")){
+			ed_costDrivers[3]=1.81;
 		}else {
-			PDIF=2.61;
+			ed_costDrivers[3]=2.61;
 		}
 		
 		//PERS
-		double PERS_sum=costDrivers[8]+costDrivers[9]+costDrivers[13];
-		if(PERS_sum>=3.0&&PERS_sum<=4.0){
-			PERS=2.12;
-		}else if(PERS_sum>=5.0&&PERS_sum<=6.0){
-			PERS=1.62;
-		}else if(PERS_sum>=7.0&&PERS_sum<=8.0){
-			PERS=1.26;
-		}else if(PERS_sum>=9.0){
-			PERS=1.00;
-		}else if(PERS_sum>=10.0&&PERS_sum<=11.0){
-			PERS=0.83;
-		}else if(PERS_sum>=12.0&&PERS_sum<=13.0){
-			PERS=0.63;
+		if(param.getEd_PERS().equals("极其低")){
+			ed_costDrivers[4]=2.12;
+		}else if(param.getEd_PERS().equals("非常低")){
+			ed_costDrivers[4]=1.62;
+		}else if(param.getEd_PERS().equals("低")){
+			ed_costDrivers[4]=1.26;
+		}else if(param.getEd_PERS().equals("一般")){
+			ed_costDrivers[4]=1.00;
+		}else if(param.getEd_PERS().equals("高")){
+			ed_costDrivers[4]=0.83;
+		}else if(param.getEd_PERS().equals("非常高")){
+			ed_costDrivers[4]=0.63;
 		}else {
-			PERS=0.50;
+			ed_costDrivers[4]=0.50;
 		}
 		
 		//PREX
-		double PREX_sum=costDrivers[10]+costDrivers[11]+costDrivers[12];
-		if(PREX_sum>=3.0&&PREX_sum<=4.0){
-			PREX=1.59;
-		}else if(PREX_sum>=5.0&&PREX_sum<=6.0){
-			PREX=1.33;
-		}else if(PREX_sum>=7.0&&PREX_sum<=8.0){
-			PREX=1.22;
-		}else if(PREX_sum==9.0){
-			PREX=1.00;
-		}else if(PREX_sum>=10.0&&PREX_sum<=11.0){
-			PREX=0.87;
-		}else if(PREX_sum>=12.0&&PREX_sum<=13.0){
-			PREX=0.74;
+		if(param.getEd_PREX().equals("极其低")){
+			ed_costDrivers[5]=1.59;
+		}else if(param.getEd_PREX().equals("非常低")){
+			ed_costDrivers[5]=1.33;
+		}else if(param.getEd_PREX().equals("低")){
+			ed_costDrivers[5]=1.22;
+		}else if(param.getEd_PREX().equals("一般")){
+			ed_costDrivers[5]=1.00;
+		}else if(param.getEd_PREX().equals("高")){
+			ed_costDrivers[5]=0.87;
+		}else if(param.getEd_PREX().equals("非常高")){
+			ed_costDrivers[5]=0.74;
 		}else {
-			PREX=0.62;
+			ed_costDrivers[5]=0.62;
 		}
 		
 		//FCIL
-		double FCIL_sum=costDrivers[14]+costDrivers[15];
-		if(FCIL_sum==2.0){
-			FCIL=1.43;
-		}else if(FCIL_sum==3.0){
-			FCIL=1.30;
-		}else if(FCIL_sum>=4.0&&FCIL_sum<=5.0){
-			FCIL=1.10;
-		}else if(FCIL_sum==6.0){
-			FCIL=1.00;
-		}else if(FCIL_sum>=7.0&&FCIL_sum<=8.0){
-			FCIL=0.87;
-		}else if(FCIL_sum>=9.0&&FCIL_sum<=10.0){
-			FCIL=0.73;
+		if(param.getEd_PREX().equals("极其低")){
+			ed_costDrivers[6]=1.43;
+		}else if(param.getEd_PREX().equals("非常低")){
+			ed_costDrivers[6]=1.30;
+		}else if(param.getEd_PREX().equals("低")){
+			ed_costDrivers[6]=1.10;
+		}else if(param.getEd_PREX().equals("一般")){
+			ed_costDrivers[6]=1.00;
+		}else if(param.getEd_PREX().equals("高")){
+			ed_costDrivers[6]=0.87;
+		}else if(param.getEd_PREX().equals("非常高")){
+			ed_costDrivers[6]=0.73;
 		}else {
-			FCIL=0.62;
+			ed_costDrivers[6]=0.62;
 		}
 	
-		return RCPX*RUSE*PDIF*PERS*PREX*FCIL*SCED;
-	}
-
-	private void getValueForCostDriver(String level,int i){
-		//非常低-1，低-2，一般-3，高-4，非常高-5
-		if(level.equals("非常低")){
-			costDrivers[i]=1.0f;
-		}else if(level.equals("低")){
-			costDrivers[i]=2.0f;
-		}else if(level.equals("一般")){
-			costDrivers[i]=3.0f;
-		}else if(level.equals("高")){
-			costDrivers[i]=4.0f;
-		}else if(level.equals("非常高")){
-			costDrivers[i]=5.0f;
-		}else{
-			costDrivers[i]=6.0f;
+		double ed_costDriversProduct=1.0f;
+		for(double f:ed_costDrivers){
+			ed_costDriversProduct*=f;
 		}
+		return ed_costDriversProduct;
 	}
 	
 	private double getCostDriverForPostArch(){
@@ -807,49 +752,6 @@ public class CocomoAction {
 	public void setDevLangsString(String devLangsString) {
 		this.devLangsString = devLangsString;
 	}
-	public double getRCPX() {
-		return RCPX;
-	}
-	public void setRCPX(double rCPX) {
-		RCPX = rCPX;
-	}
-	public double getRUSE() {
-		return RUSE;
-	}
-	public void setRUSE(double rUSE) {
-		RUSE = rUSE;
-	}
-	public double getPDIF() {
-		return PDIF;
-	}
-	public void setPDIF(double pDIF) {
-		PDIF = pDIF;
-	}
-	public double getPERS() {
-		return PERS;
-	}
-	public void setPERS(double pERS) {
-		PERS = pERS;
-	}
-	public double getPREX() {
-		return PREX;
-	}
-	public void setPREX(double pREX) {
-		PREX = pREX;
-	}
-	public double getFCIL() {
-		return FCIL;
-	}
-	public void setFCIL(double fCIL) {
-		FCIL = fCIL;
-	}
-	public double getSCED() {
-		return SCED;
-	}
-	public void setSCED(double sCED) {
-		SCED = sCED;
-	}
-
 	public EarlyDesignAndPostArchitecture getEarlyDesign() {
 		return earlyDesign;
 	}
@@ -864,5 +766,13 @@ public class CocomoAction {
 
 	public void setPostArchitecture(EarlyDesignAndPostArchitecture postArchitecture) {
 		this.postArchitecture = postArchitecture;
+	}
+
+	public Double getCFP_to_FP() {
+		return CFP_to_FP;
+	}
+
+	public void setCFP_to_FP(Double cFP_to_FP) {
+		CFP_to_FP = cFP_to_FP;
 	}
 }

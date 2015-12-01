@@ -25,7 +25,7 @@ public class ParamAction extends ActionSupport{
 		organization = ob.find(organization);
 		Param p = pb.findParamByOrg(organization);
 		if(p!=null){
-			pb.update(p);
+			pb.update(param);
 		}
 		else{
 			param.setOrganization(organization);
