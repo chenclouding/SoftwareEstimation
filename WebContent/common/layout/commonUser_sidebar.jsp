@@ -4,6 +4,9 @@
 	<h1>一般用户</h1>
 	<ul class="sidemenu">
 		<li><a
+			href="common/commonUser_welcome.jsp"
+			>使用帮助</a></li>
+		<li><a
 			href="project!list?user.id=<%=session.getAttribute("userId") %>"
 			>项目管理</a></li>
 		<li><a
