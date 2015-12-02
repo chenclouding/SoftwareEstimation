@@ -26,7 +26,10 @@ h1 { font-size: 130%; }
 h2 { font-size: 120%; text-transform: uppercase; }
 
 p {
-padding: 0px 12px 10px 12px;
+padding: 5px 12px 10px 12px;
+}
+#footer > p {
+padding: 15px 12px 10px 12px;
 }
 h1, h2{
     padding: 15px 12px;

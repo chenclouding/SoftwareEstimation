@@ -115,9 +115,9 @@ public class CocomoAction {
 		//判断是否为COSMIC，若是则先转换为FP
 		if(countSession.getMethodType().equals("COSMIC")){
 			if(countSession.getUfpc()<=305){
-				CFP_to_FP=-8.2 + 0.847*countSession.getUfpc();
+				CFP_to_FP=(8.2 + countSession.getUfpc())/0.847;
 			}else{
-				CFP_to_FP=-197 + 1.30*countSession.getUfpc();
+				CFP_to_FP=(197 + countSession.getUfpc())/1.30;
 			}
 			CFP_to_FP=new BigDecimal(CFP_to_FP).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		}
@@ -158,9 +158,9 @@ public class CocomoAction {
 		//判断是否为COSMIC，若是则先转换为FP
 		if(countSession.getMethodType().equals("COSMIC")){
 			if(countSession.getUfpc()<=305){
-				CFP_to_FP=-8.2 + 0.847*countSession.getUfpc();
+				CFP_to_FP=(8.2 + countSession.getUfpc())/0.847;
 			}else{
-				CFP_to_FP=-197 + 1.30*countSession.getUfpc();
+				CFP_to_FP=(197 + countSession.getUfpc())/1.30;
 			}
 			CFP_to_FP=new BigDecimal(CFP_to_FP).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		}
@@ -321,13 +321,13 @@ public class CocomoAction {
 		}
 		
 		//SCED
-		if(param.getEd_SCED().equals("低")){
+		if(param.getEd_SCED().equals("非常低")){
 			ed_costDrivers[2]=1.43;
-		}else if(param.getEd_SCED().equals("一般")){
+		}else if(param.getEd_SCED().equals("低")){
 			ed_costDrivers[2]=1.14;
-		}else if(param.getEd_SCED().equals("高")){
+		}else if(param.getEd_SCED().equals("一般")){
 			ed_costDrivers[2]=1.00;
-		}else if(param.getEd_SCED().equals("非常高")){
+		}else if(param.getEd_SCED().equals("高")){
 			ed_costDrivers[2]=1.00;
 		}else{
 			ed_costDrivers[2]=1.00;
@@ -381,17 +381,17 @@ public class CocomoAction {
 		}
 		
 		//FCIL
-		if(param.getEd_PREX().equals("极其低")){
+		if(param.getEd_FCIL().equals("极其低")){
 			ed_costDrivers[6]=1.43;
-		}else if(param.getEd_PREX().equals("非常低")){
+		}else if(param.getEd_FCIL().equals("非常低")){
 			ed_costDrivers[6]=1.30;
-		}else if(param.getEd_PREX().equals("低")){
+		}else if(param.getEd_FCIL().equals("低")){
 			ed_costDrivers[6]=1.10;
-		}else if(param.getEd_PREX().equals("一般")){
+		}else if(param.getEd_FCIL().equals("一般")){
 			ed_costDrivers[6]=1.00;
-		}else if(param.getEd_PREX().equals("高")){
+		}else if(param.getEd_FCIL().equals("高")){
 			ed_costDrivers[6]=0.87;
-		}else if(param.getEd_PREX().equals("非常高")){
+		}else if(param.getEd_FCIL().equals("非常高")){
 			ed_costDrivers[6]=0.73;
 		}else {
 			ed_costDrivers[6]=0.62;

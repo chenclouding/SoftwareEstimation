@@ -5,7 +5,7 @@
 <div id="wrap">
 <%@ include file="layout/traditional_head.jsp"%>
 <%@ include file="layout/traditional_sidebar.jsp"%>
-
+<link rel="stylesheet" href="styles/pert.css" />
 <div id="content-wrap">
 	<h3>PERT估算页面</h3>
 	<form class="form-horizontal" id="appForm" action="pert!editedPert"

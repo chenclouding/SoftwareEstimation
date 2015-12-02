@@ -1,12 +1,91 @@
- #content-wrap h3,strong {
+#content-wrap h3, strong {
 	font-size: 110%;
-} 
+}
 
-#methodHelp a {
+.methodHelp a {
 	text-decoration: underline;
 }
-.img_inserted{
-width:70%;}
-#content-wrap{
-	font-size:110%;
+
+.img_inserted {
+	width: 70%;
+}
+
+#content-wrap {
+	font-size: 110%;
+}
+
+#nesmaHelp {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#nesmaHelp h3 {
+	border-bottom: transparent;
+	margin: 0px;
+}
+
+#content-wrap #tabbox {
+	width: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+#content-wrap .tab_conbox {
+	border: 1px solid rgba(189, 180, 180, 0.76);
+	border-top: none;
+}
+
+#content-wrap .tab_con {
+	display: none;
+}
+
+#content-wrap #tabbox ul, #content-wrap #tabbox ol {
+	margin: 0px;
+	padding: 0px;
+}
+
+#content-wrap .tabs {
+	height: 32px;
+	border-bottom: 1px solid rgba(189, 180, 180, 0.76);
+	border-left: 1px solid rgba(189, 180, 180, 0.76);
+	width: 100%;
+}
+
+#content-wrap .tabs li {
+	border-radius: 5px 5px 0 0;
+	height: 32px;
+	line-height: 31px;
+	float: left;
+	border: 1px solid rgba(189, 180, 180, 0.76);
+	border-left: none;
+	margin-bottom: -1px;
+	background: #e0e0e0;
+	overflow: hidden;
+	position: relative;
+}
+
+#content-wrap .tabs li a {
+	display: block;
+	padding: 0 20px;
+	border: 1px solid #fff;
+	outline: none;
+}
+
+#content-wrap .tabs li a:hover {
+	background: #ccc;
+}
+
+#content-wrap .tabs .thistab,#content-wrap  .tabs .thistab a:hover {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+
+#content-wrap .tab_con {
+	padding: 12px;
+	font-size: 14px;
+	line-height: 175%;
 }

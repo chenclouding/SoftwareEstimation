@@ -161,7 +161,7 @@ padding:0px 12px 10px 12px;
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="ed_PREX" class="col-sm-3 control-label">个人经验</label>
+		<label for="ed_PREX" class="col-sm-3 control-label">人员经验</label>
 		<div class="col-sm-7">
 			<s:select class="form-control" id="ed_PREX"
 				list="{

@@ -7,14 +7,14 @@
 	<%@ include file="layout/cosmic_head.jsp"%>
 	<%@ include file="layout/cosmic_sidebar.jsp"%>
 	<div id="content-wrap">
-		<div id="methodHelp">
+		<div class="methodHelp">
 			<h3>COSMIC功能点估算方法介绍</h3>
 			<p>关于COSMIC功能点估算方法介绍，请参见如下教程：</p>
 			<p>
 				<a target="_blank" href="docs/COSMIC.pdf">COSMIC估算方法介绍.pdf</a>
 			</p>
 		</div>
-		<div id="toolHelp">
+		<div class="toolHelp">
 			<h3>COSMIC模块使用说明</h3>
 			<p>COSMIC方法包括三个步骤:识别功能流程、识别兴趣对象和数据组、识别数据移动。</p>
 			<ol>
