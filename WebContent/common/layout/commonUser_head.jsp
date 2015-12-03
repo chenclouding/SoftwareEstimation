@@ -17,6 +17,7 @@
 	<!-- menu -->
 	<div id="menu">
 		<ul>
+			<li><a href="common/commonUser_welcome.jsp">使用帮助</a></li>
 			<li><a href="project!list?user.id=<%=session.getAttribute("userId") %>">项目管理</a></li>
 			<li><a href="project!listProjects?user.id=<%=session.getAttribute("userId") %>">模块分解</a></li>
 			<li><a href="project!listProjectsForSession?user.id=<%=session.getAttribute("userId") %>">估算场景</a></li>
